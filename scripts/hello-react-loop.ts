@@ -24,6 +24,7 @@ async function main() {
     maxIterations: 10,
     cacheSystem: true,
     runId: "smoke-1",
+    agentType: "leaf",
   })
 
   console.log("\n=== Final messages ===")

@@ -4,15 +4,22 @@
  *
  * Spec: docs/P3-react-loop-pseudocode.md
  *
- * STATUS: skeleton (W1 Step 4). Each TODO points to the relevant P3 section
- * for implementation. Trace operations are deferred to Step 5 (P4 §2);
- * this skeleton emits a console one-liner per iteration, that's it.
+ * STATUS: W1 Step 5 done. Implements the loop (P3) plus per-run JSON trace
+ * persistence (P4 §2, see lib/trace) alongside the console one-liner.
  */
 
 import Anthropic from "@anthropic-ai/sdk"
 
 import { withRetry } from "../lib/retry"
 import { estimateCost, type TokenAccumulator } from "../lib/cost"
+import {
+  createTrace,
+  recordIteration,
+  recordToolCall,
+  finalizeTrace,
+  writeTrace,
+  type AgentType,
+} from "../lib/trace"
 
 // maxRetries: 0 — withRetry (lib/retry) is the single retry layer; the SDK's
 // default (2) would otherwise stack on top, compounding attempts and backoff.
@@ -58,6 +65,7 @@ export type ReActInput = {
   maxIterations: number
   cacheSystem: boolean
   runId: string
+  agentType: AgentType
 }
 
 export type ReActOutput = {
@@ -89,14 +97,41 @@ export async function runReActLoop(input: ReActInput): Promise<ReActOutput> {
   let toolCallsExecuted = 0
   let error: { type: string; message: string } | null = null
 
-  function buildOutput(stopReason: StopReason, iterCount: number): ReActOutput {
+  const trace = createTrace({
+    runId: input.runId,
+    agentType: input.agentType,
+    model: input.model,
+    systemPrompt: input.systemPrompt,
+    initialMessages: input.initialMessages,
+    toolsOffered: input.tools,
+  })
+
+  async function buildOutput(stopReason: StopReason, iterCount: number): Promise<ReActOutput> {
+    const estimatedCostUsd = estimateCost(tokens, input.model)
+
+    finalizeTrace(trace, {
+      finalStopReason: stopReason,
+      finalMessages: messages,
+      tokens,
+      totalToolCalls: toolCallsExecuted,
+      estimatedCostUsd,
+      error,
+    })
+    try {
+      const path = await writeTrace(trace)
+      logOneLiner(input.runId, iterCount, `trace written → ${path}`)
+    } catch (writeErr: any) {
+      // Trace write failure must NOT crash the run — log and continue.
+      logOneLiner(input.runId, iterCount, `WARNING: trace write failed: ${writeErr?.message}`)
+    }
+
     return {
       finalMessages: messages,
       finalStopReason: stopReason,
       iterationsRun: iterCount,
       tokens,
       toolCallsExecuted,
-      estimatedCostUsd: estimateCost(tokens, input.model),
+      estimatedCostUsd,
       error,
     }
   }
@@ -105,19 +140,25 @@ export async function runReActLoop(input: ReActInput): Promise<ReActOutput> {
     logOneLiner(input.runId, iteration, "calling LLM")
 
     // ─── Step 1: Call Anthropic API with retry ─────────────────────────
-    // See P3 §"The loop" Step 1 (L63-80) + P4 §3 (error handling table)
+    // See P3 §"The loop" Step 1 (L63-80) + P4 §3 (error handling table).
+    // requestParams is snapshotted (messages copied via spread) so the trace
+    // records the exact request sent, without holding a mutable reference to
+    // the growing messages array.
+    const requestParams = {
+      model: input.model,
+      max_tokens: 4096,
+      system: input.cacheSystem
+        ? [{ type: "text" as const, text: input.systemPrompt, cache_control: { type: "ephemeral" as const } }]
+        : input.systemPrompt,
+      messages: [...messages],
+      tools: input.tools,
+    }
+
+    const apiT0 = Date.now()
     let response: Message
     try {
       response = await withRetry(
-        () => getClient().messages.create({
-          model: input.model,
-          max_tokens: 4096,
-          system: input.cacheSystem
-            ? [{ type: "text", text: input.systemPrompt, cache_control: { type: "ephemeral" } }]
-            : input.systemPrompt,
-          messages,
-          tools: input.tools,
-        }),
+        () => getClient().messages.create(requestParams),
         {
           maxAttempts: 3,
           backoffMs: [1000, 2000, 4000],
@@ -146,10 +187,12 @@ export async function runReActLoop(input: ReActInput): Promise<ReActOutput> {
         }
       )
     } catch (apiError: any) {
+      recordIteration(trace, iteration, requestParams, null, Date.now() - apiT0)
       error = { type: "api_error", message: apiError?.message ?? String(apiError) }
       logOneLiner(input.runId, iteration, "FAILED: " + error.message)
       return buildOutput("error", iteration)
     }
+    recordIteration(trace, iteration, requestParams, response, Date.now() - apiT0)
 
     // ─── Step 2: Update token accumulators ─────────────────────────────
     // P3 §"The loop" Step 2 (L96-100). The API splits input usage three ways:
@@ -211,35 +254,68 @@ export async function runReActLoop(input: ReActInput): Promise<ReActOutput> {
 
           const handler = input.toolHandlers[block.name]
           if (!handler) {
-            // Model called a tool we never offered. Treat as a failed call so
-            // it can recover, rather than crashing the loop.
+            // Branch 1 — model called a tool we never offered. Treat as a
+            // failed call so it can recover, rather than crashing the loop.
+            const notAvailable = `Tool '${block.name}' is not available.`
             toolResultBlocks.push({
               type: "tool_result",
               tool_use_id: block.id,
               is_error: true,
-              content: `Tool '${block.name}' is not available.`,
+              content: notAvailable,
+            })
+            recordToolCall(trace, iteration, {
+              tool_name: block.name,
+              tool_input: block.input,
+              tool_result: null,
+              is_error: true,
+              error_message: notAvailable,
+              latency_ms: 0, // never dispatched — no work to time
             })
             continue
           }
 
+          const toolT0 = Date.now()
           try {
+            // Branch 2 — handler returned. result.is_error distinguishes a
+            // graceful tool failure (empty search, timeout) from success; both
+            // are recorded, only the flag differs.
             const result = await handler(block.input)
+            const toolLatencyMs = Date.now() - toolT0
             toolResultBlocks.push({
               type: "tool_result",
               tool_use_id: block.id,
               is_error: result.is_error,
               content: result.content,
             })
+            recordToolCall(trace, iteration, {
+              tool_name: block.name,
+              tool_input: block.input,
+              tool_result: result,
+              is_error: result.is_error,
+              error_message: result.is_error ? result.content : null,
+              latency_ms: toolLatencyMs,
+            })
             toolCallsExecuted++
           } catch (handlerErr: any) {
-            // Distinct from is_error: true — an exception here means OUR code
-            // is broken, not that the tool failed gracefully. Wrap it so the
-            // loop survives, but it reads as a developer-side bug (Design §4).
+            // Branch 3 — handler threw. Distinct from is_error: true — an
+            // exception means OUR code is broken, not that the tool failed
+            // gracefully. Wrap it so the loop survives, but it reads as a
+            // developer-side bug (Design §4). Time still counts toward latency.
+            const toolLatencyMs = Date.now() - toolT0
+            const message = handlerErr?.message ?? String(handlerErr)
             toolResultBlocks.push({
               type: "tool_result",
               tool_use_id: block.id,
               is_error: true,
-              content: `Internal error executing tool: ${handlerErr?.message ?? String(handlerErr)}`,
+              content: `Internal error executing tool: ${message}`,
+            })
+            recordToolCall(trace, iteration, {
+              tool_name: block.name,
+              tool_input: block.input,
+              tool_result: null,
+              is_error: true,
+              error_message: message,
+              latency_ms: toolLatencyMs,
             })
           }
         }

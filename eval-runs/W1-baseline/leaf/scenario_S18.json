@@ -1,0 +1,38 @@
+{
+  "scenario_id": "S18",
+  "scenario_goal_id": 7,
+  "scenario_tree": "B",
+  "scenario_category": "clarify",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Clarify behavior / no guessing",
+  "scenario_user_message": "Is this approach a good fit for my situation?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "Is this approach a good fit for my situation?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "I'd love to help you figure that out — but I need to know your situation first. Right now I don't have any detail about what you're building.\n\nA few things that would help me judge whether combining RAG and fine-tuning makes sense for you:\n\n- What's the task? (e.g. answering questions over your docs, generating output in a specific format/style, both?)\n- Is your knowledge changing often, or is it fairly static?\n- Do you also need the model to *behave* differently — tone, structure, following a specific protocol — beyond just knowing facts?\n\nThat last one matters because the hybrid approach earns its complexity exactly when you have *both* a knowledge problem and a behavior problem at once: RAG handles the changing facts, fine-tuning handles the consistent behavior. If you only have one of those, a hybrid is usually overkill.\n\nTell me about your case and I'll give you a real answer rather than a generic one.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2125,
+      "output": 298,
+      "cacheRead": 0,
+      "cacheWrite": 2037
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.02062125,
+    "error": null
+  },
+  "summary_result": null
+}

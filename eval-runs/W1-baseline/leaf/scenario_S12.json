@@ -1,0 +1,69 @@
+{
+  "scenario_id": "S12",
+  "scenario_goal_id": 3,
+  "scenario_tree": "D",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use + hallucination prevention",
+  "scenario_user_message": "What new index-related features does PostgreSQL 17 have?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "What new index-related features does PostgreSQL 17 have?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Let me check the actual release notes for PostgreSQL 17, since version-specific features are exactly the kind of thing I shouldn't guess at."
+          },
+          {
+            "type": "tool_use",
+            "id": "toolu_01XSAapBZXvFfCDEdCDoqiwN",
+            "name": "web_search",
+            "input": {
+              "query": "PostgreSQL 17 release notes index improvements"
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_01XSAapBZXvFfCDEdCDoqiwN",
+            "is_error": false,
+            "content": "[1] PostgreSQL 16 vs 17: What's New and What It Means on ...\nURL: https://www.rapydo.io/blog/postgresql-16-vs-17-whats-new-and-what-it-means-on-aws\n# PostgreSQL 16 vs 17: What’s New and What It Means on AWS. PostgreSQL 17 (released Sept 2024) builds upon PostgreSQL 16 (Sept 2023) with significant improvements in performance, SQL capabilities, replication, and security. For experienced DBAs and cloud architects deploying Postgres on AWS – whether on Amazon RDS/Aurora or self-managed on EC2/Kubernetes – these changes translate into tangible benefits and new considerations. Below, we compare PostgreSQL 16 and 17 in detail, highlighting core engine upgrades in PG17, tooling and extension updates, the upgrade path from 16→17 (with AWS-specific notes), and advanced use cases unlocked by PG17. Core Engine Upgrades in PostgreSQL 17. BRIN indexes (often used on very large tables) can now be built in parallel in PG17, drastically reducing index creation time compared to PG16’s single-threaded BRIN builds. * SQL/JSON Improvements: PG17 brings a huge leap in JSON handling with the new *JSON\\_TABLE()* function that transforms JSON data into a relational table on the fly.\n\n---\n\n[2] PostgreSQL 17.0 Release Notes\nURL: https://www.postgresql.org/docs/release/17.0\n* New memory management system for `VACUUM`, which reduces memory consumption and can improve overall vacuuming performance. * New SQL/JSON capabilities, including constructors, identity functions, and the `JSON_TABLE()` function, which converts JSON data into a table representation. + pg\\_upgrade now preserves logical replication slots on publishers and full subscription state on subscribers. This will allow upgrades to future major versions to continue logical replication without requiring copy to resynchronize. * `COPY` adds a new option, `ON_ERROR ignore`, that allows a copy operation to continue in the event of an error. The above items and other new features of PostgreSQL 17 are explained in more detail in the sections below. A dump/restore using pg\\_dumpall or use of pg\\_upgrade or logical replication is required for those wishing to migrate data from any previous release. The new behavior is based on the session user's superuser status at the time the `SET SESSION AUTHORIZATION` command is issued, rather than their superuser status at connection time.\n\n---\n\n[3] Postgres 17 Query Performance Improvements\nURL: https://techcommunity.microsoft.com/blog/adforpostgresql/postgres-17-query-performance-improvements/4284693\n# Postgres 17 Query Performance Improvements. PostgreSQL 17 brings a wealth of improvements aimed at enhancing query performance, making it a significant upgrade for database administrators and developers. 1. Streaming IO: introduction of new read stream API and enhancements to existing read buffer API to enhance sequential reads and analyze performance. IS NULL / NOT NULL Handling: Eliminates unnecessary scans on NOT NULL columns when IS NULL or IS NOT NULL checks are specified. One of the standout features in PostgreSQL 17 is the improvements made to enhance sequential scans and analyze performance. The size and table definition of the table is as shown below:. Let's execute a simple COUNT (\\*) operation on the `orders` table on two separate servers one with Postgres 17 version and another with Postgres 16 version and then compare execution times by using EXPLAIN ANALYZE output as shown below. From the above snapshots, the number of index scans is 1 in Postgres 17 version compared to 2 in Postgres 16 version.\n\n---\n\n[4] PostgreSQL 17 Released! : r/linux - Reddit\nURL: https://www.reddit.com/r/linux/comments/1fpzzl6/postgresql_17_released\n# PostgreSQL 17 Released! Skip to main contentPostgreSQL 17 Released! Open menu Open navigationGo to Reddit Home. Image 1 Go to linux. Image 2: r/linux - PostgreSQL 17 Released! Image 5: Thumbnail image: With Claude Code, every moment becomes a chance to ship. With Claude Code, every moment becomes a chance to ship. For years it was more of a \"serious\" RDBMS than MySQL, more akin to Oracle for example in terms of features, SQL language compliance, performance, use in large data warehouses, etc. An example of the solid engineering and \"just use PostgreSQL\" claims, some years ago PostgreSQL 13 introduce massive improvements to the indexing implementation. Also, PostgreSQL has support for full-text search, JSON/JSONB, time series, etc so you may not need to deploy a \"NoSQL\" database and mange the synchronizing and lifecycles of *yet another app* in your stack. it's the best rdbms, mysql and mssql can go die in a ditch. It captures lines from the Mud I play to create the entry, and start the timer, but everything else is in Postgres.\n\n---\n\n[5] Postgres 17 | PostgreSQL Blog | Crunchy Data\nURL: https://www.crunchydata.com/blog/topic/postgres-17\nWorking on big data loads and or data type changes can be tricky - especially finding and correcting individual errors across a large data set. Postgres versions, 16, 17, and newer have a new function to help with data validation: . It is a great performance stress-test bulk load for any Postgres system. I use it to stress the latest PostgreSQL versions and state-of-the-art hardware. If you missed some of the headlines and release notes, Postgres 17 added another huge JSON feature to its growing repository of strong JSON support with the JSON\\_TABLE feature. So you can easily take JSON data feeds and work with it like you would any other Postgres data in your database. There is something new you may not have seen in the release notes for Postgres 17 . You may have missed it if you were scanning the release notes, but after the end of each specific item in the release note is a small “section” symbol whic..."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "The index-relevant changes in PostgreSQL 17 are fairly focused. The main ones:\n\n**Parallel BRIN index builds.** Before 17, building a BRIN index ran single-threaded. Now it can use multiple workers, which matters a lot on the very large tables where BRIN is typically used.\n\n**Smarter handling of `IS NULL` / `IS NOT NULL`.** The planner now skips unnecessary index scans when a query filters on a column that's declared `NOT NULL` — if you ask `WHERE col IS NULL` on a non-nullable column, it knows the answer is empty without scanning.\n\n**Better multi-value lookups on B-tree indexes.** Queries using `IN (...)` or `= ANY(...)` can now be satisfied in a single index scan in many cases, rather than repeating the scan per value. That's the \"1 index scan vs 2\" difference one of the results mentioned.\n\nThere's also a lot of JSON/`JSON_TABLE` and VACUUM work in 17, but those aren't really index features so I'm leaving them aside.\n\nQuick question to make this useful rather than trivia: are you on 17 already, or evaluating whether to upgrade? And do you actually use BRIN indexes, or mostly B-tree? The answer changes which of these matters to you.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 2,
+    "tokens": {
+      "input": 6457,
+      "output": 549,
+      "cacheRead": 2038,
+      "cacheWrite": 2038
+    },
+    "toolCallsExecuted": 1,
+    "estimatedCostUsd": 0.0393865,
+    "error": null
+  },
+  "summary_result": null
+}

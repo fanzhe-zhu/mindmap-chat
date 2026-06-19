@@ -28,7 +28,7 @@ Three reasons:
 
 **1. No credit card for the free tier.** 1,000 credits/month covers your W1 dev + W2 dev + most of one eval baseline run. You can start today without giving anyone a card. If you blow through 1k credits, $8/1k pay-as-you-go is cheap enough for 3-week sprint scale.
 
-**2. You write the tool dispatch yourself, which is the portfolio story.** Design-doc §1 explicitly says "禁用 LangGraph / CrewAI / AutoGen — 抽象掉的恰恰是 portfolio 要展示的判断力." Anthropic's native `web_search` is the same kind of abstraction at a smaller scope — Anthropic's server decides when to search, you don't see it. With Tavily, YOU write:
+**2. You write the tool dispatch yourself, which is the portfolio story.** Design-doc §1 explicitly says "Ban LangGraph / CrewAI / AutoGen — what gets abstracted away is exactly the judgment the portfolio needs to show." Anthropic's native `web_search` is the same kind of abstraction at a smaller scope — Anthropic's server decides when to search, you don't see it. With Tavily, YOU write:
 - "Did the model decide to call the tool?"
 - "Were the parameters valid?"
 - "How did I integrate the result?"

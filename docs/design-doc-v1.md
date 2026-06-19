@@ -2,33 +2,33 @@
 
 > **Status**: Locked for 3-week sprint
 > **Version**: 2026-05-11 (v1-only + eval framework added)
-> **Companion**: `design-doc-full.md`(full v1/v2/v3 vision)— 当前文件只看 v1
-> **用法**: 这是 sprint 期间打开的 build spec。 任何 "v2 / v3 怎么办" 的问题翻到 full doc,**v1 sprint 期间不动它们**。
+> **Companion**: `design-doc-full.md` (full v1/v2/v3 vision) — this file only covers v1
+> **Usage**: This is the build spec to open during the sprint. For any "what about v2 / v3" question, flip to the full doc; **don't touch them during the v1 sprint**.
 
 ---
 
 ## TL;DR
 
-**v1 是什么**:Minimal multi-agent harness。 用户输 goal → root agent 通过对话(clarify → confirm → outline)生成 mind map → 用户点 node → leaf agent 对话(可 web search,tool use 可见)→ localStorage 持久化。 **Mind map = orchestration topology**(用户可见、可编辑)。
+**What v1 is**: Minimal multi-agent harness. User enters a goal → root agent generates a mind map through conversation (clarify → confirm → outline) → user clicks a node → leaf agent converses (with web search, tool use visible) → localStorage persistence. **Mind map = orchestration topology** (user-visible, editable).
 
-**v1 不做(全部 defer 到 v2/v3+)**:
-- ❌ Reactivity 自动传播 + stale tag 系统
-- ❌ Specialist agent 库 + meta-agent
+**What v1 does NOT do (all deferred to v2/v3+)**:
+- ❌ Reactivity auto-propagation + stale tag system
+- ❌ Specialist agent library + meta-agent
 - ❌ Bottom-up entry mode
-- ❌ Cross-tree memory + 长期 facts
+- ❌ Cross-tree memory + long-term facts
 - ❌ Reference edge / derived_from edge
-- ❌ 第二份 summary(`summary_for_user`)
-- ❌ Title type 行为分支
-- ❌ Aggregation query("Ask the Map")
-- ❌ Map agent(背景抗熵)
+- ❌ Second summary (`summary_for_user`)
+- ❌ Title type behavior branching
+- ❌ Aggregation query ("Ask the Map")
+- ❌ Map agent (background anti-entropy)
 
-**v1 是 v2/v3 的 foundation,不是 throw-away**:
-- v1 leaf agent = v2 specialist 的 substrate
-- v1 tree = v3 Map agent 的操作对象
+**v1 is the foundation for v2/v3, not throw-away**:
+- v1 leaf agent = substrate for v2 specialist
+- v1 tree = operation target for v3 Map agent
 - v1 `summary_for_parent` = v3 cross-node memory primitive
 
-**Tech**:Next.js 14 + TypeScript + React Flow + Anthropic SDK (`claude-opus-4-7`) + Brave/Tavily web search + localStorage + Vercel
-**Time**:3 weeks × 15 hr/week = 45 hours total
+**Tech**: Next.js 14 + TypeScript + React Flow + Anthropic SDK (`claude-opus-4-7`) + Brave/Tavily web search + localStorage + Vercel
+**Time**: 3 weeks × 15 hr/week = 45 hours total
 
 ---
 
@@ -38,28 +38,28 @@
 
 > A minimal multi-agent harness where mind map IS the orchestration graph—editable, inspectable, persistent.
 
-**两层 thesis**:
-- 表层(UX):Linear chat is a UX bug。 人的思考是 tree-shaped 的。
-- 底层(架构):Mind map 不是 chat 的 visualization,是 **multi-agent 系统的 user-facing orchestration topology**。
+**Two-layer thesis**:
+- Surface layer (UX): Linear chat is a UX bug. Human thinking is tree-shaped.
+- Underlying layer (architecture): A mind map is not a visualization of the chat; it is the **user-facing orchestration topology of a multi-agent system**.
 
-## 2. 核心哲学:节点边界
+## 2. Core Philosophy: Node Boundary
 
-**节点边界 = 思考权和规划权的分界线**:
+**Node boundary = the dividing line between the right to think and the right to plan**:
 
-| 在哪里 | 谁来做 | 做什么 |
+| Where | Who does it | What they do |
 |---|---|---|
-| 节点**之间** | 系统 | 生成大纲、铺节点、组织结构 |
-| 节点**之内** | 用户 | 提问、思考、追问、close |
+| **Between** nodes | System | Generate the outline, lay out nodes, organize structure |
+| **Within** a node | User | Ask questions, think, follow up, close |
 
-区别于 Deep Research / Manus — 他们替用户做完所有事,**剥夺 cognitive work**。 这是产品灵魂,**所有 v1 设计决策回到这检验**。
+This differs from Deep Research / Manus — they do everything for the user, **stripping away cognitive work**. This is the soul of the product, and **all v1 design decisions are checked against it**.
 
 ## 3. v1 Design Principles
 
-1. **节点之间系统化,节点之内人工化** — Cognitive load 在外,cognitive work 在内
-2. **系统提议,用户决策** — 所有 CRUD 只能 propose,用户保留 final say
-3. **Personalization 显式呈现** — Agent 必须 summarize 它对用户的理解,等 confirm
-4. **Brute-force 优先** — v1 不为 v2/v3 预设架构。 v1 阶段不需要 v2 才用的字段、规则、机制
-5. **诚实命名** — v1 节点叫 "leaf agent"(因为有 tool use + ReAct loop),不叫 "specialist"(那是 v2)
+1. **Systematized between nodes, manual within nodes** — Cognitive load goes outside, cognitive work stays inside
+2. **System proposes, user decides** — All CRUD can only propose; the user keeps the final say
+3. **Personalization is shown explicitly** — The agent must summarize its understanding of the user and wait for confirmation
+4. **Brute-force first** — v1 does not pre-architect for v2/v3. The v1 phase does not need fields, rules, or mechanisms that only v2 uses
+5. **Honest naming** — v1 nodes are called "leaf agent" (because they have tool use + a ReAct loop), not "specialist" (that's v2)
 
 ---
 
@@ -67,36 +67,36 @@
 
 ## 4. Agent Architecture
 
-### 4.1 Agent 是 stateless function
-- 每次 run 重组 context,无 agent 实例对象
-- 理由:Anthropic SDK 原生 stateless;v1 不需要 actor 模型
+### 4.1 An agent is a stateless function
+- Each run reassembles the context; there is no agent instance object
+- Reason: the Anthropic SDK is natively stateless; v1 does not need an actor model
 
-### 4.2 State 住在 Node 上
-- 所有 agent state(messages array)作为 Node 字段
-- Node 是 single source of truth
+### 4.2 State lives on the Node
+- All agent state (the messages array) lives as a Node field
+- The Node is the single source of truth
 
-### 4.3 Agent 权限边界(v1)
+### 4.3 Agent permission boundary (v1)
 
-| 操作 | 允许 |
+| Operation | Allowed |
 |---|---|
-| 写自己 node 的 messages | ✅ 每轮对话 |
-| 写自己 node 的 `summary_for_parent` | ✅ 在 `stop_reason==end_turn` 时触发 |
-| 提议新 node(tool call: `propose_new_node`) | ✅ 用户确认才执行 |
-| 直接创建子 node | ❌ |
-| 改别的 node 内容 | ❌ |
-| Archive / delete 别的 node | ❌ 永远只用户能做 |
+| Write its own node's messages | ✅ every conversation turn |
+| Write its own node's `summary_for_parent` | ✅ triggered on `stop_reason==end_turn` |
+| Propose a new node (tool call: `propose_new_node`) | ✅ executes only after user confirms |
+| Directly create a child node | ❌ |
+| Change another node's content | ❌ |
+| Archive / delete another node | ❌ only the user can ever do this |
 
-**v1 不需要的权限**:propose reference edge(因为没 reference edge type)
+**Permissions v1 does not need**: propose reference edge (because there is no reference edge type)
 
-### 4.4 Trigger:只有 manual
-- 用户点节点 / 发消息触发 agent run
-- **不做** upstream-auto trigger(那是 v2,需要 reactivity 传播规则,v1 不做)
+### 4.4 Trigger: manual only
+- The user clicks a node / sends a message to trigger an agent run
+- **Does not do** upstream-auto trigger (that's v2, which needs reactivity propagation rules; v1 does not do it)
 
-### 4.5 "完成"
-- **Turn-level**:`stop_reason === "end_turn"` 时 ReAct loop 终止
-- **Node-level**:用户决定。 Agent 不自决"我够了"
+### 4.5 "Done"
+- **Turn-level**: the ReAct loop terminates when `stop_reason === "end_turn"`
+- **Node-level**: the user decides. The agent does not decide on its own "I've done enough"
 
-## 5. v1 Schema(精简)
+## 5. v1 Schema (streamlined)
 
 ```typescript
 type Node = {
@@ -107,19 +107,19 @@ type Node = {
   updated_at: timestamp
   
   // Content
-  title: string          // free-form, LLM 生成,style 随 context
-  one_liner: string      // ≤25 字,节点要回答什么
+  title: string          // free-form, LLM generated, style varies with context
+  one_liner: string      // ≤25 chars, what the node should answer
   
   // Agent runtime
   system_prompt: string  // base + injected sibling awareness
   messages: Message[]    // Anthropic SDK messages array
   tool_config: ToolConfig
   
-  // Summary(v1 只一份,structured)
-  summary_for_parent: SummaryForParent | null  // 在 stop_reason==end_turn 时 regenerate
+  // Summary (v1 has only one, structured)
+  summary_for_parent: SummaryForParent | null  // regenerated on stop_reason==end_turn
   
-  // Lifecycle(简化)
-  status: 'active' | 'archived'  // v1 不做 stale 状态
+  // Lifecycle (simplified)
+  status: 'active' | 'archived'  // v1 does not do the stale status
   
   // Metadata
   tags: string[]
@@ -127,346 +127,346 @@ type Node = {
 }
 
 type SummaryForParent = {
-  topic: string               // 这个节点讨论什么(1 句)
-  key_takeaways: string[]     // 核心 point(3-5 条)
-  status: 'mastered' | 'partial' | 'confused'  // LLM 自评(eval 测准确率,见 §15)
-  open_questions: string[]    // 未解决问题(0-N 条)
+  topic: string               // what this node discusses (1 sentence)
+  key_takeaways: string[]     // core points (3-5 items)
+  status: 'mastered' | 'partial' | 'confused'  // LLM self-assessment (eval measures accuracy, see §15)
+  open_questions: string[]    // unresolved questions (0-N items)
 }
 
 type Edge = {
-  type: 'parent'         // v1 只有 parent 一种 edge
+  type: 'parent'         // v1 has only one edge type: parent
   from: NodeId
   to: NodeId
 }
 ```
 
-**关于 `summary_for_parent` 结构化的决定**:
+**On the decision to make `summary_for_parent` structured**:
 
-- 不存 free-form text,存 4-field structured JSON。 让 ancestors chain prefix 时格式稳定,let leaf agent 拿到的 context 是结构化的
-- **`status` 是 LLM 自评**,v1 接受 imperfect(eval framework §15 专门测这个准确率)
-- **`status` 不含 `'untouched'`**——untouched = `summary_for_parent === null`,无需多一个枚举值
-- **`open_questions`** 是 v3 Global Q&A 的 Gap 类问题核心依据(参考 doc-full §22),v1 就存上,跨版本零迁移
-- **不存** v3 vision 提到的"用户掌握程度量化分数"——v1 用 3-tier 离散 status 够用,quantitative 等 LLM-as-judge eval 在 v2 再上
+- Don't store free-form text; store a 4-field structured JSON. This keeps the format stable when prefixing the ancestors chain, and lets the leaf agent receive a structured context
+- **`status` is an LLM self-assessment**; v1 accepts imperfection (eval framework §15 specifically tests this accuracy)
+- **`status` does not include `'untouched'`**—untouched = `summary_for_parent === null`, no need for an extra enum value
+- **`open_questions`** is the core basis for the Gap-type questions in v3 Global Q&A (see doc-full §22); v1 just stores it, with zero cross-version migration
+- **Does not store** the "quantified user mastery score" mentioned in the v3 vision—v1 makes do with a 3-tier discrete status; quantitative metrics wait for LLM-as-judge eval, added in v2
 
-**v1 从 full vision 砍掉的字段**(全部 defer 到 v2/v3):
-- `title_type`(v1 不接 specialist,type 不驱动行为)
-- `summary_for_user`(v1 没 Global Q&A,没消费者)
-- `freshness_version`(v1 没 stale 系统)
-- `status: 'stale'`(同上)
+**Fields v1 cut from the full vision** (all deferred to v2/v3):
+- `title_type` (v1 has no specialist; type drives no behavior)
+- `summary_for_user` (v1 has no Global Q&A, no consumer)
+- `freshness_version` (v1 has no stale system)
+- `status: 'stale'` (same as above)
 
-**v1 从 full vision 砍掉的 edge 类型**:
-- `reference`(v1 没跨支链接 UX)
-- `derived_from`(v1 没 bottom-up promotion)
+**Edge types v1 cut from the full vision**:
+- `reference` (v1 has no cross-branch link UX)
+- `derived_from` (v1 has no bottom-up promotion)
 
-## 6. Context Propagation(v1 简化)
+## 6. Context Propagation (v1 simplified)
 
-Agent run 时看到什么:
+What an agent sees when it runs:
 
 ```
-1. node.system_prompt(含 base + sibling awareness 注入)
-2. node.messages(自己的对话历史)
+1. node.system_prompt (includes base + sibling awareness injection)
+2. node.messages (its own conversation history)
 3. ancestors_summary_chain
    = [root.summary_for_parent, ..., parent.summary_for_parent]
 4. siblings_metadata: [{title, one_liner}, ...]
-   (注入到 system_prompt,告知"以下方向已被 sibling 覆盖,不重复")
+   (injected into system_prompt, telling it "the following directions are already covered by siblings, don't repeat")
 ```
 
-**v1 不做的 context retrieval**:
-- 完整 sibling summary(只 metadata)
-- Reference edge 目标(没有 reference edge)
-- 其他 subtree 内容
-- 全局 facts memory(没有长期 memory)
+**Context retrieval v1 does not do**:
+- Full sibling summary (only metadata)
+- Reference edge target (no reference edge)
+- Other subtree content
+- Global facts memory (no long-term memory)
 
-**核心原则**:垂直 chain 默认 load(短且必要),横向 metadata only。
+**Core principle**: the vertical chain is loaded by default (short and necessary), the horizontal is metadata only.
 
-## 7. Reactivity(v1 极简)
+## 7. Reactivity (v1 minimal)
 
-**用户编辑 node 的 messages**:
+**When the user edits a node's messages**:
 
 ```
 1. node.updated_at += now
-2. 在下一次 agent run end_turn 时,regenerate node.summary_for_parent
-   (1 次 LLM call)
+2. On the next agent run's end_turn, regenerate node.summary_for_parent
+   (1 LLM call)
 3. DONE.
 ```
 
-**v1 不做**:
-- ❌ 下游 mark stale
+**v1 does not do**:
+- ❌ Mark downstream as stale
 - ❌ Transitive propagation
-- ❌ Parent 自动 mark
-- ❌ Reference edge 影响(没 reference edge)
-- ❌ Stale UX(visual ring / banner)
-- ❌ Aggregation query 看 stale flag
+- ❌ Parent auto-mark
+- ❌ Reference edge effects (no reference edge)
+- ❌ Stale UX (visual ring / banner)
+- ❌ Aggregation query reading the stale flag
 
-**用户想 re-run 下游 node**:**手动点**。 就这么简单。
+**If the user wants to re-run a downstream node**: **click it manually**. It's that simple.
 
-**为什么这样**:v1 用户头三周大概率不反复编辑上游 node。 装上 stale 系统是 cost(代码 + 维护 + 用户认知),但 v1 几乎没收益。 v2 真撞到痛点再做。
+**Why this way**: in the first three weeks, v1 users most likely won't repeatedly edit upstream nodes. Installing a stale system is a cost (code + maintenance + user cognition), but v1 gets almost no benefit. Build it when v2 actually hits the pain point.
 
 ---
 
-## 8. v0 → v1 Dogfood Requirements(6 项必落地)
+## 8. v0 → v1 Dogfood Requirements (6 must-land items)
 
-这 6 项是 v0 dogfood 教会但 design 没有的,**v1 必须实现**:
+These 6 are things v0 dogfood taught us but the design lacked; **v1 must implement them**:
 
-1. **Root agent 必须 ask clarifying questions**(不预设白纸)— §9
-2. **Title style 由 LLM 自决**(自然语言生成,不硬塞 question 格式)— 不需要 enum
-3. **Node 开场 = one-liner + 2-3 句 intro + 3 starter questions** — §10
-4. **Leaf agent 必须 sibling-aware**(system prompt 注入 sibling metadata)— §6
-5. **用户必须能手动建 node**(基础 UX,不是可选)
-6. **UI 文字对比度足够**(不能灰)
+1. **Root agent must ask clarifying questions** (don't assume a blank slate) — §9
+2. **Title style decided by the LLM** (natural-language generation, don't force a question format) — no enum needed
+3. **Node opening = one-liner + 2-3 sentence intro + 3 starter questions** — §10
+4. **Leaf agent must be sibling-aware** (system prompt injects sibling metadata) — §6
+5. **The user must be able to manually create nodes** (basic UX, not optional)
+6. **UI text contrast must be sufficient** (no gray)
 
 ---
 
 # Part III — v1 UX
 
-## 9. Root Agent 启动流(3 步对话)
+## 9. Root Agent Startup Flow (3-step conversation)
 
-| 步 | 行为 | 目的 |
+| Step | Behavior | Purpose |
 |---|---|---|
-| 1 | **Clarify** — agent 反问 1-2 个最关键问题("你已知什么 / 想到什么程度 / 想避开什么") | 不把用户当白纸 |
-| 2 | **Confirm** — agent 显式 summarize 对用户的理解("我假设你 X,对吗") | Transparency |
-| 3 | **Generate outline** — confirm 后生成 mind map(N 个 node,每个含 title + one_liner) | 个性化前提 |
+| 1 | **Clarify** — the agent asks 1-2 of the most critical questions ("what do you already know / how deep are you / what do you want to avoid") | Don't treat the user as a blank slate |
+| 2 | **Confirm** — the agent explicitly summarizes its understanding of the user ("I'm assuming you X, right?") | Transparency |
+| 3 | **Generate outline** — after confirmation, generate the mind map (N nodes, each with title + one_liner) | Personalization prerequisite |
 
-## 10. Node 开场体验
+## 10. Node Opening Experience
 
-每个节点首次打开,UI 上方显示:
+The first time each node is opened, the top of the UI shows:
 
-1. **One-liner**(≤25 字):节点要回答什么
-2. **Intro**(2-3 句):tutor 风格开场,**无 markdown header / 列表**
-3. **3 个推荐问题**:具体、actionable、严格控制本节点 scope,不跨 sibling
+1. **One-liner** (≤25 chars): what the node should answer
+2. **Intro** (2-3 sentences): tutor-style opening, **no markdown headers / lists**
+3. **3 recommended questions**: specific, actionable, strictly scoped to this node, not crossing into siblings
 
-**目标**:用户进入节点第一秒,从"我得想问什么"变成"我想点哪个"。
+**Goal**: in the first second the user enters a node, shift from "what should I ask" to "which one do I click".
 
-**生成时机**:节点首次创建时 prefetch(避免用户点开等 LLM)。 这部分 token 提前算进 cost model。
+**Generation timing**: prefetch when the node is first created (so the user doesn't open it and wait for the LLM). These tokens are counted into the cost model up front.
 
-## 11. Tool Use 可见
+## 11. Tool Use Visible
 
-- 节点 agent 调工具时,UI 显示 "agent is searching the web" indicator(streaming)
-- 用户能看见 agent 在做什么 → 建立信任
-- 区别于 ChatGPT 的黑盒搜索
+- When the node agent calls a tool, the UI shows an "agent is searching the web" indicator (streaming)
+- The user can see what the agent is doing → builds trust
+- Differs from ChatGPT's black-box search
 
-## 12. 入口模式
+## 12. Entry Mode
 
-**v1 只 top-down**:用户给 goal → 系统生成 mind map。 **不做** bottom-up(那是 v2)。
+**v1 is top-down only**: the user gives a goal → the system generates a mind map. **Does not do** bottom-up (that's v2).
 
 ---
 
 # Part IV — 3-Week Sprint Plan
 
-## Week 1:Single Agent CLI
+## Week 1: Single Agent CLI
 
-**Ship**:CLI 脚本。"Weather in Tokyo?" → agent 调 web_search → ReAct loop → 答用户。
-
-**Success**:
-- 能 debug 失败 tool call 不慌
-- 能用人话解释 loop 终止条件
-- 跑完知道消耗多少 token / 美金
-- **Leaf eval baseline 数字记下来**(§14)
-
-**禁用**:LangGraph / CrewAI / AutoGen,手写 orchestrator。
-
-## Week 2:Root + Leaf CLI
-
-**Ship**:CLI 脚本。 用户输 goal → root agent 跑 3 步流(clarify → confirm → outline,生成 5-7 个 node 的 JSON)→ 用户从 CLI 选一个 node → leaf agent 跑 ReAct 对话。
+**Ship**: a CLI script. "Weather in Tokyo?" → agent calls web_search → ReAct loop → answers the user.
 
 **Success**:
-- 能解释 root agent 与 leaf agent 的 context 差别
-- Sibling awareness 落地(leaf 不和 sibling 重复)
-- Week 1 代码作为 leaf agent 的 base 直接 reuse
-- **Root + Leaf 联合 eval baseline 数字记下来**(§13-15)
+- Can debug a failed tool call without panicking
+- Can explain the loop's termination condition in plain language
+- After running, you know how many tokens / dollars it consumed
+- **Leaf eval baseline numbers written down** (§14)
 
-**为什么不做"Tokyo trip"那个 multi-agent toy**:那个 pattern(planner + executors + synthesizer)v1 产品不用。 直接做 root + leaf 是直线推进 v1。
+**Banned**: LangGraph / CrewAI / AutoGen; hand-write the orchestrator.
 
-## Week 3:Web App Integration
+## Week 2: Root + Leaf CLI
 
-**Ship**:Web app。 用户输 goal → root agent 3 步流(UI 对话)→ outline → React Flow mind map → 点 node → leaf agent 对话(tool use streaming 可见)→ localStorage 持久化。
+**Ship**: a CLI script. User enters a goal → root agent runs the 3-step flow (clarify → confirm → outline, generating JSON for 5-7 nodes) → user selects a node from the CLI → leaf agent runs the ReAct conversation.
 
 **Success**:
-- 朋友用 5 分钟会问 "what's underneath this?"
-- 你自己用它准备一次真 AIPM mock interview
-- **W3 ship 后完整 eval,数字进 portfolio**
+- Can explain the context difference between the root agent and the leaf agent
+- Sibling awareness lands (the leaf doesn't repeat siblings)
+- Week 1 code is reused directly as the base for the leaf agent
+- **Root + Leaf joint eval baseline numbers written down** (§13-15)
 
-**Week 3 在做什么**(具体):
+**Why not the "Tokyo trip" multi-agent toy**: that pattern (planner + executors + synthesizer) is not used by the v1 product. Going straight to root + leaf moves v1 forward in a straight line.
+
+## Week 3: Web App Integration
+
+**Ship**: a web app. User enters a goal → root agent 3-step flow (UI conversation) → outline → React Flow mind map → click a node → leaf agent conversation (tool use streaming visible) → localStorage persistence.
+
+**Success**:
+- A friend uses it for 5 minutes and asks "what's underneath this?"
+- You use it yourself to prep a real AIPM mock interview
+- **After W3 ships, full eval, numbers go into the portfolio**
+
+**What Week 3 is doing** (specific):
 - React Flow + custom node component
-- Root agent 对话 UI(3 步)
-- Outline → node + parent edges 转换
-- Leaf node 对话 UI(streaming + tool use indicator)
-- localStorage persistence(单棵树)
-- Sibling awareness 注入(§6)
-- Node 开场体验(§10)
-- 6 个 v0 dogfood insight 全部 land(§8)
+- Root agent conversation UI (3 steps)
+- Outline → node + parent edges conversion
+- Leaf node conversation UI (streaming + tool use indicator)
+- localStorage persistence (single tree)
+- Sibling awareness injection (§6)
+- Node opening experience (§10)
+- All 6 v0 dogfood insights land (§8)
 
-**Week 3 不做的**(明确 defer):
-- ❌ Stale tag 系统(visual / banner)
-- ❌ Title type 分类(只生成 title)
+**What Week 3 does NOT do** (explicitly deferred):
+- ❌ Stale tag system (visual / banner)
+- ❌ Title type classification (only generate the title)
 - ❌ Reference edge UI
-- ❌ Bottom-up 入口
-- ❌ Multi-tree 支持(单树就够)
-- ❌ 重新设计 React Flow 默认样式(用 default,够用就行)
+- ❌ Bottom-up entry
+- ❌ Multi-tree support (a single tree is enough)
+- ❌ Redesigning React Flow's default styling (use the default, good enough is fine)
 
 ---
 
 # Part V — v1 Eval Framework
 
-> **Why eval matters from day 1**: 不 eval = 每改一版 prompt 都是 vibe judge,改不动也说不清为什么。 也意味着 portfolio 故事没数字撑。 v1 eval 不要 over-engineer,但 **W0 prep 必须 set up**。
+> **Why eval matters from day 1**: no eval = every prompt revision is a vibe judge, you can't move it and you can't explain why. It also means the portfolio story has no numbers behind it. v1 eval should not be over-engineered, but **W0 prep must set it up**.
 
-## 13. v1 要 eval 什么(明确范围)
+## 13. What v1 evals (explicit scope)
 
-v1 两个 agent,各自 eval:
-- **Root agent**:outline 生成质量
-- **Leaf agent**:节点对话 + tool use 质量
+v1 has two agents, each evaluated separately:
+- **Root agent**: outline generation quality
+- **Leaf agent**: node conversation + tool use quality
 
-**v1 不 eval**(全部 v2/v3 的事):
-- ❌ Stale propagation 准确性(v1 没这功能)
-- ❌ Specialist 路由正确率(v1 没 specialist)
-- ❌ Cross-tree memory 召回(v1 没长期 memory)
-- ❌ Aggregation query 质量(v1 没 Global Q&A)
+**What v1 does NOT eval** (all v2/v3 matters):
+- ❌ Stale propagation accuracy (v1 doesn't have this feature)
+- ❌ Specialist routing correctness (v1 has no specialist)
+- ❌ Cross-tree memory recall (v1 has no long-term memory)
+- ❌ Aggregation query quality (v1 has no Global Q&A)
 
-## 14. Root Agent Eval(outline 生成)
+## 14. Root Agent Eval (outline generation)
 
-最 high-stakes — outline 错了后面 leaf 全错。
+The most high-stakes — if the outline is wrong, all the downstream leaves are wrong.
 
-| 维度 | 怎么测 | Target | 类型 |
+| Dimension | How to measure | Target | Type |
 |---|---|---|---|
-| **Coverage** | 跑 10 fixed goal,人工判断 outline 是否覆盖该 goal 的核心 subtopic(参照专家清单 / wiki TOC) | 80%+ 覆盖率 | 人工 |
-| **Granularity** | 同一 goal 跑 5 次,node count 的方差。 太散(每次 5/30/12 个)= 不稳 | std/mean < 0.3 | 自动 |
-| **Non-overlap** | LLM 自评 + 人工抽查: sibling 之间 conceptual overlap | <20% pair-wise | 半自动 |
-| **Personalization** | 同一 goal 两个不同 clarifying answer(e.g. "我是 SWE" vs "我是 designer"),outline 实质不同 | 人工: 明显不同 | 人工 |
+| **Coverage** | Run 10 fixed goals, manually judge whether the outline covers that goal's core subtopics (against an expert checklist / wiki TOC) | 80%+ coverage | Manual |
+| **Granularity** | Run the same goal 5 times, the variance of the node count. Too scattered (5/30/12 each time) = unstable | std/mean < 0.3 | Automatic |
+| **Non-overlap** | LLM self-assessment + manual spot check: conceptual overlap between siblings | <20% pair-wise | Semi-automatic |
+| **Personalization** | The same goal with two different clarifying answers (e.g. "I'm a SWE" vs "I'm a designer"), the outline is substantively different | Manual: clearly different | Manual |
 
-## 15. Leaf Agent Eval(节点对话)
+## 15. Leaf Agent Eval (node conversation)
 
-| 维度 | 怎么测 | Target | 类型 |
+| Dimension | How to measure | Target | Type |
 |---|---|---|---|
-| **Tool use success rate** | 20 个会触发 web search 的 query,统计 (a) agent 决定调 tool 的比例 (b) tool 调用参数合理的比例 (c) tool result 被合理 integrate 进回答的比例 | (a) >80% (b) >90% (c) >70% | 自动 (a/b) + 人工 (c) |
-| **Sibling awareness** | 同一棵树点不同 leaf 问相似问题,看回答 overlap | <30% content overlap | 人工 |
-| **ReAct loop 终止合理性** | 20 次对话,iteration 分布。 平均 2-4 轮合理;>10 轮 stuck;1 轮可能不会用 tool | mean 2-5,P95 < 8 | 自动 |
-| **Refusal / hallucination** | Tool 失败时 agent 是说 "搜不到" 还是编内容? | 0 hallucination on failed tool | 人工 |
-| **Summary schema 完整度** | end_turn 时生成的 `summary_for_parent` 是否 4 字段全填、类型正确 | 100% schema valid | 自动 |
-| **Summary status 准确性** | 抽 10 个 leaf 对话,人工判断 status 自评(mastered/partial/confused)是否符合实际对话内容 | ≥80% 与人工一致 | 人工 |
+| **Tool use success rate** | 20 queries that should trigger web search, count (a) the proportion where the agent decides to call the tool (b) the proportion where the tool call parameters are reasonable (c) the proportion where the tool result is reasonably integrated into the answer | (a) >80% (b) >90% (c) >70% | Automatic (a/b) + Manual (c) |
+| **Sibling awareness** | Click different leaves on the same tree and ask similar questions, look at answer overlap | <30% content overlap | Manual |
+| **ReAct loop termination reasonableness** | 20 conversations, the iteration distribution. An average of 2-4 turns is reasonable; >10 turns is stuck; 1 turn may mean the tool wasn't used | mean 2-5, P95 < 8 | Automatic |
+| **Refusal / hallucination** | When a tool fails, does the agent say "couldn't find it" or fabricate content? | 0 hallucination on failed tool | Manual |
+| **Summary schema completeness** | Whether the `summary_for_parent` generated on end_turn has all 4 fields filled and the types correct | 100% schema valid | Automatic |
+| **Summary status accuracy** | Sample 10 leaf conversations, manually judge whether the status self-assessment (mastered/partial/confused) matches the actual conversation content | ≥80% agreement with manual | Manual |
 
-## 16. Test Set(W0 必须 prep)
+## 16. Test Set (W0 must prep)
 
-**10 个 root goal**(覆盖 type / 难度 / edge case):
+**10 root goals** (covering type / difficulty / edge cases):
 
-| # | Goal | 测什么 |
+| # | Goal | What it tests |
 |---|---|---|
-| 1 | 理解 RLHF 的核心思想 | Concept-heavy outline |
-| 2 | Transformer 怎么工作 | Concept-heavy, 涉及多层 |
-| 3 | 学会用 PostgreSQL | Skill-oriented |
-| 4 | 如何写好的 user research | Skill, soft topic |
-| 5 | 从 SWE 转 AIPM 应该准备什么 | 你自己的 use case |
-| 6 | 为我的 side project 写一份 PRD | Project-based |
-| 7 | RAG 和 fine-tuning 该怎么选 | Comparison |
-| 8 | 我想了解 AI | 模糊 goal,看 clarifying 起作用 |
-| 9 | 学会 machine learning | 太大 goal,看 root 怎么处理 |
-| 10 | 我已经 build 过 LLM app,想理解 agent | Personalization 测试(对比白纸用户) |
+| 1 | Understand the core ideas of RLHF | Concept-heavy outline |
+| 2 | How a Transformer works | Concept-heavy, multiple layers involved |
+| 3 | Learn to use PostgreSQL | Skill-oriented |
+| 4 | How to do good user research | Skill, soft topic |
+| 5 | What to prepare for switching from SWE to AIPM | Your own use case |
+| 6 | Write a PRD for my side project | Project-based |
+| 7 | How to choose between RAG and fine-tuning | Comparison |
+| 8 | I want to learn about AI | Vague goal, see if clarifying kicks in |
+| 9 | Learn machine learning | Too-big goal, see how root handles it |
+| 10 | I've built an LLM app before, I want to understand agents | Personalization test (vs a blank-slate user) |
 
-**20 个 leaf scenario**(每个含 parent context + 2 sibling context + user message):
+**20 leaf scenarios** (each with parent context + 2 sibling contexts + user message):
 
-设计原则:
-- 一半需要 web search,一半纯推理
-- 一半故意问 sibling 已经覆盖的(测 sibling awareness)
-- 几个 user "我想试试边界": 问 off-topic、试 prompt injection
-- 几个明显需要拒答 / clarify 的
+Design principles:
+- Half need web search, half are pure reasoning
+- Half deliberately ask what a sibling already covers (tests sibling awareness)
+- A few users "want to try the boundary": ask off-topic, try prompt injection
+- A few that clearly need refusal / clarify
 
-具体 20 个 scenario 在 `eval-scenarios.md`(W0 prep 准备)。
+The specific 20 scenarios are in `eval-scenarios.md` (prepared in W0 prep).
 
 ## 17. Eval Cadence
 
-| 时间点 | 跑什么 |
+| Time point | What to run |
 |---|---|
-| **W0 prep** | 写 eval framework + test set + 跑分脚本骨架 |
-| **W1 ship 后** | Leaf-only eval baseline,数字记下来 |
-| **W2 ship 后** | Root + leaf 联合 eval baseline |
-| **W3 期间** | 每改一版 prompt → 重跑自动 metric。 人工 metric 周末跑 |
-| **W3 ship 后** | 完整 eval,数字进 portfolio / blog |
+| **W0 prep** | Write the eval framework + test set + scoring script skeleton |
+| **After W1 ships** | Leaf-only eval baseline, write the numbers down |
+| **After W2 ships** | Root + leaf joint eval baseline |
+| **During W3** | Each prompt revision → rerun automatic metrics. Manual metrics run on the weekend |
+| **After W3 ships** | Full eval, numbers go into portfolio / blog |
 
 ## 18. Eval Anti-Patterns
 
-- ❌ **Build eval 比 build product 还久** — v1 eval 第一版 2-3 小时写完,不是 2-3 天
-- ❌ **Skip 人工 metric 因为麻烦** — AIPM 面试官问 "you eval'd by what" 答案的灵魂在人工 metric。 "我跑了 10 个 goal 人工打分" 比 "我跑了 1000 个自动测试" 更打动面试官
-- ❌ **Test set 中途改** — W0 锁定后不再加 / 减,只有这样改 prompt 才能 apples-to-apples 比较
-- ❌ **追求 100% pass** — Target 设的是 reasonable threshold,不是 perfection。 "60% coverage" 是数据点不是失败
+- ❌ **Building eval takes longer than building the product** — the first version of v1 eval is written in 2-3 hours, not 2-3 days
+- ❌ **Skipping manual metrics because they're a hassle** — when an AIPM interviewer asks "what did you eval by", the soul of the answer is in the manual metrics. "I ran 10 goals and scored them manually" is more compelling to an interviewer than "I ran 1000 automatic tests"
+- ❌ **Changing the test set midway** — once locked in W0, no adding / removing; only this way can prompt changes be compared apples-to-apples
+- ❌ **Chasing a 100% pass** — the Target is set to a reasonable threshold, not perfection. "60% coverage" is a data point, not a failure
 
-## 19. v1 Eval 不做的事(全部 defer)
+## 19. What v1 Eval Does NOT Do (all deferred)
 
-- ❌ LLM-as-judge 自动化人工 metric — v2 才加
-- ❌ A/B test 框架 — v2 才有意义
-- ❌ User-side eval(true user feedback) — Week 3 ship 后做,但是 qualitative interview 不是 quant metric
-- ❌ Regression test 自动化 in CI — solo project 不需要
+- ❌ LLM-as-judge automating manual metrics — added in v2
+- ❌ A/B test framework — only meaningful in v2
+- ❌ User-side eval (true user feedback) — done after Week 3 ships, but as a qualitative interview, not a quant metric
+- ❌ Regression test automation in CI — not needed for a solo project
 
 ---
 
 # Part VI — Guardrails
 
-## 20. Hard Rules(v1 sprint 期间不可妥协)
+## 20. Hard Rules (non-negotiable during the v1 sprint)
 
-1. **No new product ideas until Week 1 ships.** Ideation 全部 pause。
-2. **3 周时间盒。** Day 21 ship or retreat,不延期。 不 ship → 回退 LLM wrapper 故事 + portfolio。
-3. **15+ 小时/周。** 低于此立即缩 scope。
-4. **TypeScript only.** 不学 Python。
-5. **Tree only.** 不动 DAG。
-6. **Ship trumps polish.** 朋友 5 分钟能用 > 漂亮但跑不起来。
+1. **No new product ideas until Week 1 ships.** All ideation is paused.
+2. **3-week time box.** Day 21 ship or retreat, no extension. Don't ship → fall back to the LLM wrapper story + portfolio.
+3. **15+ hours/week.** Below this, immediately cut scope.
+4. **TypeScript only.** Don't learn Python.
+5. **Tree only.** Don't touch a DAG.
+6. **Ship trumps polish.** A friend usable in 5 minutes > pretty but doesn't run.
 
 ## 21. Forbidden Anti-Patterns
 
-- ❌ 中途加 feature 因为想到了新点子
-- ❌ "顺手做了 v2 的 X" — v2 的东西**永远 defer 到 v1 ship 后**
-- ❌ Agent loop 没工作前先 polish UI
-- ❌ 担心商业模式 / PMF / 增长
-- ❌ 跟 BranchCanvas / Heptabase / Roam 对比焦虑
-- ❌ 为了"选最好的 framework"读更多 framework
-- ❌ **Eval framework over-build**(参见 §18)
+- ❌ Adding a feature midway because a new idea occurred to you
+- ❌ "Conveniently did v2's X" — v2 things are **always deferred until after v1 ships**
+- ❌ Polishing the UI before the agent loop works
+- ❌ Worrying about business model / PMF / growth
+- ❌ Comparison anxiety with BranchCanvas / Heptabase / Roam
+- ❌ Reading more frameworks in order to "pick the best framework"
+- ❌ **Eval framework over-build** (see §18)
 
-**每次加 task / 想新 idea,自问**:"这个 v1 sprint 必要吗?"答"不必要"或"不知道" → defer。
+**Every time you add a task / think of a new idea, ask yourself**: "Is this necessary for the v1 sprint?" If the answer is "not necessary" or "I don't know" → defer.
 
 ---
 
-# Part VII — 显式 Out of Scope(v2/v3 backlog 索引)
+# Part VII — Explicit Out of Scope (v2/v3 backlog index)
 
-下面这些**全部不在 v1**,看见有想做的冲动 → 看一眼这份列表 → 关掉冲动。 具体设计见 `design-doc-full.md`。
+The following are **all not in v1**; when you feel the urge to do one → glance at this list → kill the urge. The specific designs are in `design-doc-full.md`.
 
-| 想做的事 | 属于 | 为什么不在 v1 |
+| Thing to do | Belongs to | Why it's not in v1 |
 |---|---|---|
-| Stale tag + 传播 | v2 | v1 用户编辑频率低,装上是 cost,无收益 |
-| `summary_for_user` 第二份 summary | v3 | v1 没消费者(Global Q&A 是 v3) |
-| Title type 5 分类驱动行为 | v2 | v1 不接 specialist,type 不驱动任何东西 |
-| Reference edge + UX | v2 | v1 简化:tree-only,需要时 future 加 |
-| `derived_from` edge | v2 | v1 没 bottom-up promotion |
-| Specialist agent library | v2 | v1 只一个通用 leaf agent |
-| Meta-agent 选 specialist | v3 | 没 library 就没需要选 |
-| 长期 memory facts(跨树) | v3 | v1 单树 |
-| Slot-based parent view | v3 | v1 整树 JSON 就够 |
-| Cross-child lazy synthesis | v3 | 同上 |
-| Map agent(背景抗熵) | v3 | 需要图大到熵积累,v1 不会 |
-| Global Q&A(Ask the Map) | v3 | 需要图大到值得 query,v1 不会 |
-| Bottom-up entry | v2 | top-down 先验证 |
-| LLM-as-judge / A/B eval | v2 | v1 eval 人工打分够用 |
-| 用户自定义 specialist | v4+ | v3 完了再说 |
-| Community marketplace | v4+ | 同上 |
+| Stale tag + propagation | v2 | v1 users edit infrequently; installing it is a cost with no benefit |
+| `summary_for_user` second summary | v3 | v1 has no consumer (Global Q&A is v3) |
+| Title type 5-class behavior driving | v2 | v1 has no specialist; type drives nothing |
+| Reference edge + UX | v2 | v1 simplification: tree-only, add in the future when needed |
+| `derived_from` edge | v2 | v1 has no bottom-up promotion |
+| Specialist agent library | v2 | v1 has only one general leaf agent |
+| Meta-agent selecting a specialist | v3 | with no library there's nothing to select |
+| Long-term memory facts (cross-tree) | v3 | v1 is single-tree |
+| Slot-based parent view | v3 | the whole-tree JSON is enough for v1 |
+| Cross-child lazy synthesis | v3 | same as above |
+| Map agent (background anti-entropy) | v3 | needs the graph big enough for entropy to accumulate; v1 won't be |
+| Global Q&A (Ask the Map) | v3 | needs the graph big enough to be worth querying; v1 won't be |
+| Bottom-up entry | v2 | validate top-down first |
+| LLM-as-judge / A/B eval | v2 | v1 eval's manual scoring is enough |
+| User-defined specialists | v4+ | talk about it after v3 is done |
+| Community marketplace | v4+ | same as above |
 
 ---
 
-## 22. Portfolio Story(v1 ship 后用)
+## 22. Portfolio Story (use after v1 ships)
 
-> 我做了一个 minimal multi-agent harness,mind map 是 user-facing 的 orchestration topology。
+> I built a minimal multi-agent harness where the mind map is the user-facing orchestration topology.
 >
-> 系统有两层 agent:
-> - **Root agent (planner)**: 把 learning goal 通过 3 步对话(clarify → confirm → outline)拆解成 mind map of subtopics
-> - **Leaf agent (specialists)**: 处理每个节点的对话,能调工具(web search、fetch)真实 grounding
+> The system has two layers of agents:
+> - **Root agent (planner)**: breaks a learning goal down into a mind map of subtopics through a 3-step conversation (clarify → confirm → outline)
+> - **Leaf agent (specialists)**: handles the conversation for each node, able to call tools (web search, fetch) for real grounding
 >
-> 区别于大部分 multi-agent system 的 orchestration 是黑盒 — **mind map IS the orchestration graph** — 可编辑、可审查、可持久。 用户能 pause 任何 agent、edit 任何 node、redirect 任何 subtask。
+> Unlike most multi-agent systems whose orchestration is a black box — **mind map IS the orchestration graph** — editable, inspectable, persistent. The user can pause any agent, edit any node, redirect any subtask.
 >
-> v1 故意砍掉了 stale propagation 和 specialist library 这些复杂度,**因为我把 reactive memory propagation 在 LLM cost 约束下的 trade-off 当成核心设计问题** — 装一套传播机器但用户没痛点会让 cost 不必要地翻倍。 这是 v1 sprint 期间最重要的 design discipline。
+> v1 deliberately cut complexity like stale propagation and the specialist library, **because I treated the trade-off of reactive memory propagation under LLM cost constraints as the core design problem** — installing a propagation machine when users have no pain point would unnecessarily double the cost. This was the most important design discipline during the v1 sprint.
 >
-> Eval 我跑了 10 个 fixed goal + 20 个 fixed leaf scenario,coverage [X]% / sibling overlap [Y]% / tool use success rate [Z]% / 平均 ReAct iteration [N] 轮 / leaf agent 自评 status 与人工一致率 [W]%。 这是 baseline,v2 会针对 [最弱的维度] 重点改进。
+> For eval I ran 10 fixed goals + 20 fixed leaf scenarios, coverage [X]% / sibling overlap [Y]% / tool use success rate [Z]% / average ReAct iteration [N] turns / leaf agent self-assessed status agreement with manual [W]%. This is the baseline; v2 will focus improvements on [the weakest dimension].
 >
-> Thesis:随着 agent 能力变强,瓶颈从 capability 转向 **steerability**。 Topology-as-UI 是一种答案。
+> Thesis: as agent capability grows stronger, the bottleneck shifts from capability to **steerability**. Topology-as-UI is one answer.
 
-**对齐主题**:Anthropic 的 interpretability / steerability themes、Cognitive UX、Transparent personalization、System design under cost constraints、Eval-driven iteration
+**Aligned themes**: Anthropic's interpretability / steerability themes, Cognitive UX, Transparent personalization, System design under cost constraints, Eval-driven iteration
 
 ---
 
 *Locked 2026-05-11 by Yvonne + Claude.*
-*Next update: Week 3 ship 后的 retro。*
-*Sprint 期间任何 v2/v3 冲动:翻 `design-doc-full.md`,看完关闭,回 v1。*
+*Next update: the retro after Week 3 ships.*
+*Any v2/v3 urge during the sprint: flip to `design-doc-full.md`, close it after reading, return to v1.*

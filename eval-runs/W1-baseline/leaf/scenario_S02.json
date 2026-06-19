@@ -1,0 +1,38 @@
+{
+  "scenario_id": "S2",
+  "scenario_goal_id": 2,
+  "scenario_tree": "A",
+  "scenario_category": "sibling_awareness",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Sibling awareness (<30% content overlap)",
+  "scenario_user_message": "So how is position information encoded in? How does the Transformer know the order of the words?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "So how is position information encoded in? How does the Transformer know the order of the words?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "That's actually the job of a different node. Positional encoding — how the Transformer gets word-order information — is covered in the sibling node \"Positional encoding.\" Worth heading there for the full story.\n\nThe short reason it's a separate concern: self-attention itself, which is what we're covering here, is order-blind. When Q, K, V compute attention, every token attends to every other token through dot products, and nothing in that math cares about position. Swap two words and the attention scores for a given pair stay identical. So position has to be injected separately — and that's exactly what the \"Positional encoding\" node deals with.\n\nWant to dig into why the attention computation is order-blind in the first place? That part is squarely in scope here, and it's a good way to see why positional encoding becomes necessary.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2117,
+      "output": 251,
+      "cacheRead": 2019,
+      "cacheWrite": 0
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.0077745,
+    "error": null
+  },
+  "summary_result": null
+}

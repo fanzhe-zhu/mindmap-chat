@@ -1,0 +1,38 @@
+{
+  "scenario_id": "S15",
+  "scenario_goal_id": 2,
+  "scenario_tree": "A",
+  "scenario_category": "off_topic",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Scope-violation handling (shouldn't over-search; shouldn't slide into a general chatbot)",
+  "scenario_user_message": "By the way, what's the weather like in Beijing tonight?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "By the way, what's the weather like in Beijing tonight?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "That's well outside what I can help with here — this node is about the self-attention mechanism in Transformers (how Q, K, V compute attention). I'm not a general weather assistant, so you'd be better off checking a weather app for Beijing tonight.\n\nIf you came here to understand attention, though, I'm happy to dig in. Want to start with what Q, K, and V actually represent and how they produce an attention output?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2112,
+      "output": 140,
+      "cacheRead": 2019,
+      "cacheWrite": 0
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.0049745,
+    "error": null
+  },
+  "summary_result": null
+}

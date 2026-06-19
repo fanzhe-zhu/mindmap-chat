@@ -184,7 +184,8 @@ function computeLeafMetrics(leafRuns: any[]) {
     tool_params_target_met:       toolParamsValidRate >= 0.90,
     react_iter_mean:              meanIter,
     react_iter_p95:               p95Iter,
-    react_iter_target_met:        meanIter >= 2 && meanIter <= 5 && p95Iter < 8,
+    react_iter_mean_target_met:   meanIter >= 2 && meanIter <= 5,
+    react_iter_p95_target_met:    p95Iter < 8,
     summary_schema_valid_pct:     withSummary.length === 0 ? 0 : schemaValid.length / withSummary.length,
     summary_schema_target_met:    withSummary.length > 0 && schemaValid.length === withSummary.length,
     total_cost_usd:               totalCost,
@@ -226,8 +227,8 @@ function printReport(runTimestamp: string, root: any, leaf: any) {
   console.log(`Needs-tool scenarios:       ${leaf.needs_tool_scenarios}`)
   console.log(`Tool use rate:              ${(leaf.tool_use_rate * 100).toFixed(1)}%   ${leaf.tool_use_target_met ? "✅" : "❌"} target ≥80%`)
   console.log(`Tool params valid rate:     ${(leaf.tool_params_valid_rate * 100).toFixed(1)}%   ${leaf.tool_params_target_met ? "✅" : "❌"} target ≥90%`)
-  console.log(`ReAct iter mean:            ${leaf.react_iter_mean.toFixed(2)}        target 2-5`)
-  console.log(`ReAct iter p95:             ${leaf.react_iter_p95}            ${leaf.react_iter_target_met ? "✅" : "❌"} target <8`)
+  console.log(`ReAct iter mean:            ${leaf.react_iter_mean.toFixed(2)}        ${leaf.react_iter_mean_target_met ? "✅" : "❌"} target 2-5`)
+  console.log(`ReAct iter p95:             ${leaf.react_iter_p95}            ${leaf.react_iter_p95_target_met ? "✅" : "❌"} target <8`)
   console.log(`Summary schema valid:       ${(leaf.summary_schema_valid_pct * 100).toFixed(1)}%   ${leaf.summary_schema_target_met ? "✅" : "❌"} target 100%`)
   console.log(`Total cost:                 $${leaf.total_cost_usd.toFixed(4)}`)
   console.log(`Category breakdown:         ${JSON.stringify(leaf.category_breakdown)}`)

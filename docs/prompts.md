@@ -57,8 +57,8 @@ Pick the 1–2 questions that, if answered, would most change what a good outlin
 
 For each question, decide its answer format:
 
-- **`multi_choice`** — use when the answer space is bounded and you can enumerate the realistic options. The user gets tappable buttons. Always include 2–4 substantive options PLUS the option `"其他(详细说明)"` / `"Other (specify)"` as the last item so the user can escape into free-text if your options miss. Example: "你目前对 attention 的了解程度是?" → ["从没听过", "看过博客但没动手", "用过但没看过实现", "其他(详细说明)"]
-- **`free_text`** — use when the answer space is open-ended or you genuinely can't enumerate the options without losing important nuance. Example: "你最想用这套知识完成的具体事情是什么?" — too many possible answers to enumerate.
+- **`multi_choice`** — use when the answer space is bounded and you can enumerate the realistic options. The user gets tappable buttons. Always include 2–4 substantive options PLUS the option `"Other (specify)"` as the last item so the user can escape into free-text if your options miss. Example: "How familiar are you with attention right now?" → ["Never heard of it", "Read blogs but haven't tried it", "Used it but haven't read an implementation", "Other (specify)"]
+- **`free_text`** — use when the answer space is open-ended or you genuinely can't enumerate the options without losing important nuance. Example: "What specifically do you most want to accomplish with this knowledge?" — too many possible answers to enumerate.
 
 Default to `multi_choice` if you can enumerate 2–4 options that cover most likely answers. Default to `free_text` only when enumeration would be artificial.
 
@@ -121,19 +121,19 @@ Submit via the `submit_clarifying_questions` tool. No prose.
 ```
 
 **Application code responsibilities**:
-- Validate: if `answer_format === "multi_choice"`, `options.length` must be 3–5 and last option must be the "Other/其他" escape hatch. If model violates, fall back to rendering as free-text.
+- Validate: if `answer_format === "multi_choice"`, `options.length` must be 3–5 and last option must be the "Other" escape hatch. If model violates, fall back to rendering as free-text.
 - UI for multi-choice: render buttons. If user picks "Other", reveal a free-text input.
 - UI for free-text: just a text input.
 - For phase 2, `{{ clarify_exchange }}` is formatted as `Q: <question> / A: <selected option or free-text>`.
 
 **Notes for eval**:
-- Eval test set goal #5 ("从 SWE 转 AIPM 应该准备什么") and goal #10 ("我已经 build 过 LLM app...") — questions should land on background vs goal #8 ("我想了解 AI") where questions should land on scope/depth.
+- Eval test set goal #5 ("What to prepare when transitioning from SWE to AIPM") and goal #10 ("I've already built an LLM app...") — questions should land on background vs goal #8 ("I want to learn about AI") where questions should land on scope/depth.
 - Failure mode to watch: model asks generic "what's your background?" without anchoring to the goal.
 - New failure modes from multi-choice: (a) options too narrow (most users pick "Other") — eval flag; (b) options not mutually exclusive — human spot-check; (c) model uses `free_text` when `multi_choice` would have worked (lazy) — human spot-check.
 
 **Open questions**:
 - Should we cap at 1 question always? Two questions in one turn can overwhelm. Test in W2 eval.
-- "Other (specify)" — should it always be the literal string `"其他(详细说明)"` / `"Other (specify)"`, or can model phrase it ("以上都不是" / "None of the above")? For v1, keep it as the literal escape hatch — consistency matters more than phrasing variety.
+- "Other (specify)" — should it always be the literal string `"Other (specify)"`, or can the model phrase it ("None of the above")? For v1, keep it as the literal escape hatch — consistency matters more than phrasing variety.
 
 ---
 

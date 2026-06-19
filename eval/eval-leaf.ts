@@ -15,11 +15,15 @@
  * eval-types.ts + scenarios.ts + scenarios.md together.
  */
 
+import { config } from "dotenv"
+config({ path: ".env.local" })
+
 import { writeFile, mkdir } from "fs/promises"
 import { join } from "path"
 
 import { runReActLoop } from "../src/agents/react-loop.js"        // ← W1 produces this
-import { runSummaryGenerator } from "../src/agents/summary.js"    // ← W2 produces this
+// runSummaryGenerator is W2's deliverable (src/agents/summary.ts) — not yet
+// built, so it is NOT imported here. W1 baseline records summary_result: null.
 import { LEAF_SYSTEM_PROMPT } from "../src/prompts/leaf.js"
 import { tavilySearchTool, tavilyHandler } from "../src/tools/tavily.js"
 
@@ -79,7 +83,7 @@ type ScenarioResult = {
 
   // Agent outputs (shapes from P3/P4 — verify against real trace after W1)
   leaf_result: Awaited<ReturnType<typeof runReActLoop>> | null
-  summary_result: Awaited<ReturnType<typeof runSummaryGenerator>> | null
+  summary_result: unknown // W2: Awaited<ReturnType<typeof runSummaryGenerator>> | null
   error?: string
 }
 
@@ -109,22 +113,23 @@ async function main() {
       const leafResult = await runReActLoop({
         systemPrompt: buildSystemPrompt(scenario),
         initialMessages: [{ role: "user", content: scenario.userMessage }],
-        tools: [tavilySearchTool],   // propose_new_node intentionally excluded from eval
+        tools: [tavilySearchTool as any],   // propose_new_node intentionally excluded from eval
         toolHandlers: { web_search: tavilyHandler },
-        model: "claude-opus-4-7",
+        model: "claude-opus-4-8",
         maxIterations: 10,
         cacheSystem: true,
         runId: `eval-leaf-${scenario.id}`,
+        agentType: "leaf",
+        // W1 baseline pinned to Opus 4.8 (consistent with hello/test scripts +
+        // cost.ts default). Keep fixed across the v1 sprint for apples-to-apples.
       })
 
-      let summaryResult: ScenarioResult["summary_result"] = null
-      if (leafResult.finalStopReason === "end_turn") {
-        summaryResult = await runSummaryGenerator({
-          nodeTitle:    scenario.node.title,
-          nodeOneLiner: scenario.node.oneLiner,
-          messages:     leafResult.finalMessages,
-        })
-      }
+      // W1 baseline: summary generator is W2's deliverable. Leave null here so
+      // every scenario records leaf_result; eval-report's summary metrics will
+      // report 0% schema valid until W2 wires runSummaryGenerator. That's
+      // expected — the leaf-quality metrics (tool use, iter, cost) are what
+      // W1 baseline measures.
+      const summaryResult: ScenarioResult["summary_result"] = null
 
       const full: ScenarioResult = { ...base, leaf_result: leafResult, summary_result: summaryResult }
 
@@ -136,7 +141,7 @@ async function main() {
       console.log(`  Stop reason: ${leafResult.finalStopReason}`)
       console.log(`  Tool calls: ${leafResult.toolCallsExecuted}`)
       console.log(`  Cost: $${leafResult.estimatedCostUsd.toFixed(4)}`)
-      console.log(`  Summary status: ${summaryResult?.status ?? "(no summary)"}`)
+      console.log(`  Summary status: (no summary — W2)`)
     } catch (err: any) {
       console.error(`  FAILED: ${err.message}`)
       allResults.push({ ...base, leaf_result: null, summary_result: null, error: err.message })

@@ -1,0 +1,38 @@
+{
+  "scenario_id": "S8",
+  "scenario_goal_id": 7,
+  "scenario_tree": "B",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use + hallucination prevention",
+  "scenario_user_message": "Are there examples of real companies using both at the same time?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "Are there examples of real companies using both at the same time?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good question. A few patterns I can point to from how teams actually deploy this:\n\nThe clearest public example is customer support and coding assistants. GitHub Copilot-style products fine-tune a base model on code, then layer retrieval over your specific repo at inference time — the fine-tuning teaches \"how to write good completions,\" the retrieval injects \"what's in *this* codebase right now.\"\n\nCustomer support bots are similar: companies fine-tune on their tone, escalation rules, and response format, then RAG in the live knowledge base and ticket history so answers stay current without retraining.\n\nWant me to verify the specifics of a particular company's setup? Some of this is documented in engineering blogs, and I'd rather search than give you a half-remembered detail. If there's a specific company you're curious about, name it and I'll look it up.\n\nBut here's the more useful tutor point: the reason these hybrids work is that the two techniques solve *different* problems. Fine-tuning shapes behavior and form; RAG supplies fresh, factual knowledge. The \"should I use both\" decision usually collapses into: do I need both a behavior change *and* a knowledge source that changes over time? If yes, hybrid. If only one, you probably don't need the other.\n\nThat behavior-vs-knowledge split is actually the core of a sibling node here — \"Task-type dimension\" — so I'd dig into that one if you want the full framing of when each technique is the right tool.\n\nDoes the pattern make sense, or do you want me to pull up a concrete documented example?"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2131,
+      "output": 484,
+      "cacheRead": 0,
+      "cacheWrite": 2041
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.02530625,
+    "error": null
+  },
+  "summary_result": null
+}

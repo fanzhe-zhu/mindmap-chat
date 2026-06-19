@@ -1,0 +1,38 @@
+{
+  "scenario_id": "S1",
+  "scenario_goal_id": 2,
+  "scenario_tree": "A",
+  "scenario_category": "normal",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "ReAct termination soundness (should be 1 iteration, shouldn't over-iterate) + scope",
+  "scenario_user_message": "What do Q, K, V actually mean? Help me understand them intuitively.",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "What do Q, K, V actually mean? Help me understand them intuitively."
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good place to start. Let me give you an analogy first, then tie it to the math.\n\nThink of attention like a library lookup. Every word (token) needs to pull in information from other words. To do that, each token plays three roles:\n\n- **Query (Q):** what *I'm looking for*. \"I'm the word 'it' — I'm trying to find what I refer to.\"\n- **Key (K):** what *I advertise about myself*. Every other token holds up a little label saying \"here's what I'm about.\"\n- **Value (V):** the *actual content* I'll hand over if you decide I'm relevant.\n\nThe mechanism: your Query gets compared against everyone's Key. Where they match strongly, you pay more attention — and you pull in that token's Value, weighted by how strong the match was.\n\nSo the dot product Q·K is \"how relevant is this token to what I'm looking for,\" and the Values are what actually flows into the output.\n\nOne thing worth nailing down: Q, K, and V for a token are all derived from the *same* input vector, just multiplied by three different learned weight matrices (W_Q, W_K, W_V). So they're three different \"views\" of the same word, each tuned for its role in the lookup.\n\nDoes the library analogy land for you, or do you want me to walk through what actually happens numerically with the dot products and softmax?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2117,
+      "output": 426,
+      "cacheRead": 0,
+      "cacheWrite": 2019
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.02375875,
+    "error": null
+  },
+  "summary_result": null
+}

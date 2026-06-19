@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-06-18T04-52-39-623Z",
+  "total_scenarios": 20,
+  "successful_completions": 20,
+  "failed": 0,
+  "iterations": {
+    "mean": 1.3,
+    "p95": 2,
+    "max": 2
+  },
+  "tool_calls": {
+    "total": 8,
+    "calls_per_scenario": 0.4
+  },
+  "summaries": {
+    "schema_valid": 0,
+    "schema_invalid": 0,
+    "missing": 20
+  },
+  "cost": {
+    "total_usd": 0.5959509999999999,
+    "avg_per_scenario": 0.029797549999999996
+  }
+}

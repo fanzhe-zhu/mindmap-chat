@@ -1,0 +1,38 @@
+{
+  "scenario_id": "S7",
+  "scenario_goal_id": 7,
+  "scenario_tree": "B",
+  "scenario_category": "sibling_awareness",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Sibling awareness",
+  "scenario_user_message": "So if my data changes every day, does that mean I should use RAG?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "So if my data changes every day, does that mean I should use RAG?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good instinct, but you've drifted into a sibling's territory. How often your data changes is exactly the \"Data freshness dimension\" node — that's where the freshness-vs-staleness logic lives. Worth visiting it for the full answer.\n\nWhat I can offer from the cost angle: daily-changing data has a real cost implication. If you fine-tuned, you'd be paying to retrain repeatedly to keep up — every refresh is a new training run. RAG sidesteps that by updating an index instead, which is far cheaper per update.\n\nSo the cost structure does lean one way here, but the \"should I\" decision itself depends on the freshness reasoning in that sibling node. Want me to go deeper on the retraining-cost side of this?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2135,
+      "output": 244,
+      "cacheRead": 2041,
+      "cacheWrite": 0
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.0075905,
+    "error": null
+  },
+  "summary_result": null
+}

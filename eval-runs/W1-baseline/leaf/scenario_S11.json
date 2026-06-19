@@ -1,0 +1,38 @@
+{
+  "scenario_id": "S11",
+  "scenario_goal_id": 5,
+  "scenario_tree": "C",
+  "scenario_category": "sibling_awareness",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Sibling awareness",
+  "scenario_user_message": "How exactly should I talk about these projects in an interview?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "How exactly should I talk about these projects in an interview?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Quick flag before I answer: how you *talk about* projects in the interview itself leans into the \"Interview prep\" node's territory — that's where storytelling, framing, and answering follow-ups belong.\n\nWhat I own here is the layer underneath that: making sure the projects themselves are *worth* talking about, and structured so the proof is legible. So let me answer the part that's mine.\n\nThe core question for a portfolio project is: does it actually demonstrate AIPM judgment, or just that you can build? As an ex-SWE, your risk is showing a clever technical artifact that any engineer could have built — that proves the wrong thing.\n\nSo each project should make a decision trail visible. Roughly:\n\n- What problem did you pick, and why that one? (product judgment, not just \"it was interesting\")\n- What did you decide *not* to build, and what tradeoff drove it?\n- How did you know it worked — what did you measure?\n\nThat third point is usually the weakest for SWE-turned-PM folks. \"It worked\" isn't proof; \"I defined success as X, measured it, and the first version failed on Y so I changed Z\" is.\n\nDoes that distinction land — between making the project *demonstrate* something vs. *narrating* it well? If you tell me what one or two of your actual projects are, I can help you find where the proof gaps are. The narration polish itself, take to Interview prep.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2136,
+      "output": 443,
+      "cacheRead": 0,
+      "cacheWrite": 2045
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.02431125,
+    "error": null
+  },
+  "summary_result": null
+}

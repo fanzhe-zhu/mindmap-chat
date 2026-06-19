@@ -1,0 +1,38 @@
+{
+  "scenario_id": "S9",
+  "scenario_goal_id": 5,
+  "scenario_tree": "C",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use + scope",
+  "scenario_user_message": "What kinds of questions do AIPM interviews generally ask now? How are they different from regular PM interviews?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "What kinds of questions do AIPM interviews generally ask now? How are they different from regular PM interviews?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good question to start with, because the delta from regular PM is exactly where your SWE-to-AIPM transition gets tested.\n\nLet me give you the rough shape first, then we can dig into whichever part matters most for you.\n\nAIPM interviews generally keep the standard PM rounds — product sense, execution/metrics, behavioral, sometimes a strategy case — but layer on a few things that regular PM loops don't really probe:\n\nThe big differences:\n\n1. **Technical depth on ML/LLM systems.** Not \"can you code\" (your SWE background covers that), but \"do you understand how these systems behave?\" Expect questions like: how would you evaluate whether a model is good enough to ship? What's your fallback when the model is wrong? How do you reason about latency vs. quality tradeoffs? They want to see you treat the model as a probabilistic, non-deterministic component, not a deterministic API.\n\n2. **Product sense under uncertainty.** A normal PM case assumes the feature works if you build it. An AI case assumes the core capability is unreliable. So \"design feature X\" becomes \"design feature X knowing the model is right 80% of the time — what does the UX do with the other 20%?\" That's a distinct muscle.\n\n3. **Eval and metrics framing.** How do you measure success for something with no single correct answer? Offline vs. online eval, human-in-the-loop, regression when you swap models. (The mechanics of building evals live in your \"Skills to build up\" node — I'd point you there for the how. Here we care about how it shows up in interview questions.)\n\n4. **Data and feedback loops.** Where does training/eval data come from, how does usage improve the product, what's the cold-start story.\n\n5. **AI-specific judgment/ethics.** Hallucination, safety, bias, when NOT to use a model.\n\nOne thing worth flagging up front: the bar varies a lot by company type. A frontier lab PM loop, a big-tech AI feature PM, and an AI-native startup all test these quite differently.\n\nSo before I go deeper — what kind of company are you targeting? That changes which of these five gets weighted hardest, and I don't want to give you a generic answer.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2153,
+      "output": 705,
+      "cacheRead": 0,
+      "cacheWrite": 2045
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.03094625,
+    "error": null
+  },
+  "summary_result": null
+}

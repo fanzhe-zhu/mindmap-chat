@@ -1,0 +1,38 @@
+{
+  "scenario_id": "S14",
+  "scenario_goal_id": 3,
+  "scenario_tree": "D",
+  "scenario_category": "sibling_awareness",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Sibling awareness",
+  "scenario_user_message": "My queries are really slow — how do I add indexes to speed them up?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "My queries are really slow — how do I add indexes to speed them up?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "That's a great question, but it's actually owned by a different node. Indexing and query speed live in the \"Indexes and query performance\" node — head there and you'll get the full treatment.\n\nWhat I can help with here is transactions and ACID: how to make sure your data stays consistent when multiple things touch it at once. If your \"slow queries\" turn out to involve locking or blocking from long-running transactions, that overlaps with my scope — but pure indexing belongs next door.\n\nWant to take a look at transactions, or is speed your only concern right now?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2133,
+      "output": 179,
+      "cacheRead": 0,
+      "cacheWrite": 2038
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.0176875,
+    "error": null
+  },
+  "summary_result": null
+}

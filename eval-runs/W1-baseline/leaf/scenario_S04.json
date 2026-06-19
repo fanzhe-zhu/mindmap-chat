@@ -1,0 +1,38 @@
+{
+  "scenario_id": "S4",
+  "scenario_goal_id": 2,
+  "scenario_tree": "A",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use + reasoning integration",
+  "scenario_user_message": "Are mainstream large models basically all decoder-only now? Why has this trend formed?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "Are mainstream large models basically all decoder-only now? Why has this trend formed?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Mostly yes — the dominant LLM families (GPT, Llama, Mistral, Qwen, Gemini's core, etc.) are decoder-only. Let me explain why, since that's squarely in this node's scope.\n\nThe short version: decoder-only architectures won because they're the simplest thing that scales well for generation, and \"generate the next token\" turned out to be a remarkably general training objective.\n\nA few reasons the trend formed:\n\nFirst, **task unification**. A decoder-only model trained on next-token prediction can do almost anything if you phrase it as text continuation — translation, summarization, Q&A, code. You don't need a separate encoder stack or task-specific heads. Encoder-decoder models (like the original Transformer or T5) were built around a clean input→output split, which fits translation but is awkward overhead when you just want one flexible model.\n\nSecond, **training efficiency at scale**. Decoder-only uses one objective (causal language modeling) over a single stream of tokens. Every token position produces a training signal. Encoder models like BERT use masked language modeling, where you only predict ~15% of tokens — so you get less learning signal per sequence. That matters a lot when you're spending millions on compute.\n\nThird, **in-context learning emerged**. Around GPT-3, people found that a big decoder-only model could learn tasks from examples in the prompt, with no fine-tuning. That was a huge practical advantage and pushed the whole field that direction.\n\nOne nuance worth flagging: \"decoder-only\" doesn't mean \"no attention to the input.\" The model attends to everything before the current token via causal (masked) self-attention — it just can't peek ahead. That masking is the real architectural difference from an encoder, which attends bidirectionally.\n\nDoes the contrast with encoder models (like BERT) make sense, or do you want me to dig into where encoder-only or encoder-decoder still wins?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2134,
+      "output": 620,
+      "cacheRead": 0,
+      "cacheWrite": 2033
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.02871125,
+    "error": null
+  },
+  "summary_result": null
+}

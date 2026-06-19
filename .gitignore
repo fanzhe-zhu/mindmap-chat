@@ -42,3 +42,6 @@ next-env.d.ts
 
 # agent run artifacts (JSON traces written by runReActLoop — P4 §2)
 /traces/
+
+# W2 CLI tree serializations (run artifacts)
+/tree-runs/

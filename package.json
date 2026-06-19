@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "w2": "tsx scripts/w2-cli.ts",
+    "eval:root": "tsx eval/eval-root.ts",
+    "eval:leaf": "tsx eval/eval-leaf.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.104.2",

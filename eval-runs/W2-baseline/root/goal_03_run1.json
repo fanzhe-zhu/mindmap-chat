@@ -1,0 +1,51 @@
+{
+  "goal_id": 3,
+  "goal_text": "Learn to use PostgreSQL",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is a relational database, really?",
+        "one_liner": "Tables, rows, columns, and why Postgres organizes data this way."
+      },
+      {
+        "title": "Get Postgres running and connect to it",
+        "one_liner": "Install, start a server, create a database, connect via psql."
+      },
+      {
+        "title": "Design a schema for your app",
+        "one_liner": "Pick columns, data types, primary keys, and model relationships."
+      },
+      {
+        "title": "How do foreign keys and relationships work?",
+        "one_liner": "Linking tables, one-to-many vs many-to-many, join tables."
+      },
+      {
+        "title": "Write the queries your app needs",
+        "one_liner": "SELECT, INSERT, UPDATE, DELETE, filtering, and JOINs."
+      },
+      {
+        "title": "Keep your data correct and safe",
+        "one_liner": "Constraints, NOT NULL, unique, and transactions for consistency."
+      },
+      {
+        "title": "Connect Postgres to your application code",
+        "one_liner": "Connection strings, drivers, pooling, parameterized queries."
+      },
+      {
+        "title": "Evolve your schema without breaking things",
+        "one_liner": "Migrations: adding columns, changing tables safely over time."
+      }
+    ],
+    "rationale": "The user is a complete database beginner whose explicit goal is backing an app, so the outline starts with the conceptual foundation (relational model) since they can't design schemas without it, then moves through the practical shipping path: setup/connection, schema design, relationships (broken out separately because foreign keys are the single hardest concept for beginners and deserve their own node), the CRUD queries an app actually issues, data integrity (constraints + transactions, both app-correctness concerns), wiring Postgres into application code (their stated end goal), and finally migrations since any real app's schema evolves. I deliberately excluded administration, replication, indexing/performance tuning, internals, and analytics per the confirmed understanding, keeping depth at confident-beginner level. Nodes are MECE: concepts, environment, design, relationships, querying, integrity, app integration, and schema evolution each cover distinct content with minimal overlap."
+  },
+  "cost_usd": 0.053
+}

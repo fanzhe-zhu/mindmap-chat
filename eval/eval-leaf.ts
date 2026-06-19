@@ -22,8 +22,7 @@ import { writeFile, mkdir } from "fs/promises"
 import { join } from "path"
 
 import { runReActLoop } from "../src/agents/react-loop.js"        // ← W1 produces this
-// runSummaryGenerator is W2's deliverable (src/agents/summary.ts) — not yet
-// built, so it is NOT imported here. W1 baseline records summary_result: null.
+import { runSummaryGenerator } from "../src/agents/summary.js"    // ← W2 produces this
 import { LEAF_SYSTEM_PROMPT } from "../src/prompts/leaf.js"
 import { tavilySearchTool, tavilyHandler } from "../src/tools/tavily.js"
 
@@ -83,7 +82,7 @@ type ScenarioResult = {
 
   // Agent outputs (shapes from P3/P4 — verify against real trace after W1)
   leaf_result: Awaited<ReturnType<typeof runReActLoop>> | null
-  summary_result: unknown // W2: Awaited<ReturnType<typeof runSummaryGenerator>> | null
+  summary_result: Awaited<ReturnType<typeof runSummaryGenerator>> | null
   error?: string
 }
 
@@ -124,12 +123,19 @@ async function main() {
         // cost.ts default). Keep fixed across the v1 sprint for apples-to-apples.
       })
 
-      // W1 baseline: summary generator is W2's deliverable. Leave null here so
-      // every scenario records leaf_result; eval-report's summary metrics will
-      // report 0% schema valid until W2 wires runSummaryGenerator. That's
-      // expected — the leaf-quality metrics (tool use, iter, cost) are what
-      // W1 baseline measures.
-      const summaryResult: ScenarioResult["summary_result"] = null
+      // W2: generate summary_for_parent on natural completion (end_turn).
+      // Fills the summaries.schema_valid metric that read 0% in the W1 baseline.
+      // Everything above (the leaf call) is unchanged so leaf metrics stay
+      // comparable to the W1 baseline.
+      let summaryResult: ScenarioResult["summary_result"] = null
+      if (leafResult.finalStopReason === "end_turn") {
+        summaryResult = await runSummaryGenerator({
+          nodeTitle: scenario.node.title,
+          nodeOneLiner: scenario.node.oneLiner,
+          nodeMessages: leafResult.finalMessages,
+          runId: `eval-summary-${scenario.id}`,
+        })
+      }
 
       const full: ScenarioResult = { ...base, leaf_result: leafResult, summary_result: summaryResult }
 
@@ -141,7 +147,7 @@ async function main() {
       console.log(`  Stop reason: ${leafResult.finalStopReason}`)
       console.log(`  Tool calls: ${leafResult.toolCallsExecuted}`)
       console.log(`  Cost: $${leafResult.estimatedCostUsd.toFixed(4)}`)
-      console.log(`  Summary status: (no summary — W2)`)
+      console.log(`  Summary status: ${summaryResult?.status ?? "(none)"}`)
     } catch (err: any) {
       console.error(`  FAILED: ${err.message}`)
       allResults.push({ ...base, leaf_result: null, summary_result: null, error: err.message })

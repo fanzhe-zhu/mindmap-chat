@@ -1,0 +1,51 @@
+{
+  "goal_id": 2,
+  "goal_text": "How Transformers work",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What does a neural network actually do?",
+        "one_liner": "Inputs, weights, layers — the basic idea, no math"
+      },
+      {
+        "title": "What are embeddings and vectors?",
+        "one_liner": "How words become numbers a model can work with"
+      },
+      {
+        "title": "What are tokens?",
+        "one_liner": "How text gets chopped into pieces before processing"
+      },
+      {
+        "title": "How does attention work?",
+        "one_liner": "Why words 'look at' each other, intuitively"
+      },
+      {
+        "title": "Putting it together: the Transformer block",
+        "one_liner": "How attention and layers stack into the full model"
+      },
+      {
+        "title": "Encoder vs. decoder: what's the difference?",
+        "one_liner": "What each half does and when papers use which"
+      },
+      {
+        "title": "Why Transformers beat what came before",
+        "one_liner": "The problem they solved vs. older approaches"
+      },
+      {
+        "title": "Vocabulary cheat sheet for reading papers",
+        "one_liner": "Key terms decoded so blogs stop being opaque"
+      }
+    ],
+    "rationale": "The user is a complete neural-net beginner whose goal is reading comprehension of papers/blogs, so the outline front-loads foundational concepts (neural nets, embeddings, tokens) that a more advanced user would skip. Attention gets its own dedicated node since it's the central Transformer concept and the most-referenced term. The Transformer block node assembles the pieces, and encoder/decoder addresses a vocabulary distinction that constantly appears in papers. The 'why they beat predecessors' node gives context that helps interpret motivation sections of papers without going into RNN/LSTM internals. The final vocabulary node directly serves the stated reading goal. I excluded coding, training mechanics, optimization, and math derivations per the confirmed understanding. Nodes are MECE: each answers a distinct question with low overlap."
+  },
+  "cost_usd": 0.049685
+}

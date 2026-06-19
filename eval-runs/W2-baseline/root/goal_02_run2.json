@@ -1,0 +1,51 @@
+{
+  "goal_id": 2,
+  "goal_text": "How Transformers work",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is a neuron, and how do networks learn?",
+        "one_liner": "Neurons, weights, layers, and gradient descent from scratch."
+      },
+      {
+        "title": "The math you'll keep seeing",
+        "one_liner": "Vectors, matrices, dot products, softmax — read formulas fluently."
+      },
+      {
+        "title": "Why sequences are hard (RNNs and their limits)",
+        "one_liner": "How older models handled text and why they fell short."
+      },
+      {
+        "title": "How do embeddings represent meaning?",
+        "one_liner": "Turning tokens into vectors and encoding their positions."
+      },
+      {
+        "title": "How does self-attention work?",
+        "one_liner": "Query, key, value math — the core Transformer mechanism."
+      },
+      {
+        "title": "Multi-head attention and stacking it all",
+        "one_liner": "Parallel heads, feed-forward layers, residuals, normalization."
+      },
+      {
+        "title": "How the full encoder-decoder fits together",
+        "one_liner": "Assembling components into the original Transformer architecture."
+      },
+      {
+        "title": "Reading 'Attention Is All You Need'",
+        "one_liner": "Mapping each paper section to what you've learned."
+      }
+    ],
+    "rationale": "The user is a complete neural-net beginner aiming for theoretical/paper-reading fluency, so the outline builds from absolute foundations (neuron, learning) and the recurring math notation before introducing Transformer-specific ideas. A brief RNN node establishes the problem attention solves, motivating the architecture rather than presenting it cold. Embeddings, self-attention, and the multi-head/feed-forward machinery are split into separate nodes because each carries distinct math with low overlap. The architecture-assembly node integrates pieces, and the final node explicitly bridges to reading the original paper — directly serving the stated goal. Coding, frameworks, fine-tuning, and deployment are excluded per the confirmed understanding, keeping focus on conceptual and mathematical comprehension. Order is largely linear because real prerequisite dependencies exist (math before attention math, components before full architecture before paper)."
+  },
+  "cost_usd": 0.052110000000000004
+}

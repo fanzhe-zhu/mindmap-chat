@@ -1,0 +1,50 @@
+{
+  "scenario_id": "S4",
+  "scenario_goal_id": 2,
+  "scenario_tree": "A",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use + reasoning integration",
+  "scenario_user_message": "Are mainstream large models basically all decoder-only now? Why has this trend formed?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "Are mainstream large models basically all decoder-only now? Why has this trend formed?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good question, and yes — the dominant trend for large generative models (GPT, Llama, Mistral, Qwen, Gemini, etc.) is decoder-only. But let me give you the \"why\" rather than just confirming it, since the reasoning is the actually interesting part.\n\nFirst, the core architectural distinction in scope here: an encoder reads the whole input at once with bidirectional attention (every token sees every other token), while a decoder is causal — each token can only attend to tokens before it. Original encoder-decoder models (the 2017 Transformer, T5, BART) used both: encoder digests the input, decoder generates output while attending back to the encoder.\n\nSo why did decoder-only win for large models? A few reasons:\n\n1. **Task unification.** If you frame everything as \"predict the next token,\" then translation, summarization, Q&A, and chat all become the same task. You just put the input and output in one sequence. No need for a separate encoder stack — the prompt is just the prefix. This simplicity scales beautifully.\n\n2. **Training efficiency.** A decoder-only model gets a learning signal at *every* position (predict the next token for all tokens in the sequence). Encoder-decoder setups, especially with masked-span objectives, are often less dense in signal per token of compute.\n\n3. **Empirical scaling.** When researchers scaled up, decoder-only models showed strong zero-shot and few-shot behavior. There's a well-known 2022 paper (Wang et al., \"What Language Model Architecture and Pretraining Objective Work Best for Zero-Shot Generalization?\") that studied this head-to-head.\n\nOne nuance worth flagging: encoders haven't disappeared. For *embedding* and *classification* tasks — where you want a rich bidirectional representation and aren't generating text — BERT-style encoders are still very much used. So \"everything is decoder-only\" is true for generative LLMs, not for the whole field.\n\nDoes the causal-vs-bidirectional attention distinction make sense as the root of all this, or should I unpack how the attention masking actually differs between the two?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2134,
+      "output": 681,
+      "cacheRead": 0,
+      "cacheWrite": 2033
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.03023625,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "为什么主流大模型基本都是 decoder-only 架构，以及它与 encoder 架构的核心区别。",
+    "key_takeaways": [
+      "核心架构区别在于注意力机制：encoder 是双向的（每个 token 能看到所有其他 token），decoder 是因果的（每个 token 只能看到它之前的 token）；原始 Transformer、T5、BART 等使用 encoder-decoder 两者结合。",
+      "Decoder-only 成为主流的三大原因：任务统一（翻译、摘要、问答、对话都可统一为\"预测下一个 token\"）、训练效率高（每个位置都有学习信号）、以及实证上的强 scaling 表现（zero-shot/few-shot 能力强）。",
+      "有一个关键的细微点：encoder 并未消失，在 embedding 和分类等不需要生成文本、需要丰富双向表示的任务上，BERT 式 encoder 仍被广泛使用，所以\"全是 decoder-only\"只对生成式 LLM 成立。",
+      "助手引用了 Wang et al. 2022 的论文（关于哪种语言模型架构和预训练目标最利于 zero-shot 泛化）作为实证依据。"
+    ],
+    "status": "partial",
+    "open_questions": [
+      "encoder 与 decoder 之间注意力掩码（attention masking）的具体实现差异——助手主动提出可展开，但用户尚未确认或深入。"
+    ]
+  }
+}

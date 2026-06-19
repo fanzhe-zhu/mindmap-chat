@@ -1,0 +1,47 @@
+{
+  "goal_id": 8,
+  "goal_text": "I want to learn about AI",
+  "goal_type": "vague",
+  "coverage_mode": "clarify",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 7,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What do we actually mean by \"AI\"?",
+        "one_liner": "Defines AI plainly; clears up hype and sci-fi myths."
+      },
+      {
+        "title": "How does a machine \"learn\"?",
+        "one_liner": "The core idea behind machine learning, no math."
+      },
+      {
+        "title": "The main flavors of AI",
+        "one_liner": "Key types: prediction, vision, language, generation."
+      },
+      {
+        "title": "How do tools like ChatGPT work?",
+        "one_liner": "What large language models do and why they feel smart."
+      },
+      {
+        "title": "Where AI gets things wrong",
+        "one_liner": "Bias, hallucinations, and other real limitations."
+      },
+      {
+        "title": "What AI can and can't do today",
+        "one_liner": "Honest picture of current strengths and hard limits."
+      },
+      {
+        "title": "Why AI matters right now",
+        "one_liner": "Real-world impact on jobs, society, daily life."
+      }
+    ],
+    "rationale": "The user is a total beginner wanting breadth and a solid working mental model, explicitly non-technical and not focused on building or careers. I start with definition (clearing hype), then the foundational concept of learning, then a survey of AI types so they have a map. Because generative AI/chatbots are the dominant public face of AI and likely their real curiosity, a dedicated node on LLMs is warranted. I split limitations into two complementary angles—failure modes (bias/hallucination) and overall capability boundaries—because for a beginner, distinguishing \"how it fails\" from \"what it fundamentally can't do\" builds calibrated intuition. I close with societal relevance since they asked why it matters now. I excluded history, math, coding, tooling, and career paths per the confirmed understanding. Nodes are largely non-overlapping: definition vs. mechanism vs. taxonomy vs. one deep example vs. failures vs. capability frontier vs. impact."
+  },
+  "cost_usd": 0.048670000000000005
+}

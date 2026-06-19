@@ -1,0 +1,51 @@
+{
+  "goal_id": 1,
+  "goal_text": "Understand the core ideas behind RLHF",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What problem is RLHF trying to solve?",
+        "one_liner": "Why align language models to human preferences at all?"
+      },
+      {
+        "title": "Language models in a nutshell",
+        "one_liner": "What a language model is and how it's trained to predict text."
+      },
+      {
+        "title": "Reinforcement learning basics",
+        "one_liner": "Agents, rewards, and policies—the RL vocabulary RLHF borrows."
+      },
+      {
+        "title": "Why use human feedback instead of a fixed reward?",
+        "one_liner": "Why human judgments stand in for hard-to-write reward functions."
+      },
+      {
+        "title": "How a reward model is built",
+        "one_liner": "Turning human preference comparisons into a learned reward signal."
+      },
+      {
+        "title": "How the policy gets optimized",
+        "one_liner": "Using the reward model to fine-tune the model, and PPO's role."
+      },
+      {
+        "title": "The full RLHF pipeline, end to end",
+        "one_liner": "How pretraining, reward modeling, and RL fit together."
+      },
+      {
+        "title": "Reading the key papers",
+        "one_liner": "Orienting in InstructGPT and 'learning from human preferences'."
+      }
+    ],
+    "rationale": "The user is new to ML and wants to read foundational RLHF papers, so the outline front-loads the conceptual building blocks the papers assume: what language models are and how RL works, since neither can be taken for granted. The motivation node (\"what problem\") gives orientation before mechanics. The middle nodes break RLHF into its two distinct technical pieces—reward modeling vs. policy optimization—which are the parts most likely to confuse a newcomer and which map directly onto the structure of the InstructGPT paper. The \"human feedback vs. fixed reward\" node captures the core conceptual insight rather than mechanics, keeping it MECE from the two mechanism nodes. The end-to-end pipeline node synthesizes the pieces, mirroring how papers present the three-stage process. A final node explicitly bridges to the papers themselves, matching the stated goal. Excluded: math derivations, coding/tooling, and deep RL theory, per the confirmed understanding prioritizing conceptual orientation over implementation or rigor.\""
+  },
+  "cost_usd": 0.08759
+}

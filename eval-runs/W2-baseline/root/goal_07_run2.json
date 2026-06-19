@@ -1,0 +1,51 @@
+{
+  "goal_id": 7,
+  "goal_text": "How to choose between RAG and fine-tuning",
+  "goal_type": "comparison",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is RAG, really?",
+        "one_liner": "How retrieval feeds context to a model at query time"
+      },
+      {
+        "title": "What is fine-tuning, really?",
+        "one_liner": "How training reshapes a model's own weights and behavior"
+      },
+      {
+        "title": "Which problem does each one actually solve?",
+        "one_liner": "Knowledge gaps vs. behavior/format — what each fixes"
+      },
+      {
+        "title": "Your data: type, volume, and freshness",
+        "one_liner": "How your data shape pushes you toward one approach"
+      },
+      {
+        "title": "Cost and ongoing maintenance compared",
+        "one_liner": "Upfront cost, per-query cost, and upkeep over time"
+      },
+      {
+        "title": "Accuracy, latency, and control tradeoffs",
+        "one_liner": "Where each approach wins or loses on quality"
+      },
+      {
+        "title": "A decision checklist for your feature",
+        "one_liner": "Concrete questions that point to RAG or fine-tuning"
+      },
+      {
+        "title": "When to start with RAG by default",
+        "one_liner": "Why most product features begin with retrieval"
+      }
+    ],
+    "rationale": "The user is new to both concepts but building a real product, so the outline front-loads two concept nodes (RAG, fine-tuning) explained from scratch, then immediately pivots to a comparison node clarifying which problem each solves — the core mental model. The middle nodes (data, cost/maintenance, accuracy/latency/control) are the concrete decision factors flagged in the confirmed understanding, kept MECE: data characteristics, economics, and quality/performance are distinct axes with low overlap. The decision checklist synthesizes these into actionable guidance for their specific feature. The final node gives a pragmatic default recommendation since RAG is typically the right starting point for new builders, which is more useful than neutral fence-sitting. Math, implementation internals, and hybrid setups are excluded per the user's stated priorities. No intro/conclusion filler."
+  },
+  "cost_usd": 0.05135000000000001
+}

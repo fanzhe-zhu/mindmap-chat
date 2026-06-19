@@ -1,0 +1,51 @@
+{
+  "goal_id": 6,
+  "goal_text": "Write a PRD for my side project",
+  "goal_type": "project",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is a PRD actually for?",
+        "one_liner": "What a PRD does and when it earns its keep"
+      },
+      {
+        "title": "Frame the problem you're solving",
+        "one_liner": "How to state the problem and why it matters"
+      },
+      {
+        "title": "Who is this for, and what do they need?",
+        "one_liner": "Defining target users and their key needs"
+      },
+      {
+        "title": "Draw the line: in scope vs. out of scope",
+        "one_liner": "Deciding what you'll build and won't"
+      },
+      {
+        "title": "Write requirements that are clear, not vague",
+        "one_liner": "Turning ideas into concrete, testable requirements"
+      },
+      {
+        "title": "Define what success looks like",
+        "one_liner": "Choosing success criteria and metrics that fit"
+      },
+      {
+        "title": "Assumptions, risks, and open questions",
+        "one_liner": "Capturing unknowns so they don't bite later"
+      },
+      {
+        "title": "Assemble it into a usable PRD",
+        "one_liner": "How to structure and right-size the document"
+      }
+    ],
+    "rationale": "The user wants a practical, working grasp of writing a PRD for a solo side project, used as a thinking tool rather than a stakeholder-alignment artifact. I included the core building blocks confirmed as priorities: problem framing, users, scope, requirements, and success criteria. I added a short \"what is a PRD for\" node because the user wants a working understanding (not assumed prior knowledge), and an assumptions/risks node since solo founders benefit greatly from surfacing unknowns. The final node addresses how to actually assemble and right-size the doc, matching their goal of \"actually producing one.\" I deliberately excluded process-heavy nodes (approval workflows, stakeholder sign-off, cross-team coordination, roadmapping/release planning) per the deprioritization signal. Nodes are MECE-ish: problem, users, scope, requirements, and metrics each cover distinct content with low overlap, ordered by natural dependency."
+  },
+  "cost_usd": 0.05054
+}

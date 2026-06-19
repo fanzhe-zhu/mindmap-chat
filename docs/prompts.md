@@ -659,6 +659,10 @@ Across the four prompts, four tools are used purely as structured-output enforce
 
 These should be the only tool available to the model in their respective calls. Force a single tool call via `tool_choice: {"type": "tool", "name": "submit_X"}` in the Anthropic SDK — this guarantees the model emits the tool call rather than text.
 
+**W2 implementation finding (Opus 4.8) — `tool_choice` alone is NOT enough.** On Opus 4.8, a forced tool call on a multi-field schema where a long free-text field is emitted *before* an array (notably `submit_outline`'s `rationale` → `nodes`) reliably mangles the output: the model crams everything into the first string field and leaves the array empty/dropped (~50–100% on `submit_outline`). Two mechanical fixes are required (applied in `src/lib/structured-call.ts` + `src/prompts/root.ts`; field names/types/descriptions unchanged):
+1. **Strict tool use** — `strict: true` + `additionalProperties: false` on every object guarantees schema-valid JSON. Strict drops `minItems`/`maxItems`, so count bounds (5–9 nodes, 1–2 questions, ≥1 takeaway) move to a client-side `validate` callback + 1 retry in the agent code.
+2. **Structured-array-first field order** — list the array (e.g. `nodes`) *before* the free-text field (`rationale`) in the schema. This is what actually makes the model populate the array reliably (strict alone still left it empty ~50% of the time). Only field order changes.
+
 The leaf agent (§2) has actual functional tools (`web_search`, `propose_new_node`) and uses `tool_choice: "auto"` (the ReAct loop default).
 
 Note: Root phase 2 (confirm) is the only LLM call in the system that returns plain text rather than a tool call. The user reads phase 2's output directly and replies in natural language.

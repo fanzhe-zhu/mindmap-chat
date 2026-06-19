@@ -1,0 +1,51 @@
+{
+  "scenario_id": "S1",
+  "scenario_goal_id": 2,
+  "scenario_tree": "A",
+  "scenario_category": "normal",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "ReAct termination soundness (should be 1 iteration, shouldn't over-iterate) + scope",
+  "scenario_user_message": "What do Q, K, V actually mean? Help me understand them intuitively.",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "What do Q, K, V actually mean? Help me understand them intuitively."
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good question to start with, because the names are where most people get stuck.\n\nHere's the intuition I like. Imagine each word in your sentence is looking around the room, trying to figure out which other words it should pay attention to. To do that, every word produces three different things:\n\n- A **query (Q)** — \"here's what I'm looking for.\"\n- A **key (K)** — \"here's what I have to offer / what I'm about.\"\n- A **value (V)** — \"here's the actual information I'll hand over if you decide I'm relevant.\"\n\nThe mechanic works like a soft lookup. A word's query gets compared against every other word's key. Where the query and key match well, that word gets a high attention score. Those scores then decide how much of each word's value gets mixed into the result.\n\nA concrete analogy: think of a dating-app search. Your query is what you're looking for. Everyone else has a profile (key) describing themselves. You match your query against all the profiles, and the better the match, the more weight you give to actually reading their full bio (value).\n\nThe key thing to sit with: Q, K, and V are all derived from the same input words — each word's embedding gets multiplied by three separate learned weight matrices. So they're three different \"views\" of the same word, each tuned for a different role in the lookup.\n\nDoes that framing land? I can next walk through how the actual numbers flow — the dot product, the scaling, the softmax — if you want to see the mechanism rather than the metaphor.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2117,
+      "output": 462,
+      "cacheRead": 0,
+      "cacheWrite": 2019
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.02465875,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "An intuitive introduction to what Q, K, and V mean in the self-attention mechanism.",
+    "key_takeaways": [
+      "Query (Q) represents what a word is looking for, Key (K) represents what a word has to offer/is about, and Value (V) is the actual information handed over if a word is deemed relevant.",
+      "Attention works as a soft lookup: a word's query is compared against every other word's key, and strong matches produce high attention scores that determine how much of each word's value gets mixed in.",
+      "Q, K, and V are all derived from the same input embedding, each produced by multiplying it by a separate learned weight matrix — so they are three different 'views' of the same word tuned for different roles.",
+      "The dating-app analogy was offered to anchor the intuition: your query matches against others' profiles (keys), and better matches mean more weight on reading their full bio (value)."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "How the actual numbers flow through the mechanism — the dot product, the scaling factor, and the softmax — was offered by the assistant but not yet covered.",
+      "The user did not explicitly confirm whether the intuitive framing landed."
+    ]
+  }
+}

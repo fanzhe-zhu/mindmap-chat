@@ -1,0 +1,52 @@
+{
+  "scenario_id": "S9",
+  "scenario_goal_id": 5,
+  "scenario_tree": "C",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use + scope",
+  "scenario_user_message": "What kinds of questions do AIPM interviews generally ask now? How are they different from regular PM interviews?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "What kinds of questions do AIPM interviews generally ask now? How are they different from regular PM interviews?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good question to start with, because the delta from regular PM is exactly where your SWE-to-AIPM transition gets tested.\n\nLet me give you the rough shape, then we can go deeper on whichever part matters most for your situation.\n\nAIPM interviews generally pull from four buckets:\n\n1. **Classic PM rounds** — product sense, prioritization, metrics, behavioral. These don't go away. You'll still get \"design a product for X\" and \"how would you measure success.\"\n\n2. **AI product sense** — this is the first real divergence. They want to see if you can scope a problem to AI appropriately. Questions like \"when would you *not* use an LLM here?\", \"how do you handle a feature that's right 90% of the time but wrong 10%?\", \"how do you design for non-deterministic output?\" Regular PM assumes the system does what you build; AIPM has to design around probabilistic, sometimes-wrong behavior.\n\n3. **Technical depth on AI systems** — how evals work, what RAG is, latency/cost tradeoffs, why a model hallucinates and what you do about it. As an ex-SWE you have an edge on the systems-thinking part, but the specific ML/LLM vocabulary is what they're probing. (Note: actually *building* those skills is owned by your \"Skills to build up\" node — I'm only talking about how they get tested in an interview.)\n\n4. **AI-specific judgment & ethics** — data privacy, bias, what happens when the model fails in production, human-in-the-loop decisions.\n\nThe biggest difference from regular PM in one line: regular PM tests whether you can decide *what* to build; AIPM additionally tests whether you understand that the *thing you're building is uncertain*, and whether you can make product decisions under that uncertainty.\n\nWhich of these feels least familiar to you right now? Given you're coming from SWE, I'd guess bucket 2 (AI product sense) is where most of the work is — the engineering background covers a lot of bucket 3 already.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2153,
+      "output": 649,
+      "cacheRead": 0,
+      "cacheWrite": 2045
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.02954625,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "What AIPM interviews test and how they differ from regular PM interviews, especially for someone transitioning from SWE.",
+    "key_takeaways": [
+      "AIPM interviews pull from four buckets: classic PM rounds (product sense, prioritization, metrics, behavioral), AI product sense, technical depth on AI systems, and AI-specific judgment & ethics.",
+      "The biggest divergence from regular PM is AI product sense \\\\— scoping a problem to AI appropriately, deciding when NOT to use an LLM, and designing for non-deterministic, sometimes-wrong output.",
+      "Core distinction in one line: regular PM tests whether you can decide what to build; AIPM additionally tests whether you can make product decisions under uncertainty because the thing being built is probabilistic.",
+      "Coming from SWE, the user likely already covers much of the technical-depth bucket (evals, RAG, latency/cost, hallucination), so the main gap is expected to be the AI product sense bucket.",
+      "The conversation framed how AI skills get tested in interviews, while actually building those skills is owned by a separate 'Skills to build up' node."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "Which of the four buckets feels least familiar to the user \\\\— they were asked but had not yet answered.",
+      "How to concretely prepare for and practice each bucket (the conversation covered what is tested, not yet how to prepare)."
+    ]
+  }
+}

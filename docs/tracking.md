@@ -16,7 +16,7 @@
 | **v1 Design** | ✅ Locked | 2026-05-11 v1-only + eval complete | — |
 | **v1 Pre-impl Prep** | ✅ Done | 2026-05-26 complete | — |
 | **v1 Week 1** (Single Agent CLI) | 🟢 Ready | prep cleared, ready to kick off | — |
-| **v1 Week 2** (Root + Leaf CLI) | ⚪ Blocked | waiting on W1 | — |
+| **v1 Week 2** (Root + Leaf CLI) | 🟢 Shipped | 2026-06-18 — root 3-phase + leaf CLI + summary | — |
 | **v1 Week 3** (Web App) | ⚪ Blocked | waiting on W2 | — |
 | **v1 Portfolio Packaging** | 🟡 Partial | story locked, artifacts TBD | parallel |
 | **v2 Planning** | 🟡 Candidates listed | Blocked on v1 ship + 1 week dogfood | see v2 section |
@@ -207,38 +207,39 @@ CLI script, "Weather in Tokyo?" → agent calls web_search → multi-step ReAct 
 # 📦 v1 Week 2: Root + Leaf CLI
 
 > **Target ship**: Week 2 Day 14
-> **Status**: ⚪ Not started
+> **Status**: 🟢 Shipped 2026-06-18
 
 ## Goal
 CLI script, full v1 flow (no UI): user enters goal → root agent 3-step flow → outline JSON → user selects a node from the CLI → leaf agent ReAct conversation → summary regen
 
 ## Success Criteria
-- [ ] Able to explain the context difference between root and leaf
-- [ ] **Sibling awareness implemented** (verified by eval manual spot-check)
-- [ ] Week 1 code directly reused as the leaf agent base
+- [x] Able to explain the context difference between root and leaf
+- [x] **Sibling awareness implemented** — 6 siblings injected into every leaf prompt (verified in the leaf trace; redirect quality is human-scored)
+- [x] Week 1 code directly reused as the leaf agent base — the CLI calls `runReActLoop` unchanged
 
 ## Pre-Week-2 Decisions (fix before Week 1 Day 7)
-- [ ] **Root agent outline output format** — Structured JSON or natural language then parse? **Recommend structured output + JSON mode**
-- [ ] **How the CLI presents the mind map** — Indented text list / ASCII tree / numbered list?
-- [ ] **How the sibling list is injected into the leaf prompt** — placeholder or prefix?
-- [ ] **Week 1 → Week 2 code reuse** — **Recommend extracting a `runReActLoop()` function**, shared by W1 and W2
+- [x] **Root agent outline output format** — structured output via forced tool call (`submit_outline`, strict). Required strict + nodes-first field order on Opus 4.8 (see prompts.md Implementation Notes).
+- [x] **How the CLI presents the mind map** — numbered list.
+- [x] **How the sibling list is injected into the leaf prompt** — `{{ siblings_metadata }}` placeholder; every other node as `- "title": one_liner`.
+- [x] **Week 1 → Week 2 code reuse** — `runReActLoop` reused unchanged for the leaf agent.
 
 ## Tasks
-- [ ] Root agent system prompt + 3-step state machine
-- [ ] Outline structured output parsing (JSON mode)
-- [ ] In-memory Tree data structure
-- [ ] CLI interaction: input goal → clarify Q&A → confirm → display outline → node selection → leaf agent
-- [ ] Leaf agent system prompt (with sibling awareness injection)
-- [ ] `summary_for_parent` regeneration logic
-- [ ] Serialize the Tree to a JSON file for easy manual inspection
+- [x] Root agent system prompt + 3-step state machine
+- [x] Outline structured output parsing (forced tool call)
+- [x] In-memory Tree data structure
+- [x] CLI interaction: input goal → clarify Q&A → confirm → display outline → node selection → leaf agent
+- [x] Leaf agent system prompt (with sibling awareness injection)
+- [x] `summary_for_parent` regeneration logic
+- [x] Serialize the Tree to a JSON file for easy manual inspection
 
 ## W2 Eval (root + leaf joint baseline)
-- [ ] Run `eval-root.ts` on the 10-goal test set (each goal × 3 times)
-- [ ] Re-run `eval-leaf.ts` (since sibling awareness is now injected, results may change)
-- [ ] **Record baseline numbers** (into `eval-runs/W2-baseline/`):
-  - Automatic metrics: Node count std/mean, tool use rate, ReAct iter mean/P95, token cost
-  - **Summary schema completeness**: _____ % (all 4 fields filled and correctly typed)
-- [ ] Fill in manually:
+- [x] Run `eval-root.ts` on the 10-goal test set (each goal × 3 times) — 30/30, 0 failures
+- [x] Re-run `eval-leaf.ts` (summary now wired)
+- [x] **Record baseline numbers** (in `eval-runs/W2-baseline/`):
+  - Root granularity std/mean: **0.040** (target <0.3 ✓); node count mean 7.93, dist {7:5, 8:22, 9:3}; root cost $1.61
+  - Leaf: tool-use 77.8%, params valid 100%, iter mean 1.35 / P95 2, leaf cost $0.657
+  - **Summary schema completeness: 100 %** (20/20 — was 0% in W1)
+- [ ] Fill in manually (still TODO — human-scored):
   - Coverage avg across 10 goals: _____ %
   - Is personalization obvious (goal #10 vs blank-slate goal #5): yes / no
   - Sibling overlap, average over 5 sampled pairs: _____ %

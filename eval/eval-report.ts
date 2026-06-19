@@ -56,7 +56,11 @@ const runArg = compareMode ? null : args[0]
 async function findLatestRun(): Promise<string> {
   const runs = await readdir("eval-runs")
   if (runs.length === 0) throw new Error("no eval-runs/ subdirectories found")
-  return runs.sort().reverse()[0]
+  // Prefer ISO-timestamp run dirs. Named baselines (e.g. "W1-baseline") sort
+  // lexicographically after every timestamp and would otherwise always win.
+  const timestamped = runs.filter((r) => /^\d{4}-\d{2}-\d{2}T/.test(r))
+  const pool = timestamped.length > 0 ? timestamped : runs
+  return pool.sort().reverse()[0]
 }
 
 async function loadRun(timestamp: string): Promise<{ root: any[]; leaf: any[] }> {

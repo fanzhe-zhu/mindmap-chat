@@ -1,0 +1,52 @@
+{
+  "scenario_id": "S18",
+  "scenario_goal_id": 7,
+  "scenario_tree": "B",
+  "scenario_category": "clarify",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Clarify behavior / no guessing",
+  "scenario_user_message": "Is this approach a good fit for my situation?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "Is this approach a good fit for my situation?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "I don't actually know your situation yet — so I can't tell you whether a hybrid RAG + fine-tuning approach fits. Let me get the picture.\n\nA few things that matter for the hybrid call specifically:\n\n- Do you have a problem that's actually *two* problems? Hybrid earns its keep when you need both fresh/changing knowledge (RAG's strength) *and* a consistent behavior or format the base model doesn't do well (FT's strength). If you only have one of those, hybrid is usually overkill.\n- Roughly what's your data look like — a corpus of documents that changes over time, or a set of input/output examples showing a desired style?\n\nSo tell me: what are you actually trying to build, and what's going wrong when you try a single approach?\n\nThat said, two related questions live in sibling nodes, so flag them if that's where your head is: whether hybrid is worth the extra *cost* belongs in \"Cost comparison,\" and figuring out whether your need is knowledge-injection vs behavior-change belongs in \"Task-type dimension.\" That second one is honestly the thing that determines whether you need hybrid at all — so it might be worth a detour there first.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2125,
+      "output": 381,
+      "cacheRead": 0,
+      "cacheWrite": 2037
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.02269625,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "Whether a hybrid RAG + fine-tuning approach is a good fit for the user's (still unspecified) situation.",
+    "key_takeaways": [
+      "Hybrid RAG + FT is only worth it when you genuinely have two problems at once: a need for fresh/changing knowledge (RAG's strength) AND a need for consistent behavior or output format the base model doesn't do well (FT's strength).",
+      "If you only have one of those needs, hybrid is usually overkill.",
+      "Determining whether the underlying need is knowledge-injection vs. behavior-change is the key factor for deciding if hybrid is needed at all — and that question lives in the sibling 'Task-type dimension' node, which is worth visiting first.",
+      "The user did not yet describe their actual situation, data, or what's going wrong, so no fit assessment could be made."
+    ],
+    "status": "confused",
+    "open_questions": [
+      "What is the user actually trying to build, and what fails when they use a single approach?",
+      "Does the user's data look like a changing document corpus (favoring RAG) or input/output style examples (favoring FT)?",
+      "Whether the user's actual need is knowledge-injection vs. behavior-change (to be explored in the 'Task-type dimension' node)."
+    ]
+  }
+}

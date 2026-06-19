@@ -1,0 +1,51 @@
+{
+  "goal_id": 1,
+  "goal_text": "Understand the core ideas behind RLHF",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What problem is RLHF actually solving?",
+        "one_liner": "Why pretrained models need alignment with human preferences"
+      },
+      {
+        "title": "What is a language model, and what does 'fine-tuning' mean?",
+        "one_liner": "Pretraining, next-word prediction, and adapting a model afterward"
+      },
+      {
+        "title": "The core vocabulary of reinforcement learning",
+        "one_liner": "Policy, reward, and learning from feedback signals"
+      },
+      {
+        "title": "How do you turn human opinions into a reward model?",
+        "one_liner": "Collecting comparisons and training a model to score outputs"
+      },
+      {
+        "title": "Optimizing the policy against the reward model",
+        "one_liner": "How PPO updates the model while staying close to the original"
+      },
+      {
+        "title": "The full RLHF pipeline, end to end",
+        "one_liner": "How the three stages connect into one training recipe"
+      },
+      {
+        "title": "Why not just optimize the reward? Pitfalls and guardrails",
+        "one_liner": "Reward hacking, KL penalties, and over-optimization"
+      },
+      {
+        "title": "The key papers and how to read them",
+        "one_liner": "Which papers matter and what each contributes"
+      }
+    ],
+    "rationale": "The user is new to ML but wants conceptual scaffolding to read RLHF papers, so the outline front-loads the prerequisite concepts those papers assume (language models, fine-tuning, RL vocabulary) before walking through the RLHF pipeline itself. Node 1 establishes motivation (the alignment problem) since papers assume you know why RLHF exists. Nodes 2-3 build the two foundations RLHF sits on—LM training and RL terminology—kept separate because they're genuinely distinct prerequisite domains. Nodes 4-5 cover the two technically novel pieces (reward modeling from preferences, policy optimization), which are the heart of the papers. Node 6 synthesizes them into the canonical three-stage pipeline. Node 7 covers reward hacking/KL penalties, a recurring theme in the literature that papers spend real space on. Node 8 directly serves the stated goal of reading key papers. I deliberately excluded math/code detail, hyperparameters, and hands-on training mechanics per the confirmed understanding. Nodes are MECE: motivation, two prerequisites, two mechanisms, synthesis, pitfalls, and a reading guide have low content overlap."
+  },
+  "cost_usd": 0.054935
+}

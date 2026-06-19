@@ -1,0 +1,51 @@
+{
+  "goal_id": 3,
+  "goal_text": "Learn to use PostgreSQL",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "How is data organized in a relational database?",
+        "one_liner": "Tables, rows, columns, and how they relate"
+      },
+      {
+        "title": "Get PostgreSQL running and load a dataset",
+        "one_liner": "Install Postgres, connect, and import sample data"
+      },
+      {
+        "title": "Write your first SELECT queries",
+        "one_liner": "Pick columns, limit rows, sort results"
+      },
+      {
+        "title": "Filter rows with WHERE",
+        "one_liner": "Conditions, comparisons, AND/OR, NULL handling"
+      },
+      {
+        "title": "Summarize data with aggregates and GROUP BY",
+        "one_liner": "Count, sum, average, and group results"
+      },
+      {
+        "title": "Combine tables with JOINs",
+        "one_liner": "Link related tables to answer richer questions"
+      },
+      {
+        "title": "Shape and clean results for analysis",
+        "one_liner": "Aliases, dates, CASE, subqueries, deduplication"
+      },
+      {
+        "title": "Build an analysis from a real question",
+        "one_liner": "Turn a question into a working query, step by step"
+      }
+    ],
+    "rationale": "The user is a complete beginner whose goal is querying and analyzing data, so the outline starts with the only conceptual foundation they truly need (how relational data is structured) before moving into hands-on querying. I included a setup node because they have no environment yet, but kept it lightweight (no admin internals). The core of the map is a progression of analysis skills—SELECT, WHERE, aggregation/GROUP BY, JOINs—which are the MECE building blocks of reading data, ordered by dependency. A 'shape and clean results' node captures the practical glue (dates, CASE, subqueries) needed for real analysis without becoming a full SQL reference. The final synthesis node ties it together by walking from a real question to a query, matching the practical, analysis-focused intent. I deliberately excluded administration (tuning, replication, users), heavy data modeling/schema design, indexing internals, and theory, per the confirmed understanding."
+  },
+  "cost_usd": 0.051815
+}

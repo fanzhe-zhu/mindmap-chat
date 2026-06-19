@@ -1,0 +1,49 @@
+{
+  "scenario_id": "S14",
+  "scenario_goal_id": 3,
+  "scenario_tree": "D",
+  "scenario_category": "sibling_awareness",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Sibling awareness",
+  "scenario_user_message": "My queries are really slow — how do I add indexes to speed them up?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "My queries are really slow — how do I add indexes to speed them up?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "That's a great question, but it lands squarely in a sibling node's territory: \"Indexes and query performance.\" That node is set up specifically for how indexes work and how to use them to speed up queries — so head there for the real answer.\n\nWhat I cover here is transactions and ACID — how Postgres keeps your data consistent when multiple things touch it at once. Different concern entirely.\n\nThat said, one quick bridge worth knowing: if your queries feel slow, it's worth checking whether they're slow because of missing indexes, or because they're blocked — waiting on a lock held by another transaction. The first is the indexes node. The second is squarely my territory. If you ever see a query just hanging rather than churning, come back here and we'll talk about locking and blocking.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2133,
+      "output": 248,
+      "cacheRead": 0,
+      "cacheWrite": 2038
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.0194125,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "The user asked about speeding up slow queries with indexes, which was redirected since this node covers transactions and ACID rather than indexing.",
+    "key_takeaways": [
+      "The user's actual question — how to add indexes to speed up slow queries — belongs to the sibling node 'Indexes and query performance,' not to transactions and ACID.",
+      "Slow queries can have two different causes: missing indexes (an indexing concern) versus being blocked while waiting on a lock held by another transaction (a transactions/locking concern).",
+      "If a query appears to hang rather than churn, that's a sign of locking/blocking, which is the proper subject of this transactions node."
+    ],
+    "status": "confused",
+    "open_questions": [
+      "How locking and blocking work in transactions — flagged as in-scope for this node but not yet explored."
+    ]
+  }
+}

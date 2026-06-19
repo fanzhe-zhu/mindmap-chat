@@ -1,0 +1,51 @@
+{
+  "goal_id": 9,
+  "goal_text": "Learn machine learning",
+  "goal_type": "vague",
+  "coverage_mode": "granularity",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is machine learning, really?",
+        "one_liner": "How learning from data differs from normal programming"
+      },
+      {
+        "title": "What does 'learning from data' mean?",
+        "one_liner": "How a model spots patterns and improves with examples"
+      },
+      {
+        "title": "The big three: supervised, unsupervised, reinforcement",
+        "one_liner": "The main ways models learn and when each applies"
+      },
+      {
+        "title": "How a model actually gets trained",
+        "one_liner": "Error, feedback, and gradual tuning — minus the math"
+      },
+      {
+        "title": "Why do models get things wrong?",
+        "one_liner": "Overfitting, bias, and the limits of learning"
+      },
+      {
+        "title": "What's inside a neural network?",
+        "one_liner": "The intuition behind the brain-inspired models everyone mentions"
+      },
+      {
+        "title": "How do we know a model is any good?",
+        "one_liner": "Testing, accuracy, and trusting predictions"
+      },
+      {
+        "title": "Where you meet ML in real life",
+        "one_liner": "Everyday examples that make the concepts concrete"
+      }
+    ],
+    "rationale": "The user is a total beginner whose explicit goal is conceptual understanding (\"how it works\"), not building or deploying. So I excluded all tooling, coding, libraries, and project-setup nodes, and avoided math-heavy derivations. The outline is intuition-first and conceptual. Node 1 establishes the fundamental paradigm shift (data vs. explicit rules). Node 2 explains the core mechanism of learning at a high level. Node 3 maps the landscape of approaches (MECE categories). Node 4 demystifies training without formulas, building on the learning concept. Node 5 addresses failure modes, which is essential for genuine understanding of why ML works the way it does. Node 6 covers neural networks specifically since a beginner will inevitably encounter the term and want intuition. Node 7 covers evaluation — understanding how trust is established. Node 8 grounds everything in relatable real-world examples, which serves a conceptual learner well. Ordering reflects dependency: concept → mechanism → types → training → limits → a key architecture → evaluation → application, though several middle nodes are loosely parallel."
+  },
+  "cost_usd": 0.05222
+}

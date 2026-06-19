@@ -1,0 +1,51 @@
+{
+  "goal_id": 8,
+  "goal_text": "I want to learn about AI",
+  "goal_type": "vague",
+  "coverage_mode": "clarify",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is AI, really?",
+        "one_liner": "What 'artificial intelligence' means and what counts as AI"
+      },
+      {
+        "title": "How does a machine 'learn'?",
+        "one_liner": "The core idea of learning from data, in plain terms"
+      },
+      {
+        "title": "Why neural networks changed everything",
+        "one_liner": "What neural nets are and why they became dominant"
+      },
+      {
+        "title": "How do chatbots like ChatGPT work?",
+        "one_liner": "How large language models generate human-like text"
+      },
+      {
+        "title": "What AI can and can't do",
+        "one_liner": "Real strengths, hard limits, and why it makes mistakes"
+      },
+      {
+        "title": "Where you meet AI every day",
+        "one_liner": "Common uses: search, recommendations, images, voice"
+      },
+      {
+        "title": "The risks and ethics debate",
+        "one_liner": "Bias, jobs, misinformation, safety concerns explained"
+      },
+      {
+        "title": "How AI got here",
+        "one_liner": "Key milestones from early ideas to today's boom"
+      }
+    ],
+    "rationale": "The user is a total beginner wanting a solid conceptual understanding at the informed-layperson level, not to build models. I start with definitional grounding (\"What is AI\"), then the foundational mechanism (machine learning), then the technical leap (neural networks) since modern AI depends on it, then the most culturally relevant application (LLMs/chatbots) which is likely their main exposure point. I include capabilities/limits and ethics because these are central to genuinely \"following conversations\" about AI — a stated goal. Everyday uses make it concrete and relatable. History is placed last as context rather than a prerequisite. I deliberately excluded any coding, math, or hands-on model-building nodes since the user explicitly wants conceptual understanding over implementation. Nodes are MECE-ish: each answers a distinct question with low overlap."
+  },
+  "cost_usd": 0.0494
+}

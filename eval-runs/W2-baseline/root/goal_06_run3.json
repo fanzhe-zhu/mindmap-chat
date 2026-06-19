@@ -1,0 +1,47 @@
+{
+  "goal_id": 6,
+  "goal_text": "Write a PRD for my side project",
+  "goal_type": "project",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 7,
+  "outline": {
+    "nodes": [
+      {
+        "title": "Frame the problem",
+        "one_liner": "What problem this solves, for whom, and why now"
+      },
+      {
+        "title": "Define what success looks like",
+        "one_liner": "How you'll know it worked—goals and signals"
+      },
+      {
+        "title": "Draw the scope line",
+        "one_liner": "What's in v1, what's explicitly out"
+      },
+      {
+        "title": "Spell out the core requirements",
+        "one_liner": "What it must do—features as user-facing capabilities"
+      },
+      {
+        "title": "Surface assumptions and open questions",
+        "one_liner": "What you're betting on and still unsure about"
+      },
+      {
+        "title": "Decide what to build first",
+        "one_liner": "Sequencing, milestones, and the minimum slice"
+      },
+      {
+        "title": "Record key decisions and tradeoffs",
+        "one_liner": "Choices made and rejected alternatives, for future-you"
+      }
+    ],
+    "rationale": "The user is experienced with scoping projects but wants a structural understanding of PRD sections used as a personal thinking tool. I skip \"what is a PRD / what is a PM\" framing and team-alignment/stakeholder-pitch sections per the confirmed understanding. The seven nodes map to the canonical PRD skeleton reframed as decision-forcing sections: problem framing, success definition, scope boundaries, requirements, assumptions/risks, prioritization/sequencing, and a decision log. These are MECE—problem (why), success (measure), scope (boundaries), requirements (what), assumptions (uncertainty), sequencing (order), decisions (rationale) have low content overlap. I ordered them by natural dependency: you can't scope before framing the problem, can't prioritize before listing requirements. The \"decision log\" node leans into the solo-audience angle—a PRD for future-you benefits from recorded reasoning. I deliberately dropped enterprise-heavy sections (approvals, GTM, detailed specs/wireframes) and project-type-specific content since a generic transferable structure was confirmed as the aim."
+  },
+  "cost_usd": 0.050935
+}

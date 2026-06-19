@@ -1,0 +1,217 @@
+{
+  "timestamp": "2026-06-19T04-54-33-183Z",
+  "goals": 10,
+  "runs_per_goal": 3,
+  "total_runs": 30,
+  "failed_runs": 0,
+  "granularity": {
+    "per_goal_std_over_mean_mean": 0.040245668463940495,
+    "target_met": true,
+    "overall_node_count_mean": 7.933333333333334,
+    "overall_node_count_std": 0.5120763831912405
+  },
+  "node_count_distribution": {
+    "7": 5,
+    "8": 22,
+    "9": 3
+  },
+  "cost": {
+    "total_usd": 1.6086849999999997,
+    "avg_per_run": 0.05362283333333332,
+    "per_goal": [
+      {
+        "goal_id": 1,
+        "cost_usd": 0.224725
+      },
+      {
+        "goal_id": 2,
+        "cost_usd": 0.15263000000000002
+      },
+      {
+        "goal_id": 3,
+        "cost_usd": 0.155395
+      },
+      {
+        "goal_id": 4,
+        "cost_usd": 0.148055
+      },
+      {
+        "goal_id": 5,
+        "cost_usd": 0.16568
+      },
+      {
+        "goal_id": 6,
+        "cost_usd": 0.15345
+      },
+      {
+        "goal_id": 7,
+        "cost_usd": 0.151705
+      },
+      {
+        "goal_id": 8,
+        "cost_usd": 0.148795
+      },
+      {
+        "goal_id": 9,
+        "cost_usd": 0.15653
+      },
+      {
+        "goal_id": 10,
+        "cost_usd": 0.15172000000000002
+      }
+    ]
+  },
+  "per_goal": [
+    {
+      "goal_id": 1,
+      "goal_text": "Understand the core ideas behind RLHF",
+      "coverage_mode": "subtopic",
+      "runs": 3,
+      "node_counts": [
+        8,
+        8,
+        8
+      ],
+      "node_count_mean": 8,
+      "node_count_std": 0,
+      "std_over_mean": 0,
+      "cost_usd": 0.224725
+    },
+    {
+      "goal_id": 2,
+      "goal_text": "How Transformers work",
+      "coverage_mode": "subtopic",
+      "runs": 3,
+      "node_counts": [
+        8,
+        8,
+        8
+      ],
+      "node_count_mean": 8,
+      "node_count_std": 0,
+      "std_over_mean": 0,
+      "cost_usd": 0.15263000000000002
+    },
+    {
+      "goal_id": 3,
+      "goal_text": "Learn to use PostgreSQL",
+      "coverage_mode": "subtopic",
+      "runs": 3,
+      "node_counts": [
+        8,
+        8,
+        8
+      ],
+      "node_count_mean": 8,
+      "node_count_std": 0,
+      "std_over_mean": 0,
+      "cost_usd": 0.155395
+    },
+    {
+      "goal_id": 4,
+      "goal_text": "How to do good user research",
+      "coverage_mode": "subtopic",
+      "runs": 3,
+      "node_counts": [
+        7,
+        9,
+        8
+      ],
+      "node_count_mean": 8,
+      "node_count_std": 0.816496580927726,
+      "std_over_mean": 0.10206207261596575,
+      "cost_usd": 0.148055
+    },
+    {
+      "goal_id": 5,
+      "goal_text": "What to prepare when transitioning from SWE to AIPM",
+      "coverage_mode": "subtopic",
+      "runs": 3,
+      "node_counts": [
+        9,
+        8,
+        8
+      ],
+      "node_count_mean": 8.333333333333334,
+      "node_count_std": 0.4714045207910317,
+      "std_over_mean": 0.056568542494923796,
+      "cost_usd": 0.16568
+    },
+    {
+      "goal_id": 6,
+      "goal_text": "Write a PRD for my side project",
+      "coverage_mode": "subtopic",
+      "runs": 3,
+      "node_counts": [
+        8,
+        8,
+        7
+      ],
+      "node_count_mean": 7.666666666666667,
+      "node_count_std": 0.4714045207910317,
+      "std_over_mean": 0.061487546190134565,
+      "cost_usd": 0.15345
+    },
+    {
+      "goal_id": 7,
+      "goal_text": "How to choose between RAG and fine-tuning",
+      "coverage_mode": "subtopic",
+      "runs": 3,
+      "node_counts": [
+        8,
+        8,
+        8
+      ],
+      "node_count_mean": 8,
+      "node_count_std": 0,
+      "std_over_mean": 0,
+      "cost_usd": 0.151705
+    },
+    {
+      "goal_id": 8,
+      "goal_text": "I want to learn about AI",
+      "coverage_mode": "clarify",
+      "runs": 3,
+      "node_counts": [
+        7,
+        8,
+        8
+      ],
+      "node_count_mean": 7.666666666666667,
+      "node_count_std": 0.4714045207910317,
+      "std_over_mean": 0.061487546190134565,
+      "cost_usd": 0.148795
+    },
+    {
+      "goal_id": 9,
+      "goal_text": "Learn machine learning",
+      "coverage_mode": "granularity",
+      "runs": 3,
+      "node_counts": [
+        8,
+        9,
+        8
+      ],
+      "node_count_mean": 8.333333333333334,
+      "node_count_std": 0.4714045207910317,
+      "std_over_mean": 0.056568542494923796,
+      "cost_usd": 0.15653
+    },
+    {
+      "goal_id": 10,
+      "goal_text": "I've already built an LLM app and want to understand agents",
+      "coverage_mode": "subtopic",
+      "runs": 3,
+      "node_counts": [
+        8,
+        7,
+        7
+      ],
+      "node_count_mean": 7.333333333333333,
+      "node_count_std": 0.4714045207910317,
+      "std_over_mean": 0.0642824346533225,
+      "cost_usd": 0.15172000000000002
+    }
+  ],
+  "human_metrics": "human-scored: coverage %, personalization clarity (see per-run human fields)"
+}

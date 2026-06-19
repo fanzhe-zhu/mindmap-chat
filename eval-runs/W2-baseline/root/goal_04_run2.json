@@ -1,0 +1,55 @@
+{
+  "goal_id": 4,
+  "goal_text": "How to do good user research",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 9,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What user research actually is (and isn't)",
+        "one_liner": "Why we research users, and what it can and can't tell you."
+      },
+      {
+        "title": "Start with the right question",
+        "one_liner": "Turning a vague goal into a focused research question."
+      },
+      {
+        "title": "Generative vs. evaluative research",
+        "one_liner": "The two main reasons to research, and when to use each."
+      },
+      {
+        "title": "Pick a method that fits the question",
+        "one_liner": "Interviews, observation, surveys, tests — and choosing among them."
+      },
+      {
+        "title": "Find and recruit the right people",
+        "one_liner": "Who to talk to, how many, and how to reach them."
+      },
+      {
+        "title": "Run a good interview or session",
+        "one_liner": "Asking questions that get honest, useful answers."
+      },
+      {
+        "title": "Avoid bias that ruins your findings",
+        "one_liner": "Leading questions, small samples, and fooling yourself."
+      },
+      {
+        "title": "Turn raw notes into real insights",
+        "one_liner": "Spotting patterns and synthesizing what you heard."
+      },
+      {
+        "title": "Make findings actually change decisions",
+        "one_liner": "Sharing results so they get used, not shelved."
+      }
+    ],
+    "rationale": "The user is a total beginner wanting a solid conceptual-but-practical working understanding, no specific deliverable. I built the outline around the full arc of research: framing (what it is, asking the right question), the key conceptual fork (generative vs evaluative), method selection, recruiting, execution (running sessions), a dedicated bias node (critical for beginners and the most common failure mode), synthesis, and impact. I excluded an intro node, heavy quantitative/statistics, and research ops per the confirmed scope. Nodes are MECE-ish: framing, method choice, recruiting, doing, validity, analysis, and dissemination have low content overlap. Order follows the natural dependency chain while keeping each node distinct."
+  },
+  "cost_usd": 0.049335000000000004
+}

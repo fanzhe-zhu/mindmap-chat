@@ -1,0 +1,51 @@
+{
+  "goal_id": 10,
+  "goal_text": "I've already built an LLM app and want to understand agents",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What makes something an agent?",
+        "one_liner": "The reason-act-observe loop vs. plain prompt/response."
+      },
+      {
+        "title": "Define tools the LLM can call",
+        "one_liner": "Writing tool schemas, descriptions, and parameters the model picks from."
+      },
+      {
+        "title": "Run the agent loop in code",
+        "one_liner": "Wiring detect-call, execute, feed-result-back until done."
+      },
+      {
+        "title": "Wrangling the model's tool calls",
+        "one_liner": "Parsing arguments, validating inputs, handling malformed calls."
+      },
+      {
+        "title": "Managing context and memory across turns",
+        "one_liner": "What to keep, what to drop as the loop grows."
+      },
+      {
+        "title": "When tools fail or the agent loops forever",
+        "one_liner": "Errors, retries, timeouts, and stop conditions."
+      },
+      {
+        "title": "Bolting an agent onto your existing app",
+        "one_liner": "Slotting the loop into your current prompt/response flow."
+      },
+      {
+        "title": "Knowing your agent actually works",
+        "one_liner": "Testing, logging traces, and watching cost and latency."
+      }
+    ],
+    "rationale": "The user knows LLM basics (prompt/response, no tools) and wants to ship a real single-agent into their existing app, so I skip model fundamentals and multi-agent/orchestration topics entirely. The outline is ordered as a practical build path: first the conceptual shift (the loop), then tool definition as the central concept the user lacks, then implementing the loop, then the messy realities (parsing tool calls, context management, failure handling), then integration into their actual app, and finally evaluation/observability so they know it works. Nodes are MECE: defining tools, running the loop, parsing calls, memory, and error handling each address distinct implementation concerns with low overlap. Everything is implementation-focused per the confirmed understanding."
+  },
+  "cost_usd": 0.050585000000000005
+}

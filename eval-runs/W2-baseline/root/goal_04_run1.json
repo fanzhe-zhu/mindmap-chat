@@ -1,0 +1,47 @@
+{
+  "goal_id": 4,
+  "goal_text": "How to do good user research",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 7,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What does 'validating an idea' actually mean?",
+        "one_liner": "What you're testing, and what counts as proof"
+      },
+      {
+        "title": "Find the right people to talk to",
+        "one_liner": "Who to recruit and how to reach them"
+      },
+      {
+        "title": "Write questions that uncover the truth",
+        "one_liner": "Asking about real behavior, not hypotheticals"
+      },
+      {
+        "title": "Run a good interview",
+        "one_liner": "How to listen, probe, and stay neutral"
+      },
+      {
+        "title": "Spotting false signals",
+        "one_liner": "Why people lie politely and how to detect it"
+      },
+      {
+        "title": "Make sense of what you heard",
+        "one_liner": "Turning messy notes into clear patterns"
+      },
+      {
+        "title": "Decide: pursue, pivot, or kill",
+        "one_liner": "Reading the evidence to make the call"
+      }
+    ],
+    "rationale": "The user is a complete beginner whose sole goal is validating a product idea, so the outline is built around the validation interview workflow rather than general research theory. Node 1 grounds them in what validation means and what evidence looks like (essential for a beginner who doesn't yet know what success/failure looks like). Nodes 2-4 cover the practical execution sequence: recruiting, question design, and conducting interviews — the hands-on skills they need to do this themselves soon. Node 5 (false signals) is deliberately separated out because it's the single biggest beginner failure mode for validation and deserves its own focus. Nodes 6-7 cover synthesis and the actual go/no-go decision, which is the concrete outcome they want. I excluded surveys-at-scale, advanced quant methods, usability testing, and broader product-lifecycle research per the confirmed scope. No intro/conclusion filler; order follows the natural dependency from understanding goals to making the decision."
+  },
+  "cost_usd": 0.049174999999999996
+}

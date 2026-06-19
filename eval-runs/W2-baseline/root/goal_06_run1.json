@@ -1,0 +1,51 @@
+{
+  "goal_id": 6,
+  "goal_text": "Write a PRD for my side project",
+  "goal_type": "project",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "Nail the problem you're solving",
+        "one_liner": "What pain exists, for whom, and why it matters"
+      },
+      {
+        "title": "Who is this actually for?",
+        "one_liner": "Defining your target user and their context"
+      },
+      {
+        "title": "What does success look like?",
+        "one_liner": "Goals and signals that tell you it worked"
+      },
+      {
+        "title": "Draw the scope boundary",
+        "one_liner": "The core thing you're committing to build"
+      },
+      {
+        "title": "Write the 'Out of Scope' list",
+        "one_liner": "What you're deliberately NOT building, and why"
+      },
+      {
+        "title": "Spell out the core user flow",
+        "one_liner": "Key actions a user takes, start to finish"
+      },
+      {
+        "title": "Surface your assumptions and open questions",
+        "one_liner": "Unknowns and bets baked into your thinking"
+      },
+      {
+        "title": "Set rough priorities",
+        "one_liner": "What's v1 must-have vs. later"
+      }
+    ],
+    "rationale": "The user wants to learn PRD-writing as a thinking tool to force scope clarity on a solo side project. I front-load the \"thinking\" sections that drive scope clarity (problem, user, success) and make scope itself a two-node treatment: an explicit in-scope core and a dedicated out-of-scope node, since the user named scope clarity as the real payoff and \"what's explicitly out\" is where most scope creep gets killed. The user flow node grounds the abstract scope in concrete behavior. Assumptions/open-questions and rough priorities round out the genuine PRD thinking work without drifting into process formalities. I deliberately omitted stakeholder sign-off, release/launch logistics, metrics dashboards, team-communication framing, and any 'what is a PRD' basics — all deprioritized per the confirmed understanding (solo, thinking-tool, already knows the project). Structure stays domain-general since the project specifics weren't given. Nodes are MECE: problem vs. user vs. success vs. in-scope vs. out-of-scope vs. flow vs. assumptions vs. priorities have low content overlap."
+  },
+  "cost_usd": 0.05197499999999999
+}

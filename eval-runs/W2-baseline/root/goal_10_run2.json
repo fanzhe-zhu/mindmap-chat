@@ -1,0 +1,47 @@
+{
+  "goal_id": 10,
+  "goal_text": "I've already built an LLM app and want to understand agents",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 7,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What makes an LLM an agent?",
+        "one_liner": "The reason-act loop vs. a single LLM call"
+      },
+      {
+        "title": "How does tool calling actually work?",
+        "one_liner": "Schemas, the model's tool request, and routing to code"
+      },
+      {
+        "title": "Writing and wiring up your first tool",
+        "one_liner": "Define a tool, expose it, execute the result"
+      },
+      {
+        "title": "Building the agent loop",
+        "one_liner": "Feeding tool results back until the task is done"
+      },
+      {
+        "title": "Controlling when the loop stops",
+        "one_liner": "Termination, max steps, and avoiding infinite loops"
+      },
+      {
+        "title": "Handling errors and bad tool calls",
+        "one_liner": "Malformed args, failed tools, recovery inside the loop"
+      },
+      {
+        "title": "Dropping the agent into your existing app",
+        "one_liner": "State, streaming, and integration with your codebase"
+      }
+    ],
+    "rationale": "The user is a practitioner comfortable with plain LLM calls/prompting who wants to ship one working agent in their existing app. I skipped basics (prompting, model calls) and excluded multi-agent, eval, and framework comparison per their stated priorities. The outline follows the real dependency chain: first the conceptual shift (reason-act loop) that distinguishes an agent, then the core mechanic (tool calling), then hands-on tool implementation, then assembling the loop, then loop control/termination (which they specifically flagged), then robustness (error handling, a practical must for shipping), and finally integration into their app (their end goal). Nodes are MECE: concept, mechanism, build-a-tool, build-the-loop, stop-the-loop, harden-it, ship-it — each answers a distinct question with low overlap."
+  },
+  "cost_usd": 0.050305
+}

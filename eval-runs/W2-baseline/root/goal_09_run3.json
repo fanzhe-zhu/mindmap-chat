@@ -1,0 +1,51 @@
+{
+  "goal_id": 9,
+  "goal_text": "Learn machine learning",
+  "goal_type": "vague",
+  "coverage_mode": "granularity",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is machine learning, really?",
+        "one_liner": "Core idea: learning patterns from data, types of problems, when to use ML."
+      },
+      {
+        "title": "Set up your Python ML toolkit",
+        "one_liner": "Install Python, NumPy, pandas, scikit-learn; run your first notebook."
+      },
+      {
+        "title": "Get your data ready",
+        "one_liner": "Load, clean, handle missing values, encode, and split data for training."
+      },
+      {
+        "title": "Train your first models",
+        "one_liner": "Fit regression and classification models with scikit-learn, step by step."
+      },
+      {
+        "title": "Is your model any good?",
+        "one_liner": "Evaluate with accuracy, precision/recall, train/test, cross-validation."
+      },
+      {
+        "title": "Just-enough math to not be lost",
+        "one_liner": "The vectors, gradients, and probability intuition behind training."
+      },
+      {
+        "title": "Make your model better",
+        "one_liner": "Tune hyperparameters, fight overfitting, do feature engineering."
+      },
+      {
+        "title": "Ship it: deploy your model",
+        "one_liner": "Save a model, wrap it in an API, serve predictions in production."
+      }
+    ],
+    "rationale": "The user is a total beginner with no math background whose endpoint is building and shipping models. I anchored the outline to the practical ML workflow: understand → setup → data → train → evaluate → improve → deploy, which mirrors the real pipeline of shipping a model. I included a setup node because a true beginner needs an environment before doing anything. The \"just-enough math\" node is deliberately placed mid-stream (not upfront) and framed as intuition, honoring the agreement to introduce math as needed rather than as a heavy block. I excluded history-of-the-field, mathematical derivations, advanced theory, and cutting-edge research per the confirmed scope. The deployment node directly serves the stated goal of shipping. Nodes are MECE: setup, data prep, training, evaluation, improvement, and deployment have minimal content overlap, and the conceptual/math nodes cover understanding rather than implementation."
+  },
+  "cost_usd": 0.051754999999999995
+}

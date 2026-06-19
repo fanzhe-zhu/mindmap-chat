@@ -1,0 +1,51 @@
+{
+  "goal_id": 7,
+  "goal_text": "How to choose between RAG and fine-tuning",
+  "goal_type": "comparison",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is RAG, in plain terms?",
+        "one_liner": "How retrieval feeds an LLM external info at answer time"
+      },
+      {
+        "title": "What is fine-tuning, in plain terms?",
+        "one_liner": "How extra training reshapes a model's own behavior"
+      },
+      {
+        "title": "What problem are you actually solving?",
+        "one_liner": "Matching the symptom (wrong facts vs. wrong style) to the fix"
+      },
+      {
+        "title": "The trade-offs that decide it",
+        "one_liner": "Cost, latency, data needs, maintenance, data freshness compared"
+      },
+      {
+        "title": "When RAG is the right call",
+        "one_liner": "Use cases and signals that point to retrieval"
+      },
+      {
+        "title": "When fine-tuning is the right call",
+        "one_liner": "Use cases and signals that point to training"
+      },
+      {
+        "title": "Using both together",
+        "one_liner": "When and how RAG and fine-tuning combine"
+      },
+      {
+        "title": "A decision checklist for your feature",
+        "one_liner": "Concrete questions to pick the approach for shipping"
+      }
+    ],
+    "rationale": "The user is new to both concepts and building a real product feature, framed as an either/or choice. I open with two plain-language definition nodes (no math, since they explicitly don't need theory) so the comparison that follows has grounding. \"What problem are you actually solving?\" reframes the decision around symptoms (factual gaps vs. behavior/style), which is the most useful mental model for a beginner shipping product. The trade-offs node covers exactly the practical dimensions they named (cost, latency, data, maintenance, freshness). Two parallel \"when X is right\" nodes apply those trade-offs to concrete scenarios without overlapping. A \"both together\" node honors my promise to note combination. The final checklist makes the outline actionable for an actual shipping decision. I excluded history, deep architecture, and fine-tuning math per the confirmed understanding."
+  },
+  "cost_usd": 0.049460000000000004
+}

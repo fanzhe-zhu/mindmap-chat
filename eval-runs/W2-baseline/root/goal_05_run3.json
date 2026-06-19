@@ -1,0 +1,51 @@
+{
+  "goal_id": 5,
+  "goal_text": "What to prepare when transitioning from SWE to AIPM",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What does an AI PM actually do differently?",
+        "one_liner": "How the role diverges from PM and SWE day-to-day"
+      },
+      {
+        "title": "How much ML depth do you really need?",
+        "one_liner": "Essential vs. nice-to-have technical knowledge for the role"
+      },
+      {
+        "title": "The mental model of modern AI systems",
+        "one_liner": "LLMs, embeddings, training vs. inference, what's possible today"
+      },
+      {
+        "title": "Why AI products fail in ways normal products don't",
+        "one_liner": "Probabilistic outputs, evals, hallucination, data dependency"
+      },
+      {
+        "title": "How to scope and spec an AI feature",
+        "one_liner": "Defining success, metrics, and acceptance for fuzzy outputs"
+      },
+      {
+        "title": "Working with ML teams and the dev lifecycle",
+        "one_liner": "Data, experiments, model iteration vs. SWE shipping cycles"
+      },
+      {
+        "title": "Build something to learn it for real",
+        "one_liner": "Hands-on projects that build AIPM intuition fast"
+      },
+      {
+        "title": "Where AI PM jobs actually live",
+        "one_liner": "Company types, role flavors, and which fit your background"
+      }
+    ],
+    "rationale": "The user is an experienced SWE exploring an AIPM transition, most worried about AI/ML technical depth. I skipped PM 101, software fundamentals, and resume/interview tactics per the confirmed understanding. Node 1 frames the role distinctively given they know both SWE and product. Node 2 directly addresses their core anxiety by calibrating what depth is essential vs. optional, preventing them from over-studying. Nodes 3-4 give the conceptual ML scaffolding an AIPM needs (mental models and failure modes), leveraging their ability to self-study coding. Nodes 5-6 cover the operational skills unique to AI products and ML team collaboration that differ from their SWE experience. Node 7 turns learning active via projects, which suits a SWE who can code. Node 8 grounds the exploration in concrete role/company realities since they're still deciding. Soft skills like roadmapping/stakeholder management are deliberately excluded as deprioritized. Nodes have low overlap and progress from role understanding to depth calibration to application."
+  },
+  "cost_usd": 0.054595000000000005
+}

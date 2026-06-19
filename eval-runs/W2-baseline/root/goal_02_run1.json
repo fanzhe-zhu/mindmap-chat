@@ -1,0 +1,51 @@
+{
+  "goal_id": 2,
+  "goal_text": "How Transformers work",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What's a neural network, really?",
+        "one_liner": "Layers, weights, and learning from examples — the bare essentials."
+      },
+      {
+        "title": "Why do we turn words into vectors?",
+        "one_liner": "How meaning becomes numbers the network can work with."
+      },
+      {
+        "title": "What problem does attention solve?",
+        "one_liner": "Why earlier models struggled with context and long sentences."
+      },
+      {
+        "title": "How does attention actually work?",
+        "one_liner": "How each word decides which other words to focus on."
+      },
+      {
+        "title": "Why stack many attention layers?",
+        "one_liner": "How repeating attention builds richer understanding."
+      },
+      {
+        "title": "How does the model know word order?",
+        "one_liner": "Positional encoding and why order matters without recurrence."
+      },
+      {
+        "title": "How a Transformer processes input end to end",
+        "one_liner": "Tracing one sentence through the whole pipeline."
+      },
+      {
+        "title": "How does it learn and then generate?",
+        "one_liner": "Training intuition and how output is produced word by word."
+      }
+    ],
+    "rationale": "The user is new to neural nets and wants deep intuition, not code or math. I open with a minimal neural-network foundation (node 1) since nothing else makes sense without weights/layers, then embeddings (node 2) as the bridge from language to numbers. Nodes 3–4 split the \"why\" and \"how\" of attention deliberately — the motivation (what problem) is distinct content from the mechanism (queries/keys/values intuition), keeping siblings MECE. Node 5 covers depth/stacking, node 6 covers positional encoding (a genuinely separate puzzle: order without recurrence). Node 7 synthesizes everything into an end-to-end trace, which is the conceptual through-line the user explicitly wanted. Node 8 closes the loop with training and generation intuition. I excluded the original paper's notation, coding setup, math derivations, performance/engineering, and history — all explicitly deprioritized. Eight nodes balance coverage with the no-overload constraint."
+  },
+  "cost_usd": 0.050835000000000005
+}

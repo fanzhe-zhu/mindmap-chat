@@ -1,0 +1,51 @@
+{
+  "goal_id": 7,
+  "goal_text": "How to choose between RAG and fine-tuning",
+  "goal_type": "comparison",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is RAG, in plain terms?",
+        "one_liner": "Retrieval-augmented generation explained simply, no jargon."
+      },
+      {
+        "title": "What is fine-tuning, in plain terms?",
+        "one_liner": "Training a model on your data, explained simply."
+      },
+      {
+        "title": "The core difference: knowledge vs. behavior",
+        "one_liner": "RAG adds facts; fine-tuning shapes style and skills."
+      },
+      {
+        "title": "Does your data change often?",
+        "one_liner": "Why fresh or shifting data favors RAG over retraining."
+      },
+      {
+        "title": "Cost, effort, and time to ship",
+        "one_liner": "Upfront and ongoing costs of each approach compared."
+      },
+      {
+        "title": "Accuracy, hallucination, and source-checking",
+        "one_liner": "Which gives more reliable, verifiable answers for your case."
+      },
+      {
+        "title": "A decision checklist for your project",
+        "one_liner": "Match your situation to RAG, fine-tuning, or both."
+      },
+      {
+        "title": "When to use both together",
+        "one_liner": "Cases where combining beats picking just one."
+      }
+    ],
+    "rationale": "The user is new to both concepts and needs to make a real decision, not build anything. I open with two plain-language definition nodes since they have zero background, then a single conceptual node clarifying the fundamental distinction (knowledge injection vs. behavior shaping) that underpins all decision-making. The middle nodes are the actual decision factors the user confirmed they care about — data volatility, cost/time, and accuracy/reliability — kept MECE (each is a distinct axis with low overlap). I close with a synthesis checklist node mapping factors to a choice, and a 'both together' node because hybrid approaches are common and a decision-focused guide would be incomplete without acknowledging it. I deliberately excluded implementation, tooling, embeddings/vector-DB internals, and training mechanics, per the user's stated focus on choosing a direction rather than execution."
+  },
+  "cost_usd": 0.050894999999999996
+}

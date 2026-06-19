@@ -1,0 +1,81 @@
+{
+  "scenario_id": "S12",
+  "scenario_goal_id": 3,
+  "scenario_tree": "D",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use + hallucination prevention",
+  "scenario_user_message": "What new index-related features does PostgreSQL 17 have?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "What new index-related features does PostgreSQL 17 have?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Let me check the current details on PostgreSQL 17's index features, since version-specific changes are exactly the kind of thing worth grounding."
+          },
+          {
+            "type": "tool_use",
+            "id": "toolu_011Z6GKgEDN9R26G4BELV3oM",
+            "name": "web_search",
+            "input": {
+              "query": "PostgreSQL 17 index improvements new features"
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_011Z6GKgEDN9R26G4BELV3oM",
+            "is_error": false,
+            "content": "[1] Postgres 17 Query Performance Improvements | Microsoft Community Hub\nURL: https://techcommunity.microsoft.com/blog/adforpostgresql/postgres-17-query-performance-improvements/4284693\n# Postgres 17 Query Performance Improvements. PostgreSQL 17 brings a wealth of improvements aimed at enhancing query performance, making it a significant upgrade for database administrators and developers. 1. Streaming IO: introduction of new read stream API and enhancements to existing read buffer API to enhance sequential reads and analyze performance. IS NULL / NOT NULL Handling: Eliminates unnecessary scans on NOT NULL columns when IS NULL or IS NOT NULL checks are specified. One of the standout features in PostgreSQL 17 is the improvements made to enhance sequential scans and analyze performance. The size and table definition of the table is as shown below:. Let's execute a simple COUNT (\\*) operation on the `orders` table on two separate servers one with Postgres 17 version and another with Postgres 16 version and then compare execution times by using EXPLAIN ANALYZE output as shown below. From the above snapshots, the number of index scans is 1 in Postgres 17 version compared to 2 in Postgres 16 version.\n\n---\n\n[2] PostgreSQL 17: New I/O feature for faster scans | Hussein Nasser posted on the topic | LinkedIn\nURL: https://www.linkedin.com/posts/hnaser_this-new-postgresql-17-feature-is-game-changer-activity-7356716276783702017-y3ve\nPostgreSQL 17 improves I/O by combining multiple 8KB page reads into a single system call using preadv. So, Even though preadv() existed since PostgreSQL 14 (for WAL and internal uses), data reads were still always 8KB per syscall. Starting in PostgreSQL 17, full support for preadv() and pwritev() was added for combined I/O — enabling multi-page reads and writes. I was just reading this morning about how PostgreSQL stores data in fixed-size pages, and now I see this exciting new feature in PostgreSQL 17! When PostgreSQL stores data structures like B-tree index pages on disk, it can't use actual memory pointers - disk addresses and memory addresses are fundamentally different. – During recovery, PostgreSQL compares these: - If WAL record LSN ≤ page’s pd\\_lsn → already applied, skip. 3. Faster scans in the right direction • PostgreSQL can read ascending indexes backward, but that’s not always as efficient for large tables. • Identify if PostgreSQL performs explicit sorts instead of index scans.\n\n---\n\n[3] PostgreSQL: PostgreSQL 17 Released!\nURL: https://www.postgresql.org/about/news/postgresql-17-released-2936\nThe PostgreSQL Global Development Group today announced the release of PostgreSQL 17, the latest version of the world's most advanced open source database. This release of PostgreSQL adds significant overall performance gains, including an overhauled memory management implementation for vacuum, optimizations to storage access and improvements for high concurrency workloads, speedups in bulk loading and exports, and query execution improvements for indexes. PostgreSQL 17 has features that benefit brand new workloads and critical systems alike, such as additions to the developer experience with the SQL/JSON `JSON_TABLE` command, and enhancements to logical replication that simplify management of high availability workloads and major version upgrades. PostgreSQL, an innovative data management system known for its reliability, robustness, and extensibility, benefits from over 25 years of open source development from a global developer community and has become the preferred open source relational database for organizations of all sizes.\n\n---\n\n[4] PostgreSQL 16 vs 17: What’s New and What It Means on AWSPostgreSQL 16 vs 17: What’s New and What It Means on AWS\nURL: https://www.rapydo.io/blog/postgresql-16-vs-17-whats-new-and-what-it-means-on-aws\n# PostgreSQL 16 vs 17: What’s New and What It Means on AWS. PostgreSQL 17 (released Sept 2024) builds upon PostgreSQL 16 (Sept 2023) with significant improvements in performance, SQL capabilities, replication, and security. For experienced DBAs and cloud architects deploying Postgres on AWS – whether on Amazon RDS/Aurora or self-managed on EC2/Kubernetes – these changes translate into tangible benefits and new considerations. Below, we compare PostgreSQL 16 and 17 in detail, highlighting core engine upgrades in PG17, tooling and extension updates, the upgrade path from 16→17 (with AWS-specific notes), and advanced use cases unlocked by PG17. Core Engine Upgrades in PostgreSQL 17. BRIN indexes (often used on very large tables) can now be built in parallel in PG17, drastically reducing index creation time compared to PG16’s single-threaded BRIN builds. * SQL/JSON Improvements: PG17 brings a huge leap in JSON handling with the new *JSON\\_TABLE()* function that transforms JSON data into a relational table on the fly.\n\n---\n\n[5] PostgreSQL 17 - A Major Step Forward in Performance, Logical Replication and More\nURL: https://www.pgedge.com/blog/postgresql-17-a-major-step-forward-in-performance-logical-replication-and-more\n# PostgreSQL 17 - A Major Step Forward in Performance, Logical Replication and More. Recently, I blogged about some of the key logical replication features that you'll see in PostgreSQL 17 https://www.pgedge.com/blog/logical-replication-features-in-Postgres 17. In this blog I'll describe a couple of new performance features that you'll find in Postgres 17 as well as another important logical replication feature that I didn't cover in my earlier blog of this series. Improvements to logical replication are making it even more robust and reliable for enterprise use, while providing core capabilities that vendors like pgEdge can build on to deliver fully distributed PostgreSQL. Include the `WITH` keyword in a query to create the CTE; the parent query (that defines the result set) follows the `AS` clause after the CTE name. After defining the CTE, you can refer to the CTE by name to reference the result set of the CTE and carry out further operations on the result set within the same query."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Here are the main index-related changes in PostgreSQL 17 (released Sept 2024):\n\nThe biggest one is an improvement to **B-tree scans with multiple values in an `IN` clause** (or `= ANY(...)`). Previously, a query like `WHERE id IN (1, 5, 9, 20)` would do a separate index descent for each value. PG17 can now handle the whole set in a single index scan, which cuts I/O substantially on those queries.\n\nSecond, **BRIN indexes can now be built in parallel**. BRIN indexes are used on very large, naturally-ordered tables (think time-series data ordered by timestamp). In PG16 the build was single-threaded; PG17 parallelizes it, so creation is much faster.\n\nThird, a planner improvement around **`IS NULL` / `IS NOT NULL`**: the optimizer now recognizes when a column is declared `NOT NULL` and can skip scans that would return nothing (e.g. an `IS NULL` check on a NOT NULL column). Not strictly an index feature, but it affects whether and how indexes get scanned.\n\nThe first one is the most impactful for everyday query tuning — lots of real queries filter on a list of IDs.\n\nWant me to go deeper on any of these? The multi-value B-tree scan in particular has some nuance about when the planner actually chooses it.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 2,
+    "tokens": {
+      "input": 6550,
+      "output": 559,
+      "cacheRead": 2038,
+      "cacheWrite": 2038
+    },
+    "toolCallsExecuted": 1,
+    "estimatedCostUsd": 0.0401015,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "The new index-related features introduced in PostgreSQL 17.",
+    "key_takeaways": [
+      "PostgreSQL 17 improves B-tree scans for queries with multiple values in an IN clause (or = ANY(...)): instead of a separate index descent per value, the whole set is handled in a single index scan, reducing I/O — this was framed as the most impactful change for everyday query tuning.",
+      "BRIN indexes can now be built in parallel in PG17 (previously single-threaded in PG16), making index creation much faster on very large, naturally-ordered tables like time-series data.",
+      "A planner improvement lets the optimizer recognize NOT NULL columns and skip scans that would return nothing for IS NULL / IS NOT NULL checks, which affects whether and how indexes get scanned.",
+      "These version-specific details were grounded via a web search rather than stated from memory."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "The nuance of when the PG17 planner actually chooses the multi-value B-tree scan was offered but not explored."
+    ]
+  }
+}

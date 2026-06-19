@@ -1,0 +1,55 @@
+{
+  "goal_id": 9,
+  "goal_text": "Learn machine learning",
+  "goal_type": "vague",
+  "coverage_mode": "granularity",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 9,
+  "outline": {
+    "nodes": [
+      {
+        "title": "Set up your Python toolkit for ML",
+        "one_liner": "Install and use NumPy, pandas, scikit-learn, Jupyter."
+      },
+      {
+        "title": "What is machine learning, really?",
+        "one_liner": "How models learn from data; supervised vs unsupervised."
+      },
+      {
+        "title": "Just-enough math to build models",
+        "one_liner": "Vectors, gradients, probability — only what methods use."
+      },
+      {
+        "title": "Build your first model: linear & logistic regression",
+        "one_liner": "Fit, predict, and read coefficients on real data."
+      },
+      {
+        "title": "Train, evaluate, improve: the core loop",
+        "one_liner": "Train/test splits, metrics, overfitting, tuning."
+      },
+      {
+        "title": "Prep messy data into model-ready features",
+        "one_liner": "Cleaning, encoding, scaling, feature engineering."
+      },
+      {
+        "title": "Go beyond basics: trees, ensembles, and more",
+        "one_liner": "Random forests, gradient boosting, when to use each."
+      },
+      {
+        "title": "First steps into neural networks",
+        "one_liner": "Build and train a simple net with PyTorch/Keras."
+      },
+      {
+        "title": "Ship a model end to end on a real dataset",
+        "one_liner": "Full project: problem to working, evaluated model."
+      }
+    ],
+    "rationale": "The user is a total beginner targeting hands-on model building, so the outline front-loads tooling setup and a conceptual grounding, then weaves math in as a just-in-time node rather than a separate theory track (matching the confirmed plan). Core practical skills—building a first model, the train-evaluate-improve loop, and data prep—form the backbone since these are what shipping a model actually requires. Trees/ensembles and a gentle neural-net intro broaden the toolkit without diving into rigorous derivations. A capstone project node ties it together into the full workflow. Excluded: history of ML, deep mathematical proofs, advanced theory, and unsupervised-heavy tracks, all of which the understanding flagged as low-priority for a builder."
+  },
+  "cost_usd": 0.052555000000000004
+}

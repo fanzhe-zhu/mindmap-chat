@@ -1,0 +1,82 @@
+{
+  "scenario_id": "S5",
+  "scenario_goal_id": 7,
+  "scenario_tree": "B",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use + scope",
+  "scenario_user_message": "My knowledge base updates every day — does the industry generally use RAG now, or are there other new approaches?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "My knowledge base updates every day — does the industry generally use RAG now, or are there other new approaches?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good question, and the daily-update part is exactly the right thing to focus on for this node.\n\nQuick principle first: when your data changes daily, the deciding factor is how the freshness gets into the model's answers. Fine-tuning bakes knowledge into weights — to reflect new data you'd have to retrain or run a new fine-tune job, which you can't realistically do every day in a way that stays current. RAG keeps the knowledge in an external store you can update independently, so a daily-changing source maps very naturally onto it. You re-index, the model retrieves the fresh version. That's why for high-churn data, RAG is the default lean.\n\nOn your \"are there newer approaches\" — let me check what's current rather than guess."
+          },
+          {
+            "type": "tool_use",
+            "id": "toolu_01Qamag5ePWes6t5YJpwkMVz",
+            "name": "web_search",
+            "input": {
+              "query": "RAG vs fine-tuning frequently changing data 2024 2025 alternatives CAG"
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_01Qamag5ePWes6t5YJpwkMVz",
+            "is_error": false,
+            "content": "[1] RAG vs CAG vs Fine-Tuning - by Rafa Páez - The Engineering Leader\nURL: https://newsletter.rafapaez.com/p/rag-vs-cag-vs-fine-tuning\nRAG is versatile and scalable, ideal for fast-moving knowledge. CAG trades flexibility for speed, perfect for stable, high-trust domains. Fine-\n\n---\n\n[2] Should You Use RAG or Fine-Tune Your LLM? - Actian Corporation\nURL: https://www.actian.com/blog/databases/should-you-use-rag-or-fine-tune-your-llm\n# Should You Use RAG or Fine-Tune Your LLM? Post URL Check out this article:  Should You Use RAG or Fine-Tune Your LLM? * RAG dominates enterprise AI due to flexibility, but fine-tuning excels at scale, latency, and structured outputs. * RAG adds recurring costs from context and retrieval, while fine-tuning shifts cost upfront with stable per-query pricing. * Hybrid approaches combine retrieval with fine-tuning for higher accuracy and better reasoning. * Choosing the right approach depends on data volatility, query volume, and team capabilities. RAG pulls in external data at inference time. In this article, we’ll compare RAG, fine-tuning, and a hybrid architecture to understand the trade-offs and where each approach excels. RAG is a method where the model dynamically pulls in external data at inference time. Fine-tuning is the process of modifying a model’s weights during training using labeled data. In real-world systems, the choice between RAG and fine-tuning depends on variables like scale, query volume, and how often your data changes.\n\n---\n\n[3] RAG Vs. Fine Tuning: Which One Should You Choose?\nURL: https://montecarlo.ai/blog-rag-vs-fine-tuning\n[Skip to content](https://montecarlo.ai/blog-rag-vs-fine-tuning#main). *   [Platform](https://montecarlo.ai/blog-rag-vs-fine-tuning#). *   [Solutions](https://montecarlo.ai/blog-rag-vs-fine-tuning#). *   [Resources](https://montecarlo.ai/blog-rag-vs-fine-tuning#). *   [Why Monte Carlo](https://montecarlo.ai/blog-rag-vs-fine-tuning#). *   [Access to up-to-date, specific information](https://montecarlo.ai/blog-rag-vs-fine-tuning#access-to-up-to-date-specific-information). *   [Example use-case](https://montecarlo.ai/blog-rag-vs-fine-tuning#example-use-case). *   [Efficiency gains through model optimization](https://montecarlo.ai/blog-rag-vs-fine-tuning#efficiency-gains-through-model-optimization). *   [Data and computational requirements](https://montecarlo.ai/blog-rag-vs-fine-tuning#data-and-computational-requirements). *   [Maintenance and knowledge updates](https://montecarlo.ai/blog-rag-vs-fine-tuning#maintenance-and-knowledge-updates). *   [Example use-case](https://montecarlo.ai/blog-rag-vs-fine-tuning#example-use-case-1). *   [Data freshness](https://montecarlo.ai/blog-rag-vs-fine-tuning#data-freshness). *   [Implementation complexity](https://montecarlo.ai/blog-rag-vs-fine-tuning#implementation-complexity). *   [Performance](https://montecarlo.ai/blog-rag-vs-fine-tuning#performance). *   [Scalability](https://montecarlo.ai/blog-rag-vs-fine-tuning#scalability). *   [Security](https://montecarlo.ai/blog-rag-vs-fine-tuning#security). *   [When to use Retrieval-Augmented Generation (RAG)?](https://montecarlo.ai/blog-rag-vs-fine-tuning#when-to-use-retrieval-augmented-generation-rag). *   [Limited training data or resources](https://montecarlo.ai/blog-rag-vs-fine-tuning#limited-training-data-or-resources). *   [Improving a base model's weakness](https://montecarlo.ai/blog-rag-vs-fine-tuning#improving-a-base-models-weakness). *   [Not mutually exclusive](https://montecarlo.ai/blog-rag-vs-fine-tuning#not-mutually-exclusive). *   [Use case for hybrid](https://montecarlo.ai/blog-rag-vs-fine-tuning#use-case-for-hybrid). *   [Guidance](https://montecarlo.ai/blog-rag-vs-fine-tuning#guidance). *   [Should I use LangChain for RAG or fine-tuning?](https://montecarlo.ai/blog-rag-vs-fine-tuning#faq-question-1773747738110). *   [Access to up-to-date, specific information](https://montecarlo.ai/blog-rag-vs-fine-tuning#access-to-up-to-date-specific-information). *   [Example use-case](https://montecarlo.ai/blog-rag-vs-fine-tuning#example-use-case). *   [Efficiency gains through model optimization](https://montecarlo.ai/blog-rag-vs-fine-tuning#efficiency-gains-through-model-optimization). *   [Data and computational requirements](https://montecarlo.ai/blog-rag-vs-fine-tuning#data-and-computational-requirements). *   [Maintenance and knowledge updates](https://montecarlo.ai/blog-rag-vs-fine-tuning#maintenance-and-knowledge-updates). *   [Example use-case](https://montecarlo.ai/blog-rag-vs-fine-tuning#example-use-case-1). *   [Data freshness](https://montecarlo.ai/blog-rag-vs-fine-tuning#data-freshness). *   [Implementation complexity](https://montecarlo.ai/blog-rag-vs-fine-tuning#implementation-complexity). *   [Performance](https://montecarlo.ai/blog-rag-vs-fine-tuning#performance). *   [Scalability](https://montecarlo.ai/blog-rag-vs-fine-tuning#scalability). *   [Security](https://montecarlo.ai/blog-rag-vs-fine-tuning#security). *   [When to use Retrieval-Augmented Generation (RAG)?](https://montecarlo.ai/blog-rag-vs-fine-tuning#when-to-use-retrieval-augmented-generation-rag). *   [Limited training data or resources](https://montecarlo.ai/blog-rag-vs-fine-tuning#limited-training-data-or-resources). *   [Improving a base model’s weakness](https://montecarlo.ai/blog-rag-vs-fine-tuning#improving-a-base-models-weakness). *   [Not mutually exclusive](https://montecarlo.ai/blog-rag-vs-fine-tuning#not-mutually-exclusive). *   [Use case for hybrid](https://montecarlo.ai/blog-rag-vs-fine-tuning#use-case-for-hybrid). *   [Guidance](https://montecarlo.ai/blog-rag-vs-fine-tuning#guidance).\n\n---\n\n[4] Fine-Tuning vs. RAG Explained in 4 Minutes | AI for Beginners\nURL: https://www.youtube.com/watch?v=L7PfLk4a2oY\nFine-Tuning vs. RAG Explained in 4 Minutes | AI for Beginners\nTiny Technical Tutorials\n102000 subscribers\n294 likes\n7987 views\n26 Feb 2025\nWhat’s the difference between fine-tuning and retrieval-augmented generation (RAG) when it comes to large language models (LLMs)? In this quick breakdown, we’ll explain how fine-tuning and RAG work, highlight their key differences, and show when it makes sense to use one over the other—or even combine both for maximum performance.\n\n🌟***OTHER VIDEOS YOU MIGHT ENJOY***🌟\n• Build your own chatbot (using RAG) with Amazon Bedrock and Lex: https://youtu.be/4esqnMlMo8I \n• Getting started with Amazon Bedrock: https://youtu.be/32D7NJK9QIk\n\n🌟***MY AWS COURSES***🌟\nIf you’re interested in getting AWS certifications, check out these full courses.  They include lots of hands-on demos, quizzes and full practice exams.  Use FRIENDS10 for a 10% discount!\n- AWS Certified Cloud Practitioner: https://academy.zerotomastery.io/a/aff_n20ghyn4/external?affcode=441520_lm7gzk-d \n- AWS Certified Solutions Architect Associate: https://academy.zerotomastery.io/a/aff_464yrtnn/external?affcode=441520_lm7gzk-d\n\n🌟***TIMESTAMPS***🌟\n00:00 – What’s the difference between fine-tuning and RAG when it comes to LLMs?\n00:41 – How does fine-tuning work with an LLM?\n01:47 - How does retrieval-augmented generation (RAG) work with an LLM?\n02:56 – A side-by-side comparison chart of fine-tuning vs. RAG\n03:25 – Using both fine-tuning and RAG together\n26 comments\n\n\n---\n\n[5] RAG vs Fine Tuning for Product Description Model - Facebook\nURL: https://www.facebook.com/groups/runlocalai/posts/973642637896784\nRAG involves augmenting the prompt with external data, whereas Fine-Tuning integrates additional knowledge directly into the model. The paper"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "The search confirms the picture, and surfaces one newer name worth knowing.\n\nFor daily-changing knowledge, RAG is indeed the industry default — that hasn't been displaced. The reason maps directly to your situation: you update the index, not the model.\n\nThe one newer thing to flag is CAG (cache-augmented generation). Instead of retrieving at query time, it preloads your knowledge into the model's context (using long-context windows and KV-caching) ahead of time. It's faster at inference, but the tradeoff is the opposite of what you want: it shines for stable, bounded knowledge that fits in context and doesn't change much. For a daily-churning base, you'd be rebuilding the cache constantly — so it doesn't really beat RAG for your case.\n\nSo the honest answer: for daily updates, RAG remains the right tool, and the \"new approaches\" don't change that conclusion — they mostly serve the stable-data end of the spectrum.\n\nOne thing I'd push on though: \"updates every day\" can mean very different things. Is it a few new documents added daily, or are existing facts being overwritten/invalidated? The second case is harder — RAG can happily retrieve a stale chunk if you don't actively delete or version the old one. Freshness isn't automatic just because you chose RAG; it depends on your re-indexing and invalidation discipline. Which of those two is closer to your situation?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 2,
+    "tokens": {
+      "input": 7986,
+      "output": 759,
+      "cacheRead": 2041,
+      "cacheWrite": 2041
+    },
+    "toolCallsExecuted": 1,
+    "estimatedCostUsd": 0.05227175,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "Whether RAG is still the right approach for a knowledge base that updates daily, versus fine-tuning or newer alternatives.",
+    "key_takeaways": [
+      "For daily-changing data, the deciding factor is how freshness reaches the model's answers — fine-tuning bakes knowledge into weights and can't realistically be retrained daily, while RAG keeps knowledge in an external store you can re-index independently.",
+      "RAG remains the industry default for high-churn / fast-moving data, and this was confirmed via web search; the newer approaches do not displace it for this use case.",
+      "CAG (cache-augmented generation) preloads knowledge into the model's context for faster inference, but it's suited to stable, bounded knowledge — for a daily-churning base you'd be rebuilding the cache constantly, so it doesn't beat RAG here.",
+      "Freshness is not automatic with RAG: if existing facts are being overwritten/invalidated, RAG can still retrieve stale chunks unless you actively delete or version old data through good re-indexing and invalidation discipline."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "Whether the user's 'updates every day' means adding new documents daily or overwriting/invalidating existing facts — the assistant asked but the user hasn't answered, and this affects how hard the freshness problem is.",
+      "How to handle stale-chunk retrieval in practice (deletion, versioning, re-indexing discipline) if facts are being invalidated."
+    ]
+  }
+}

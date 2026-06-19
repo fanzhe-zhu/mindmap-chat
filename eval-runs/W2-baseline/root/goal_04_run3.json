@@ -1,0 +1,51 @@
+{
+  "goal_id": 4,
+  "goal_text": "How to do good user research",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What user interviews can and can't tell you",
+        "one_liner": "What interviews reveal, their limits, when to use them"
+      },
+      {
+        "title": "Who should you talk to?",
+        "one_liner": "Finding and recruiting the right people to interview"
+      },
+      {
+        "title": "Writing your interview guide",
+        "one_liner": "Turning your goal into questions worth asking"
+      },
+      {
+        "title": "How to ask without leading",
+        "one_liner": "Avoiding biased, yes/no, and hypothetical questions"
+      },
+      {
+        "title": "Running the interview",
+        "one_liner": "Setting the tone, listening, probing, taking notes"
+      },
+      {
+        "title": "Digging past surface answers",
+        "one_liner": "Getting at real behavior, not what people claim"
+      },
+      {
+        "title": "Making sense of what you heard",
+        "one_liner": "Spotting patterns across interviews and themes"
+      },
+      {
+        "title": "Turning insights into decisions",
+        "one_liner": "Acting on findings without over-reading one voice"
+      }
+    ],
+    "rationale": "The user is a total beginner aiming to run product interviews soon, so the outline is built end-to-end around the interview lifecycle and excludes surveys, usability testing, analytics, and academic theory per the confirmed scope. Node 1 grounds them in what interviews are good for (replacing a generic \"basics\" node with something interview-specific). Nodes 2–5 follow the natural prep-to-execution sequence: recruiting, guide-writing, non-leading questioning (explicitly called out in the understanding), and live facilitation. Node 6 addresses the classic beginner trap of taking stated preferences at face value. Nodes 7–8 cover synthesis and acting on findings, closing the loop toward product decisions. Siblings are largely non-overlapping: recruiting vs. questioning vs. analysis are distinct skills with little content bleed. Kept to 8 nodes to stay practical and avoid spreading thin."
+  },
+  "cost_usd": 0.049545
+}

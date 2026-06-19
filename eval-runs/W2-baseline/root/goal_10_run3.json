@@ -1,0 +1,47 @@
+{
+  "goal_id": 10,
+  "goal_text": "I've already built an LLM app and want to understand agents",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 7,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What makes an agent different from a plain LLM call?",
+        "one_liner": "The core shift: model decides actions, not just text"
+      },
+      {
+        "title": "Tool use: how an LLM acts on the world",
+        "one_liner": "Defining tools, function calling, parsing model decisions"
+      },
+      {
+        "title": "The agent loop",
+        "one_liner": "Observe, decide, act, repeat until done"
+      },
+      {
+        "title": "Planning and breaking down tasks",
+        "one_liner": "How agents tackle multi-step goals vs one-shot"
+      },
+      {
+        "title": "When is an agent actually worth it?",
+        "one_liner": "Where agents beat a simple call — and where they don't"
+      },
+      {
+        "title": "Keeping agents reliable and on the rails",
+        "one_liner": "Errors, loops, cost, and stopping conditions"
+      },
+      {
+        "title": "Add an agent to your existing app",
+        "one_liner": "Wiring an agent into the LLM app you already shipped"
+      }
+    ],
+    "rationale": "The user already ships an LLM app, so I skip prompt/API basics entirely and skip research theory and framework comparisons (explicitly deprioritized). The first five nodes build the conceptual mental model the user lacks: the agent-vs-LLM distinction, tool use, the loop, planning, and the crucial \"is it worth it\" judgment — each addressing a distinct facet with low overlap. Reliability is included because anyone shipping an agent needs to handle loops/cost/failures, which is build-relevant rather than theoretical. The final node delivers on their stated goal of integrating one into their existing app, deliberately framed around extending what they already have. Order is roughly dependency-based: distinction → mechanics (tools, loop) → higher-level behavior (planning) → judgment → robustness → integration."
+  },
+  "cost_usd": 0.05083
+}

@@ -1,0 +1,50 @@
+{
+  "scenario_id": "S15",
+  "scenario_goal_id": 2,
+  "scenario_tree": "A",
+  "scenario_category": "off_topic",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Scope-violation handling (shouldn't over-search; shouldn't slide into a general chatbot)",
+  "scenario_user_message": "By the way, what's the weather like in Beijing tonight?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "By the way, what's the weather like in Beijing tonight?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "That's well outside what I can help with here — this node is about the self-attention mechanism in Transformers (how Q, K, V compute attention). I'd skip the weather and point you back to a regular search engine for that.\n\nIf you want, we can dig into self-attention instead — for example, why we need three separate vectors (query, key, value) rather than just one. Want to start there?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2112,
+      "output": 126,
+      "cacheRead": 2019,
+      "cacheWrite": 0
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.0046245,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "The conversation did not engage with the self-attention mechanism; the user asked an off-topic question about the weather in Beijing.",
+    "key_takeaways": [
+      "The user did not engage with the node's topic at all — they asked about the weather in Beijing tonight, which is unrelated to self-attention.",
+      "The assistant declined the off-topic question and offered to start exploring why self-attention uses three separate vectors (query, key, value), but the user did not respond.",
+      "No substantive content about Q, K, V or the attention computation was covered."
+    ],
+    "status": "confused",
+    "open_questions": [
+      "Why are three separate vectors (query, key, value) needed rather than just one?",
+      "How do Q, K, and V actually compute attention?"
+    ]
+  }
+}

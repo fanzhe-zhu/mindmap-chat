@@ -1,0 +1,51 @@
+{
+  "goal_id": 3,
+  "goal_text": "Learn to use PostgreSQL",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "Install PostgreSQL and connect to it",
+        "one_liner": "Set up Postgres locally and open psql or a GUI."
+      },
+      {
+        "title": "What are tables, rows, and columns?",
+        "one_liner": "Core relational model and how data is structured."
+      },
+      {
+        "title": "Write basic queries with SQL",
+        "one_liner": "SELECT, INSERT, UPDATE, DELETE, WHERE, ORDER BY."
+      },
+      {
+        "title": "Design a schema for your app",
+        "one_liner": "Pick column types, primary keys, and constraints."
+      },
+      {
+        "title": "How do tables relate to each other?",
+        "one_liner": "Foreign keys, one-to-many, many-to-many, JOINs."
+      },
+      {
+        "title": "Connect Postgres to your backend code",
+        "one_liner": "Drivers, connection strings, pools, parameterized queries."
+      },
+      {
+        "title": "Evolve your database safely",
+        "one_liner": "Migrations to change schema without losing data."
+      },
+      {
+        "title": "Keep your data correct and your app safe",
+        "one_liner": "Transactions, indexes for speed, avoiding SQL injection."
+      }
+    ],
+    "rationale": "User is a complete database beginner aiming to back a web/app project, so the outline starts from fundamentals (no skipped basics) and stays application-facing. Node 1 gets them a running instance to practice against. Nodes 2-3 build the relational model and SQL literacy from zero. Nodes 4-5 cover schema design and relationships, which are essential for any real app data model. Node 6 bridges to actual backend code (the stated goal). Node 7 covers migrations, a real shipping/maintenance need. Node 8 bundles practical correctness/safety concerns (transactions, basic indexing, injection prevention) without diving into deep DBA topics like replication, tuning, or internals, which were explicitly deprioritized. Nodes are largely non-overlapping and ordered by dependency."
+  },
+  "cost_usd": 0.05058
+}

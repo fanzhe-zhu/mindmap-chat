@@ -1,0 +1,55 @@
+{
+  "goal_id": 5,
+  "goal_text": "What to prepare when transitioning from SWE to AIPM",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 9,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What does an AI PM actually do?",
+        "one_liner": "The role, how it differs from regular PM and SWE"
+      },
+      {
+        "title": "ML literacy: what you need to reason, not derive",
+        "one_liner": "Models, training vs inference, key concepts to discuss confidently"
+      },
+      {
+        "title": "Data, evaluation, and tradeoffs in AI products",
+        "one_liner": "Data quality, metrics, accuracy vs latency vs cost"
+      },
+      {
+        "title": "Where AI breaks: limitations, risks, failure modes",
+        "one_liner": "Hallucination, bias, edge cases, when not to use ML"
+      },
+      {
+        "title": "Core PM craft for someone with zero PM",
+        "one_liner": "Prioritization, user thinking, stakeholder, success metrics"
+      },
+      {
+        "title": "How AI product strategy questions get answered",
+        "one_liner": "Build vs buy, problem framing, AI as feature vs product"
+      },
+      {
+        "title": "Cracking the AIPM product design interview",
+        "one_liner": "Frameworks for design and case questions with AI"
+      },
+      {
+        "title": "Cracking the AIPM technical & ML interview",
+        "one_liner": "ML reasoning questions, expected depth, common asks"
+      },
+      {
+        "title": "Telling your SWE-to-AIPM story",
+        "one_liner": "Positioning your background, behavioral, why-AIPM answers"
+      }
+    ],
+    "rationale": "The user is a strong SWE with little ML and no PM, prepping specifically for AIPM interviews. I skip software fundamentals and from-scratch ML math entirely. Two foundational gaps drive the early nodes: ML literacy (framed for reasoning, not deriving) and core PM craft (since they have zero PM). I add data/evaluation/tradeoffs and AI limitations as distinct ML-adjacent nodes because these are heavily probed in AIPM interviews and are MECE-separable from raw ML concepts. AI product strategy bridges PM and AI. The final three nodes are interview-format-specific (product design, technical/ML, behavioral/story) because the confirmed target is interview readiness, not on-the-job mastery — and the story node leverages their SWE background as positioning. Nine nodes is justified by two genuinely separate skill gaps plus interview-format coverage; each paragraph would have low overlap."
+  },
+  "cost_usd": 0.0565
+}

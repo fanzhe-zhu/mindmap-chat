@@ -1,0 +1,51 @@
+{
+  "goal_id": 1,
+  "goal_text": "Understand the core ideas behind RLHF",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What does it mean for a model to \"learn\"?",
+        "one_liner": "Parameters, training, prediction — the bare minimum ML grounding."
+      },
+      {
+        "title": "What is a language model and what is fine-tuning?",
+        "one_liner": "How LMs predict text, and what adjusting a pretrained model means."
+      },
+      {
+        "title": "Why human feedback? The alignment problem RLHF solves",
+        "one_liner": "What plain training misses and why human preferences are needed."
+      },
+      {
+        "title": "Preference data: how humans rank model outputs",
+        "one_liner": "How comparison data is collected and what it encodes."
+      },
+      {
+        "title": "What is a reward model?",
+        "one_liner": "How preferences become a score that judges model outputs."
+      },
+      {
+        "title": "Policy optimization: training the model against the reward",
+        "one_liner": "What \"policy\" means and how the model improves via reward."
+      },
+      {
+        "title": "PPO and the KL penalty, just enough to read papers",
+        "one_liner": "The terms papers assume without explaining the full RL math."
+      },
+      {
+        "title": "The vocabulary you'll meet in RLHF papers",
+        "one_liner": "Glossary of terms: rollout, SFT, reward hacking, alignment."
+      }
+    ],
+    "rationale": "The user is new to ML but wants to read RLHF papers confidently, so I ground the absolute prerequisites (what learning, an LM, and fine-tuning mean) in two early nodes rather than assuming them — but keep them tight so they don't dominate. The middle nodes follow the actual RLHF pipeline as it appears in papers: motivation (alignment problem), preference data, reward model, and policy optimization — these are MECE stages that map directly onto paper structure. I include one targeted node on PPO and the KL penalty because papers assume these terms, but explicitly scope it to \"just enough\" to honor the user's request to deprioritize full RL theory and derivations. A final glossary node serves the paper-reading goal directly, collecting the jargon they'll hit. I excluded hands-on implementation, coding, value functions/Bellman equations, and mathematical rigor per the confirmed understanding."
+  },
+  "cost_usd": 0.0822
+}

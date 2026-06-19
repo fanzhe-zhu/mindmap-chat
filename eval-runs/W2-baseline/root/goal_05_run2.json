@@ -1,0 +1,51 @@
+{
+  "goal_id": 5,
+  "goal_text": "What to prepare when transitioning from SWE to AIPM",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What does an AI PM actually do all day?",
+        "one_liner": "The concrete job: decisions owned, artifacts produced, who they work with."
+      },
+      {
+        "title": "AI PM vs. SWE vs. standard PM",
+        "one_liner": "How the role differs from your current job and from generic PM work."
+      },
+      {
+        "title": "Where your engineering background helps — and hurts",
+        "one_liner": "SWE instincts that are leverage vs. ones that mislead you here."
+      },
+      {
+        "title": "Building product sense from scratch",
+        "one_liner": "Judging user value, prioritization, and 'should we build this' beyond feasibility."
+      },
+      {
+        "title": "Why AI products are uncertain in ways software isn't",
+        "one_liner": "Probabilistic outputs, eval, no guaranteed behavior, shifting model quality."
+      },
+      {
+        "title": "Data and model realities you'll own as PM",
+        "one_liner": "Data availability, labeling, model lifecycle, and their product tradeoffs."
+      },
+      {
+        "title": "Working with researchers, data scientists, and stakeholders",
+        "one_liner": "New collaboration dynamics, expectation-setting, and managing nontechnical execs."
+      },
+      {
+        "title": "Is this transition actually for you?",
+        "one_liner": "Honest fit check: what you'd gain, give up, and need to enjoy."
+      }
+    ],
+    "rationale": "The user is a SWE exploring whether to become an AI PM, wanting a conceptual working understanding rather than tactical job-search prep. I excluded basics of ML/APIs (they can absorb fast), résumé/portfolio, and 90-day plans per the confirmed understanding. The outline centers on the conceptual shift: a grounding node on what the role concretely is, a comparison node positioning it against SWE and standard PM, a leverage-vs-liability node specific to their engineering background, then three genuinely-new skill areas the understanding flagged (product sense, AI-specific uncertainty, data/model realities), a stakeholder/collaboration node, and a closing fit-assessment node matching their 'is this for me' framing. Nodes are MECE-ish — the role definition, the comparison, the background audit, and the distinct skill domains have low overlap. Ordered so foundational understanding precedes skill-building and the fit decision comes last."
+  },
+  "cost_usd": 0.054584999999999995
+}

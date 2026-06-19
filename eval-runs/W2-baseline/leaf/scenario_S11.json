@@ -1,0 +1,51 @@
+{
+  "scenario_id": "S11",
+  "scenario_goal_id": 5,
+  "scenario_tree": "C",
+  "scenario_category": "sibling_awareness",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Sibling awareness",
+  "scenario_user_message": "How exactly should I talk about these projects in an interview?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "How exactly should I talk about these projects in an interview?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "That's actually a question that straddles two nodes. How you *talk about* projects in an interview — the framing, the storytelling, what interviewers are listening for — lives in your \"Interview prep\" node. That's where the muscle is.\n\nWhat I own here is the layer underneath: making sure the projects themselves are worth talking about. A portfolio project that proves AIPM ability is one where you can clearly show product judgment, not just that you shipped something.\n\nSo let me push the question slightly: before you worry about delivery, do you have projects that actually demonstrate AIPM-specific decisions? Things like — you scoped an AI feature where the model could fail, and you made a call about how to handle that failure. Or you defined what \"good enough\" looked like for a fuzzy output. That's the raw material.\n\nWhat projects are you currently thinking of putting forward? Tell me one and I'll help you figure out whether it actually shows PM ability or just engineering ability — and then take the framing question to your Interview prep node.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2136,
+      "output": 325,
+      "cacheRead": 0,
+      "cacheWrite": 2045
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.02136125,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "Whether the user's portfolio projects actually demonstrate AIPM-specific product judgment, as distinct from how to present them in interviews.",
+    "key_takeaways": [
+      "The question of how to talk about projects in an interview (framing, storytelling, what interviewers listen for) belongs to the Interview prep node, not the Portfolio node.",
+      "This node's focus is the layer underneath delivery: ensuring the projects themselves are worth talking about and actually prove AIPM ability.",
+      "A strong AIPM portfolio project shows product judgment rather than just engineering output \\u2014 e.g. scoping an AI feature where the model could fail and making a call about how to handle that failure, or defining what 'good enough' looks like for a fuzzy output.",
+      "The tutor offered to evaluate a specific project to test whether it shows PM ability or only engineering ability, but the user had not yet named one."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "The user has not yet named a specific project to assess for whether it demonstrates AIPM product judgment.",
+      "The user has not worked through how to evaluate their existing projects against the product-judgment criteria (failure handling, defining 'good enough' for fuzzy outputs)."
+    ]
+  }
+}

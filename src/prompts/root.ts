@@ -202,11 +202,11 @@ export const submitOutlineTool: Anthropic.Messages.Tool = {
   input_schema: {
     type: "object",
     additionalProperties: false,
+    // nodes BEFORE rationale: with a long free-text field emitted first, Opus
+    // 4.8 intermittently dumps node content into it and leaves the array empty
+    // (~50%). Emitting the structured array first fixes it. Field names,
+    // types, and descriptions are unchanged from prompts.md §1.3.
     properties: {
-      rationale: {
-        type: "string",
-        description: "One paragraph (in English, for system logs) explaining why these specific nodes were chosen given the user's confirmed understanding. Not shown to the user. Used for eval and debugging.",
-      },
       nodes: {
         type: "array",
         items: {
@@ -225,7 +225,11 @@ export const submitOutlineTool: Anthropic.Messages.Tool = {
           required: ["title", "one_liner"],
         },
       },
+      rationale: {
+        type: "string",
+        description: "One paragraph (in English, for system logs) explaining why these specific nodes were chosen given the user's confirmed understanding. Not shown to the user. Used for eval and debugging.",
+      },
     },
-    required: ["rationale", "nodes"],
+    required: ["nodes", "rationale"],
   },
 }

@@ -1,0 +1,51 @@
+{
+  "scenario_id": "S7",
+  "scenario_goal_id": 7,
+  "scenario_tree": "B",
+  "scenario_category": "sibling_awareness",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Sibling awareness",
+  "scenario_user_message": "So if my data changes every day, does that mean I should use RAG?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "So if my data changes every day, does that mean I should use RAG?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "That question is actually about data freshness, which is its sibling node's territory — there's a node called \"Data freshness dimension\" that handles exactly the \"how often does my data change\" reasoning. I'd point you there for the real answer.\n\nBut let me give you the cost angle on it, since that's my job here.\n\nThe reason daily-changing data tends to push people toward RAG isn't just freshness — it's cost structure. If you fine-tune, the knowledge gets baked into the model weights. So every time your data changes meaningfully, you'd have to re-run a training job to update it. That's a recurring compute cost, and it can get expensive fast if you're retraining daily.\n\nRAG moves that cost. Instead of retraining, you just update your vector store or document index — which is cheap, basically the cost of re-embedding the changed documents. The model itself stays frozen.\n\nSo from a pure cost-structure lens: frequent data changes make fine-tuning's update cost the dominant, painful line item, while RAG keeps updates cheap but adds a per-query retrieval cost instead.\n\nWant me to break down those two cost profiles — fine-tuning's big-upfront-plus-retraining vs RAG's low-update-but-higher-per-query — in more detail?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2135,
+      "output": 407,
+      "cacheRead": 2041,
+      "cacheWrite": 0
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.0116655,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "El usuario preguntó sobre datos que cambian a diario, y la conversación se centró en cómo la frecuencia de cambio de los datos afecta la estructura de costos de fine-tuning frente a RAG.",
+    "key_takeaways": [
+      "Con fine-tuning el conocimiento queda incorporado en los pesos del modelo, así que cada cambio significativo de datos obliga a re-entrenar, lo que genera un costo recurrente de cómputo que se vuelve caro si se hace a diario.",
+      "Con RAG el modelo permanece congelado y solo se actualiza el vector store o índice de documentos, cuyo costo es básicamente re-embebir los documentos que cambiaron — mucho más barato.",
+      "La diferencia clave de estructura de costos: fine-tuning tiene un gran costo inicial más re-entrenamientos, mientras que RAG tiene actualizaciones baratas pero añade un costo de recuperación por cada consulta.",
+      "Datos que cambian con frecuencia hacen que el costo de actualización de fine-tuning sea el punto doloroso dominante, inclinando la decisión hacia RAG desde el ángulo de costos."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "El usuario no respondió a la oferta de desglosar en más detalle los dos perfiles de costo (fine-tuning de gran costo inicial más re-entrenamiento vs RAG de bajo costo de actualización pero mayor costo por consulta).",
+      "La pregunta original sobre frecuencia de cambio de datos se redirigió al nodo hermano 'Data freshness dimension' y no se resolvió aquí."
+    ]
+  }
+}

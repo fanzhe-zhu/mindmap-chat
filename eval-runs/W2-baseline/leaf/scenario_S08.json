@@ -1,0 +1,98 @@
+{
+  "scenario_id": "S8",
+  "scenario_goal_id": 7,
+  "scenario_tree": "B",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use + hallucination prevention",
+  "scenario_user_message": "Are there examples of real companies using both at the same time?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "Are there examples of real companies using both at the same time?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good question — and a useful one to ground this in reality rather than theory. Let me pull some current examples, since which companies do what changes fast."
+          },
+          {
+            "type": "tool_use",
+            "id": "toolu_012RjFG69AsZnL7ZKvQZG2xE",
+            "name": "web_search",
+            "input": {
+              "query": "companies combining RAG and fine-tuning production LLM case study"
+            },
+            "caller": {
+              "type": "direct"
+            }
+          },
+          {
+            "type": "tool_use",
+            "id": "toolu_01NZeRXkjTyYsGchpVMSxfGZ",
+            "name": "web_search",
+            "input": {
+              "query": "RAFT retrieval augmented fine-tuning real deployment example"
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_012RjFG69AsZnL7ZKvQZG2xE",
+            "is_error": false,
+            "content": "[1] RAG vs Fine-Tuning Explained: From Basics to Hybrid Approaches (2025)\nURL: https://www.youtube.com/watch?v=Rx4Fd3q2_H4\nRAG vs Fine-Tuning Explained: From Basics to Hybrid Approaches (2025)\nscrollypedia\n459 subscribers\n4 likes\n47 views\n11 Dec 2025\nThe debate between RAG and fine-tuning isn't about choosing one over the other anymore—it's about understanding when enterprises use each approach, and increasingly, how they combine both. This deep dive explores the 2025 landscape of enterprise AI implementation, from fundamental concepts to cutting-edge hybrid approaches like RAFT, backed by real-world deployments and verified performance data.\n\n🎯 KEY TOPICS COVERED:\n\nRAG fundamentals: Real-time knowledge retrieval without retraining\nAdvanced RAG techniques: Hybrid search, query rewriting, cross-encoder re-ranking, GraphRAG\nAgentic RAG: Multi-agent systems orchestrating complex workflows\nFine-tuning basics: Baking domain expertise into model behavior\nQLoRA breakthrough: 94% memory reduction enabling accessible fine-tuning\nParameter-Efficient Fine-Tuning (PEFT): LoRA, QLoRA, and modern approaches\nRAFT hybrid method: Combining retrieval and fine-tuning for +76% accuracy gains\nThe 2025 enterprise playbook: When to use each approach\n\n📊 VERIFIED STATISTICS & BREAKTHROUGHS:\n\nDeutsche Bank DB Lumina: 10,000 analysts, 30-45 minute time savings per task\nMorgan Stanley: 98% adoption across wealth management teams\nVirgin Voyages: 50 AI agents, 28% year-over-year sales increase\nQLoRA: Reduces training from 780GB to 48GB memory (94% reduction)\nRAFT: +30.87% improvement on HotpotQA, +76.35% on Torch Hub benchmarks\nCross-encoder re-ranking: 20%+ accuracy improvements in production systems\nQuery rewriting: 15-25% performance gains across enterprise deployments\n\n🔍 REAL-WORLD ENTERPRISE EXAMPLES:\nLearn how organizations like Deutsche Bank, Morgan Stanley, and Virgin Voyages deployed these technologies at scale, what challenges they faced, and what results they achieved in production environments.\n\n💡 THE 2025 PLAYBOOK:\nBy the end of this video, you'll understand:\n\nWhen enterprises choose RAG for dynamic knowledge retrieval\nWhen fine-tuning drives consistent behavior and specialized tasks\nHow hybrid approaches like RAFT combine both for maximum accuracy\nWhy user experience is the primary driver of successful AI adoption\nHow agentic systems orchestrate multiple AI capabilities\n\n🔗 SOURCES & VERIFICATION:\nAll statistics from official sources including UC Berkeley research papers (RAFT), enterprise case studies, academic publications, and company announcements. Data reflects 2023-2025 developments in production AI systems.\n\n#RAG #FineTuning #EnterpriseAI #LLM #MachineLearning #ArtificialIntelligence #RAFT #QLoRA #AIStrategy #TechExplained #AI2025 #RetrievalAugmentedGeneration #LargeLanguageModels #DomainAdaptation #agenticai \n\nDISCLAIMER: This content is for educational purposes. All statistics are sourced from publicly available reports and company announcements as of December 2025. Market projections are based on industry research reports and should not be considered investment advice.\n\n© 2025 Scrollypedia.\n\n\n\n---\n\n[2] Hybrid Approaches: Combining RAG and Finetuning for Optimal ...\nURL: https://prajnaaiwisdom.medium.com/hybrid-approaches-combining-rag-and-finetuning-for-optimal-llm-performance-35d2bf3582a9\nThis will provide concrete examples of how combining RAG and finetuning can lead to superior LLM performance in practice. Case Studies and\n\n---\n\n[3] RAG vs. LLM fine-tuning: Finding the best fit for enterprises\nURL: https://www.glean.com/blog/rag-vs-llm\nConnect to all your appsModel Hub. Get access to the latest modelsBuild generative AI experiencesSafely scale AI at workAgentic Engine. Connect to all your appsModel Hub. Get access to the latest modelsAPIs. Safely scale AI at workAgentic Engine. LLM fine-tuning: Which is the best approach? * The blog discusses the differences between retrieval-augmented generation (RAG) and large language model (LLM) fine-tuning, highlighting their distinct benefits and ideal use cases for enterprises aiming to enhance AI capabilities. * RAG improves relevance and accuracy by using real-time enterprise data to generate informed responses, making it well-suited for dynamic environments with frequent data changes, while LLM fine-tuning excels in specialized tasks by embedding industry-specific language and knowledge into the model. * Combining RAG with LLM fine-tuning offers a comprehensive solution, leveraging up-to-date data retrieval and domain-specific expertise to achieve personalized and precise AI outputs across various industries such as customer service, healthcare, and legal.\n\n---\n\n[4] Seekr | Custom AI for Enterprises: RAG vs Fine-Tuning\nURL: https://www.seekr.com/resource/fine-tuning-rag-custom-ai-for-enterprises\n## RAG, Fine-Tuning, or Both? Optimizing Enterprise AI for Accuracy and Cost. * RAG helps produce up-to-date responses from supplied documentation, but limitations in cost, speed, and flexibility make it an incomplete solution for most enterprise needs. * Fine-tuning allows more LLM customization for specific tasks and use cases, but the process requires heavy upfront investments in talent, data management, and infrastructure. * Combining fine-tuning and RAG can often lead to optimal model outcomes, but enterprises still face challenges of cost and complexity in AI customization. * SeekrFlow™ accelerates the model fine-tuning process and reduces the downstream costs of RAG by handling data alignment and preparation for you. For enterprises to unlock real value from AI, models need to produce accurate responses based on specific company data. In this post, we’ll unpack the differences between RAG and fine-tuning and explore how enterprises can overcome the cost and complexity of AI customization to drive real business transformation.\n\n---\n\n[5] RAG vs Fine-tuning: Pipelines, Tradeoffs, and a Case Study on Agriculture - Microsoft Research\nURL: https://www.microsoft.com/en-us/research/publication/rag-vs-fine-tuning-pipelines-tradeoffs-and-a-case-study-on-agriculture\nMicrosoft   Research      Publications Code & data People Microsoft Research blog   Artificial intelligence Audio & acoustics Computer vision Graphics & multimedia Human-computer interaction Human language technologies Search & information retrieval   Data platforms and analytics Hardware & devices Programming languages & software engineering Quantum computing Security, privacy & cryptography Systems & networking   Algorithms Mathematics   Ecology & environment Economics Medical, health & genomics Social sciences Technology for emerging markets    Academic programs Events & academic conferences Microsoft Research Forum   Behind the Tech podcast Microsoft Research blog Microsoft Research Forum Microsoft Research podcast    About Microsoft Research Careers & internships People Emeritus program News & awards Microsoft Research newsletter   Africa AI for Science AI Frontiers Asia-Pacific Cambridge Health Futures India Montreal New England New York City Redmond   Applied Sciences Mixed Reality & AI - Cambridge Mixed Reality & AI - Zurich    Register: Research Forum      Microsoft Security Azure Dynamics 365 Microsoft 365 Microsoft Teams Windows 365   Microsoft AI Azure Space Mixed reality Microsoft HoloLens Microsoft Viva Quantum computing Sustainability   Education Automotive Financial services Government Healthcare Manufacturing Retail   Find a partner Become a partner Partner Network Microsoft Marketplace Software companies   Blog Microsoft Advertising Developer Center Documentation Events Licensing Microsoft Learn Microsoft Research   View Sitemap. In this paper, we propose a pipeline for fine-tuning and RAG, and present the tradeoffs of both for multiple popular LLMs, including Llama2-13B, GPT-3.5, and GPT-4."
+          },
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_01NZeRXkjTyYsGchpVMSxfGZ",
+            "is_error": false,
+            "content": "[1] RAFT: Adapting LLM for Domain-Specific RAG Excellence\nURL: https://galileo.ai/blog/raft-adapting-llm\n# Retrieval Augmented Fine-Tuning: Adapting LLM for Domain-Specific RAG Excellence. You have spent weeks fine-tuning your large language model (LLM), carefully optimizing it for your specific domain needs. This scenario plays out across enterprises attempting to adapt LLMs for domain-specific tasks, where precision isn't just preferred—it's critical. We'll walk you through how RAFT effectively adapts LLMs to domain-specific tasks, examine real-world implementations, and provide practical steps to adapt your LLMs to domain-specific RAG tasks. Retrieval augmented fine-tuning (RAFT) is an advanced machine learning technique that combines retrieval-based learning with fine-tuning to adapt large language models (LLMs) for domain-specific tasks. It represents a paradigm shift in how we approach domain adaptation for LLMs. As highlighted in recent research by Stanford's AI Lab, RAFT achieves significantly higher accuracy than traditional fine-tuning approaches. What's truly powerful about RAFT is that it doesn't just combine retrieval and fine-tuning—it fundamentally reimagines how models learn domain-specific knowledge.\n\n---\n\n[2] RAFT: Sailing Llama towards better domain-specific RAG\nURL: https://ai.meta.com/blog/raft-llama-retrieval-augmented-generation-supervised-fine-tuning-microsoft\nRetrieval-Augmented Fine-Tuning (RAFT) combines the benefits of Retrieval-Augmented Generation and Supervised Fine-Tuning for better domain adaptation. * Domain-specific Supervised Fine-Tuning (DSF), which means training an existing base model on a set of documents that represent the domain specific knowledge. * Retrieval Augmented Generation (RAG), which involves storing those documents in a vector database and, at query time, retrieving semantically similar documents to the question and using their contents as context for the LLM to generate a response. The team previously known for Gorilla LLM presents this new approach in their RAFT paper (Retrieval Augmented Fine Tuning) showing how they used Meta Llama 2 on Azure AI Studio through MaaS to conduct their research and implement their approach. In conventional RAG, when a query is posed to a model, it retrieves a few documents from an index that are likely to contain the answer. Their approach—Retrieval Augmented Fine Tuning—attempts to get the model to study or adapt to a domain before it is used in a RAG setup.\n\n---\n\n[3] RAFT (Retrieval Augmented Fine-tuning):  A new way to teach LLMs (Large Language Models) to be better at RAG (Retrieval Augmented Generation)\nURL: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/raft-a-new-way-to-teach-llms-to-be-better-at-rag/4084674\n# RAFT:  A new way to teach LLMs to be better at RAG. “Retrieval-Augmented Fine-Tuning” combines the benefits of Retrieval-Augmented Generation and Fine-Tuning for better domain adaptation. First: domain-specific  Fine-tuning (DSF), which means training an existing base model on a set of documents that represent the domain specific knowledge. Second: RAG (Retrieval Augmented Generation), which involves storing those documents in a vector database and (at query time) finding documents based on their semantic similarity with the question and bringing them into the context of the LLM for in context learning. The team previously known for Gorilla LLM :gorilla: presents this new approach in their RAFT paper (Retrieval Augmented Fine Tuning) showing how they used Meta Llama 2 and Azure AI Studio to conduct their research and implement their approach. In conventional RAG, when a query is posed to a model, it retrieves a few documents from an index that are likely to contain the answer.\n\n---\n\n[4] RAFT: Adapting Language Model to Domain Specific RAG\nURL: https://gorilla.cs.berkeley.edu/blogs/9_raft.html\n# 🦍 RAFT: Adapting Language Model to Domain Specific RAG. In our latest blog, we introduce Retrieval Augmented Fine Tuning (RAFT), a straightforward and powerful fine-tuning recipe to enhance the model's performance in answering questions within specific domains in an \"open-book\" setting. Open-book refers to the paradigm, where the model can refer to documents to answer the question. The RAFT model is trained on top of the base model Llama2-7B from Meta and on Microsoft AI Studio. We provide a short tutorial on how to train your own RAFT model for RAG applications. 📝 RAFT is a general recipe to finetune a pretrained LLM to your domain-specific RAG settings. This is a common scenario where you want your LLM to answer questions grounded on a set of documents, for e.g., private files in an enterprise. Such a setting is different from the general RAG where the LLM does not know which domain (of documents) it will be tested on.\n\n---\n\n[5] How to RAFT your LLM: Retrieval Augmented Finetuning using Unsloth!\nURL: https://medium.com/mitb-for-all/how-to-raft-your-llm-retrieval-augmented-finetuning-using-unsloth-4c3844a9a6e3\n# How to RAFT your LLM: Retrieval Augmented Finetuning using Unsloth! | by Tituslhy | MITB For All | Medium. ## MITB For All. Image 2: MITB For All. Tech contents related to AI, Analytics, Fintech, and Digital Transformation. Training a large language model (LLM)is like teaching Toothless to fly in _How to Train Your Dragon_. In our previous article, we tried to teach Toothless to bite — by finetuning our Llama 3.2 1B model on a synthetic dataset derived from a knowledge article on non-traditional credentials. Evaluation metrics showed only **marginal gains**, whether we tested the finetuned model in a Retrieval-Augmented Generation (RAG) setup or in a closed-book QA setting using a holdout set. One **key takeaway** emerged: instead of just finetuning the LLM, we might be better off finetuning the **entire RAG system** — especially when working with limited data. 1.   Improve the LLM’s ability to synthesize answers from retrieved context."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Yes — there are real examples, and it's worth separating two kinds of \"both at once\" because they're quite different.\n\nThe first kind is just running fine-tuning and RAG side by side in one product. Financial firms are the clearest cases: Morgan Stanley's wealth-management assistant and Deutsche Bank's analyst tool both pair a model that's been adapted to the firm's domain and tone with a retrieval layer that pulls current documents at query time. The fine-tuning handles how it talks and reasons; the retrieval handles what facts it has access to today. That split is the practical reason to combine them at all.\n\nThe second kind is more interesting technically — RAFT (Retrieval-Augmented Fine-Tuning), out of Berkeley's Gorilla team with Microsoft and Meta. Instead of fine-tuning and retrieval being two separate boxes, you fine-tune the model specifically to be good at using retrieved documents — including training it to ignore irrelevant ones that the retriever pulls in by mistake. The reported gains are large on benchmarks (something like +30% on HotpotQA in their paper). So here the fine-tuning isn't injecting facts, it's teaching the model the skill of working with a RAG pipeline.\n\nThat distinction is the key thing I'd want you to take away: \"combining both\" can mean two layers stacked, or it can mean fine-tuning the model to be a better RAG consumer.\n\nDoes the RAFT idea make sense, or should I walk through what its training data actually looks like? That's where the mechanism becomes concrete.\n\nI'll flag one boundary: *when* a company should reach for the hybrid versus picking one — the cost and task-type tradeoffs behind that decision live in your sibling nodes \"Cost comparison\" and \"Task-type dimension.\"\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 2,
+    "tokens": {
+      "input": 9756,
+      "output": 767,
+      "cacheRead": 2041,
+      "cacheWrite": 2041
+    },
+    "toolCallsExecuted": 2,
+    "estimatedCostUsd": 0.06132175,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "Real-world examples of companies combining RAG and fine-tuning, and the two distinct meanings of a \"hybrid\" approach.",
+    "key_takeaways": [
+      "\"Combining both\" actually means two quite different things: (1) running fine-tuning and RAG side by side as separate layers in one product, or (2) fine-tuning the model specifically to be a better consumer of retrieved documents.",
+      "In the side-by-side approach, fine-tuning handles tone/reasoning while retrieval handles current facts — exemplified by financial firms like Morgan Stanley's wealth-management assistant and Deutsche Bank's analyst tool.",
+      "RAFT (Retrieval-Augmented Fine-Tuning, from Berkeley's Gorilla team with Microsoft and Meta) trains the model to use retrieved documents well, including ignoring irrelevant ones the retriever pulls in by mistake, with reported gains like +30% on HotpotQA.",
+      "The key distinction is that in RAFT the fine-tuning isn't injecting facts — it's teaching the model the skill of working within a RAG pipeline."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "What RAFT's training data actually looks like in concrete terms (the agent offered to walk through this but the user did not respond)."
+    ]
+  }
+}

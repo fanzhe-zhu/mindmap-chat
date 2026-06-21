@@ -45,3 +45,7 @@ next-env.d.ts
 
 # W2 CLI tree serializations (run artifacts)
 /tree-runs/
+
+# Ad-hoc timestamped eval runs. Only the consolidated named baselines
+# (eval-runs/W1-baseline/, eval-runs/W2-baseline/, …) are tracked.
+/eval-runs/[0-9]*/

@@ -5,11 +5,14 @@
  * the user clicks anything; also called for a single manually-created / accepted
  * node. Server-only.
  *
- * Body: { goal: string, nodes: { id, title, one_liner }[] }
+ * Body: { goal: string, nodes: { id, title, one_liner }[], only?: string[] }
  * Returns: { intros: Record<nodeId, { intro, starter_questions }> }
  *
- * Sibling metadata for each node = every OTHER node in the batch, formatted
- * exactly like the leaf prompt's {{ siblings_metadata }} (scripts/w2-cli.ts).
+ * `nodes` is always the full sibling set (for context); `only`, when present,
+ * restricts generation to those ids (used when adding a single node so we don't
+ * regenerate every intro). Sibling metadata for each node = every OTHER node,
+ * formatted exactly like the leaf prompt's {{ siblings_metadata }}
+ * (scripts/w2-cli.ts).
  */
 
 import { runNodeIntro } from "@/src/agents/node-intro"
@@ -26,12 +29,14 @@ export async function POST(request: Request): Promise<Response> {
     const body = await request.json()
     const goal = typeof body?.goal === "string" ? body.goal : ""
     const nodes: InNode[] = Array.isArray(body?.nodes) ? body.nodes : []
+    const only: string[] | null = Array.isArray(body?.only) ? body.only : null
     if (!goal || nodes.length === 0) {
       return Response.json({ error: "goal and a non-empty nodes[] are required" }, { status: 400 })
     }
+    const targets = only ? nodes.filter((n) => only.includes(n.id)) : nodes
 
     const results = await Promise.all(
-      nodes.map(async (node) => {
+      targets.map(async (node) => {
         const siblings = nodes.filter((n) => n.id !== node.id)
         const intro = await runNodeIntro({
           nodeTitle: node.title,

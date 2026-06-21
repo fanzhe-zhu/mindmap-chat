@@ -105,6 +105,51 @@ h1.title { font-size: 28px; margin-bottom: 6px; }
 .badge.in-progress { color: var(--warn); border-color: var(--warn); }
 .badge.untouched { color: var(--muted); }
 
+/* mind map nodes */
+.mm-node {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--background);
+  color: var(--foreground);
+  padding: 10px 12px;
+  font-size: 13px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.mm-root {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-fg);
+  max-width: 240px;
+  text-align: center;
+}
+.mm-topic { width: 210px; cursor: pointer; }
+.mm-topic:hover { border-color: var(--accent); }
+.mm-selected { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent); }
+.mm-node-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 6px; }
+.mm-node-title { font-weight: 600; line-height: 1.3; }
+.mm-node-oneliner {
+  margin-top: 6px;
+  color: var(--foreground);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.mm-node-foot { margin-top: 6px; font-size: 11px; }
+
+/* app shell: full-height map + side panel */
+.app-shell { display: flex; height: 100vh; width: 100%; }
+.map-area { flex: 1; min-width: 0; position: relative; }
+.side-panel {
+  width: 440px;
+  max-width: 50vw;
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--background);
+}
+
 /* spinner */
 .spinner::after {
   content: "";

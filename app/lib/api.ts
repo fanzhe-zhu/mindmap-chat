@@ -43,10 +43,14 @@ export function fetchOutline(
   })
 }
 
-/** Batch-prefetch intros + starter questions for a set of nodes. */
+/**
+ * Batch-prefetch intros + starter questions. `nodes` is the full sibling set;
+ * pass `only` to restrict generation to specific ids (e.g. one new node).
+ */
 export function fetchIntros(
   goal: string,
   nodes: { id: string; title: string; one_liner: string }[],
+  only?: string[],
 ): Promise<{ intros: Record<string, NodeIntro> }> {
-  return postJSON<{ intros: Record<string, NodeIntro> }>("/api/node-intro", { goal, nodes })
+  return postJSON<{ intros: Record<string, NodeIntro> }>("/api/node-intro", { goal, nodes, only })
 }

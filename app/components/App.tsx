@@ -9,19 +9,37 @@
  * Step 6 layers localStorage persistence on top of this state.
  */
 
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import Onboarding, { type OnboardingResult } from "./Onboarding"
 import MindMap from "./MindMap"
 import NodePanel from "./NodePanel"
 import AddNodeForm from "./AddNodeForm"
 import { addNode, createTree, setNodeIntro } from "../lib/tree"
 import { fetchIntros } from "../lib/api"
+import { clearTree, loadTree, saveTree } from "../lib/persistence"
 import type { ClientTree } from "../lib/types"
 
 export default function App() {
   const [tree, setTree] = useState<ClientTree | null>(null)
   const [selectedId, setSelectedId] = useState<string | null>(null)
   const [adding, setAdding] = useState(false)
+  const [loaded, setLoaded] = useState(false)
+  const [storageWarning, setStorageWarning] = useState<string | null>(null)
+
+  // Restore on reload (P6). Runs client-side only; `loaded` gates the first
+  // render so we don't flash the onboarding screen before storage is read.
+  useEffect(() => {
+    const restored = loadTree()
+    if (restored) setTree(restored)
+    setLoaded(true)
+  }, [])
+
+  // Persist on every tree change once hydrated. Surfaces quota/write warnings.
+  useEffect(() => {
+    if (!loaded || !tree) return
+    const result = saveTree(tree)
+    setStorageWarning(result.warning ?? null)
+  }, [tree, loaded])
 
   /**
    * Prefetch intros (dogfood insight #3, tracking P5). `only` restricts which
@@ -70,6 +88,23 @@ export default function App() {
     prefetchIntros(t2, [id])
   }
 
+  function resetAll() {
+    if (!confirm("Start a new mind map? This clears the current one.")) return
+    clearTree()
+    setTree(null)
+    setSelectedId(null)
+    setAdding(false)
+    setStorageWarning(null)
+  }
+
+  if (!loaded) {
+    return (
+      <div className="container">
+        <p className="spinner">Loading</p>
+      </div>
+    )
+  }
+
   if (!tree) {
     return <Onboarding onComplete={onOnboardingComplete} />
   }
@@ -79,6 +114,7 @@ export default function App() {
   return (
     <div className="app-shell">
       <div className="map-area">
+        {storageWarning && <div className="banner">{storageWarning}</div>}
         <MindMap
           tree={tree}
           selectedNodeId={selectedId}
@@ -90,6 +126,7 @@ export default function App() {
             setSelectedId(null)
             setAdding(true)
           }}
+          onReset={resetAll}
         />
       </div>
 

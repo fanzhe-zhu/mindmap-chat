@@ -137,6 +137,20 @@ h1.title { font-size: 28px; margin-bottom: 6px; }
 }
 .mm-node-foot { margin-top: 6px; font-size: 11px; }
 
+/* storage warning banner */
+.banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 8px 14px;
+  font-size: 13px;
+  background: var(--warn);
+  color: #1a1100;
+  text-align: center;
+}
+
 /* app shell: full-height map + side panel */
 .app-shell { display: flex; height: 100vh; width: 100%; }
 .map-area { flex: 1; min-width: 0; position: relative; }

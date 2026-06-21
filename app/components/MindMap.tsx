@@ -70,11 +70,13 @@ export default function MindMap({
   selectedNodeId,
   onSelect,
   onAddNode,
+  onReset,
 }: {
   tree: ClientTree
   selectedNodeId: string | null
   onSelect: (nodeId: string) => void
   onAddNode: () => void
+  onReset: () => void
 }) {
   const { nodes, edges } = useMemo(() => {
     const ids = tree.node_order
@@ -126,7 +128,10 @@ export default function MindMap({
         <Background />
         <Controls showInteractive={false} />
         <Panel position="top-right">
-          <button className="btn small" onClick={onAddNode}>+ Add node</button>
+          <div className="row">
+            <button className="btn small" onClick={onAddNode}>+ Add node</button>
+            <button className="btn small" onClick={onReset}>New map</button>
+          </div>
         </Panel>
       </ReactFlow>
     </div>

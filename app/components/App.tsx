@@ -61,6 +61,15 @@ export default function App() {
     prefetchIntros(t2, [id])
   }
 
+  // Accept a propose_new_node proposal — adds it to the map (v1 flat tree) and
+  // prefetches its intro. Keeps the current node selected (the user is mid-chat).
+  function acceptProposal(title: string, oneLiner: string) {
+    if (!tree) return
+    const { tree: t2, id } = addNode(tree, { title, one_liner: oneLiner, origin: "proposal" })
+    setTree(t2)
+    prefetchIntros(t2, [id])
+  }
+
   if (!tree) {
     return <Onboarding onComplete={onOnboardingComplete} />
   }
@@ -98,7 +107,7 @@ export default function App() {
             node={selectedNode}
             onClose={() => setSelectedId(null)}
             setTree={setTree}
-            prefetchIntros={prefetchIntros}
+            onAcceptProposal={acceptProposal}
           />
         </aside>
       )}

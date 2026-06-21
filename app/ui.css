@@ -150,6 +150,31 @@ h1.title { font-size: 28px; margin-bottom: 6px; }
   background: var(--background);
 }
 
+/* chat */
+.chat { display: flex; flex-direction: column; gap: 12px; }
+.msg { max-width: 92%; padding: 9px 12px; border-radius: 12px; white-space: pre-wrap; line-height: 1.45; }
+.msg.user { align-self: flex-end; background: var(--accent); color: var(--accent-fg); }
+.msg.assistant { align-self: flex-start; background: var(--surface); color: var(--foreground); border: 1px solid var(--border); }
+.search-indicator {
+  align-self: flex-start;
+  font-size: 13px;
+  color: var(--warn);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.proposal {
+  align-self: flex-start;
+  width: 92%;
+  border: 1px dashed var(--accent);
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: var(--surface);
+}
+.proposal .ptitle { font-weight: 600; }
+.proposal .row { margin-top: 8px; }
+.panel-input { border-top: 1px solid var(--border); padding: 12px; display: flex; gap: 8px; }
+
 /* spinner */
 .spinner::after {
   content: "";

@@ -140,3 +140,68 @@ Carried from W1, plus confirmed this week — **not** done mid-week:
 ### Intentionally out of scope for W2 (→ W3)
 
 Web app / React Flow, streaming, localStorage, the `propose_new_node` accept-UI (the leaf prompt still offers it; the CLI logs nothing and `runReActLoop`'s handler-missing branch absorbs any call), node-intro generator wiring (prompt exists at prompts.md §4; not used in the W2 CLI/eval).
+
+---
+
+## W3 — Web app integration
+
+**Status:** Shipped — 2026-06-21
+
+### What this week built
+
+A Next.js 16.2.9 (App Router) web app on top of the W1/W2 agent layer — **reused, not rewritten**. The only new backend agent is the node-intro generator; everything else is a UI + persistence layer that calls the existing agents through Route Handlers.
+
+- **Server↔client boundary (6 route handlers).** Every agent call runs server-side only: `app/api/root/{clarify,confirm,outline}`, `app/api/node-intro` (batch), `app/api/leaf` (streaming), `app/api/summary`. `.env.local` is loaded into the Next server runtime automatically (no dotenv needed, unlike the CLI). The browser only ever does `fetch` (`app/lib/api.ts`).
+- **3-phase root onboarding UI** (`app/components/Onboarding.tsx`) — mirrors the `scripts/w2-cli.ts` state machine exactly: goal → clarify (multi-choice buttons / free-text, "Other" reveals a text field) → confirm (loops on correction, folding it into `clarifyExchange` and re-calling `runRootPhase2Confirm`) → outline → `createTree`.
+- **Node-intro generator** (`src/agents/node-intro.ts` + `src/prompts/node-intro.ts`) — the one new backend agent, verbatim from prompts.md §4 (`submit_node_intro` → `{intro, starter_questions[3]}`), following the `summary.ts`/`runStructuredCall` pattern (strict tool use + client-side validate "exactly 3" + non-empty, 1 retry, Opus 4.8, sibling-aware). **Prefetched** for all nodes the moment the outline lands (`only` param supports single-node prefetch on add).
+- **React Flow mind map** (`app/components/MindMap.tsx`, `@xyflow/react` ^12) — root → N child nodes (flat v1 tree), custom node = title + 2-line-clamped one-liner + status badge (summary / in-progress / untouched). Click opens the conversation panel.
+- **Streaming leaf conversation** (`app/api/leaf/route.ts` + `app/components/NodePanel.tsx`) — reuses `runReActLoop` **exactly as w2-cli** (sibling injection, Tavily handler, `cacheSystem:true`, `maxIterations:10`, `agentType:"leaf"`). Opening experience (intro + 3 tappable starters) before the first message; a **genuinely real-time "searching the web…" indicator**; `propose_new_node` wired as an accept-in-UI affordance; `runSummaryGenerator` on node exit updates the badge.
+- **localStorage persistence** (`app/lib/persistence.ts`) — `{version, tree}` saved on every change, restored on reload.
+
+### Server/client boundary — proof
+
+- `grep -rn '@anthropic-ai/sdk\|@/src/agents\|@/src/tools\|@/src/lib'` over every `"use client"` file → **nothing** (only a doc comment in `app/lib/types.ts`).
+- No `NEXT_PUBLIC_` vars; no `process.env` in any client component.
+- The `ANTHROPIC_API_KEY` value does **not** appear in the built `.next/static` client bundle.
+- `tsc --noEmit` ✓ and `next build` ✓ (all 6 `/api/*` routes registered as dynamic; `/` static).
+
+### Streaming decision (deviation, with reason)
+
+`runReActLoop` is non-streaming and may **not** be modified (hard constraints #2/#5). So streaming is done at the **transport layer**: the leaf route returns a `ReadableStream` of NDJSON events. The **search indicator is genuinely real-time** — the Tavily handler is wrapped to `enqueue` a `search_start` event *before* awaiting Tavily, and `runReActLoop` awaits the handler, so the event reaches the browser while the tool is actually in flight (verified: `search_start`/`search_end` arrive mid-run). Assistant **text is delivered progressively** as `text_delta` chunks, but those are split server-side from the *completed* turn — this is not true SDK token streaming. `scripts/hello-streaming.ts` proves SDK token streaming is available (W3 pre-decision: "prove streaming with a toy first"); wiring it into the loop would require editing `react-loop.ts`, which is out of scope.
+
+### The two P6 decisions (both were open)
+
+1. **Quota (5 MB full).** In-memory tree stays authoritative; on `QuotaExceededError` we make one compaction retry that strips raw transcripts from already-summarized nodes (summaries + intros kept — the transcript is the large, regenerable part), else a non-blocking banner. No silent loss, no crash.
+2. **Schema migration (v1→v2).** Explicit numeric `version` + a migrator chain. `version < current` runs migrators; `version > current` (or unparseable) is discarded → start fresh, never guess. v1→v2 path documented in the module header. Both decisions live in a comment block atop `app/lib/persistence.ts`.
+
+### The 6 v0 dogfood insights — where each is handled
+
+| # | Insight (design-doc-v1 §8) | Where in W3 |
+|---|---|---|
+| 1 | Root must ask clarifying questions | Onboarding phase 1 → `/api/root/clarify` → `runRootPhase1Clarify` |
+| 2 | Title naturally generated (no enum) | Outline titles rendered verbatim in `MindMap`; UI never classifies/forces a format |
+| 3 | Node opening = one-liner + intro + 3 starters | Node-intro generator (prefetched) + `NodePanel` opening experience (one-liner in header, intro, 3 tappable starters) |
+| 4 | Leaf must be sibling-aware | `/api/leaf` injects `{{ siblings_metadata }}` = every other node, exactly as w2-cli; intros are sibling-aware too |
+| 5 | User can manually create nodes | "+ Add node" + `AddNodeForm`; accepted proposals also add nodes |
+| 6 | UI text contrast sufficient (no gray) | `app/ui.css` body text = `--foreground` (#171717); `--muted` (#44474f) only for secondary labels, AA on white; no washed-out gray for primary text |
+
+### Other deviations from the plan (with reason)
+
+- **Flat tree for proposals/manual nodes.** `src/lib/tree.ts` (locked) has no parent pointer, so accepted `propose_new_node` proposals and manually-added nodes are appended as **top-level** nodes, not nested children. True child placement needs the DAG/multi-level work deferred to v2.
+- **`propose_new_node` tool definition lives in the app layer** (`app/api/leaf/route.ts`, verbatim from prompts.md §2) rather than `src/tools/`, to wire the feature without modifying `src/*`.
+
+### Verification
+
+End-to-end driven in headless Chrome (Playwright, installed/removed without touching `package.json`): seeded tree → map renders root + 4 children with badges/edges; node click → panel with intro + 3 starters; a **real streamed leaf turn** (485-char tutor answer); Close → summary-on-exit flips the badge to `summary`; reload → conversation + summary persist. All server routes were also exercised directly via curl (clarify/confirm/outline chain, intro batch, leaf stream with live search events, summary).
+
+### Eval regression
+
+No existing prompt was touched (the four W1/W2 prompts in `src/prompts/{root,leaf,summary}.ts` are byte-identical on this branch; only `src/prompts/node-intro.ts` is new). The node-intro generator has no eval metric by design (prompts.md §4: "No dedicated metric in v1 eval framework"). `eval:leaf`/`eval:root` therefore need no re-run for regression.
+
+### Deploy
+
+Vercel-ready: set `ANTHROPIC_API_KEY` + `TAVILY_API_KEY` as server env vars (neither is `NEXT_PUBLIC_`). Trace writes (`traces/`) fail silently on read-only serverless FS — already caught in `react-loop`/`structured-call`, so they don't crash requests.
+
+### Intentionally out of scope (→ v2, per the plan)
+
+Stale-tag UI · title-type 5-way classification · reference-edge UI · bottom-up entry · multi-tree · `summary_for_user` · true SDK token streaming inside the ReAct loop · nested child placement.

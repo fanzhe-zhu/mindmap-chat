@@ -12,14 +12,44 @@
 
 import { useState } from "react"
 import Onboarding, { type OnboardingResult } from "./Onboarding"
-import { createTree } from "../lib/tree"
+import { createTree, setNodeIntro } from "../lib/tree"
+import { fetchIntros } from "../lib/api"
 import { nodeStatus, type ClientTree } from "../lib/types"
 
 export default function App() {
   const [tree, setTree] = useState<ClientTree | null>(null)
 
+  /**
+   * Prefetch intros for all nodes (dogfood insight #3, tracking P5). Fired as
+   * soon as the tree exists so every node has a cached intro + 3 starters before
+   * the user clicks in. Runs in the background; the map renders immediately and
+   * intros merge in as they arrive. setTree((cur) => …) avoids clobbering any
+   * edits the user makes while the batch is in flight.
+   */
+  function prefetchIntros(t: ClientTree) {
+    const nodes = t.node_order.map((id) => ({
+      id,
+      title: t.nodes[id].title,
+      one_liner: t.nodes[id].one_liner,
+    }))
+    fetchIntros(t.goal, nodes)
+      .then(({ intros }) => {
+        setTree((cur) => {
+          if (!cur || cur.id !== t.id) return cur
+          let next = cur
+          for (const [id, intro] of Object.entries(intros)) {
+            next = setNodeIntro(next, id, intro)
+          }
+          return next
+        })
+      })
+      .catch((err) => console.error("intro prefetch failed:", err))
+  }
+
   function onOnboardingComplete(r: OnboardingResult) {
-    setTree(createTree(r.goal, r.confirmedUnderstanding, r.outline.nodes))
+    const t = createTree(r.goal, r.confirmedUnderstanding, r.outline.nodes)
+    setTree(t)
+    prefetchIntros(t)
   }
 
   if (!tree) {

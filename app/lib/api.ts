@@ -3,7 +3,7 @@
  * This is the ONLY way the client reaches the agents — no SDK in the bundle.
  */
 
-import type { ClarifyOutput, OutlineOutput } from "./types"
+import type { ClarifyOutput, NodeIntro, OutlineOutput } from "./types"
 
 async function postJSON<T>(url: string, body: unknown): Promise<T> {
   const res = await fetch(url, {
@@ -41,4 +41,12 @@ export function fetchOutline(
     clarifyExchange,
     confirmedUnderstanding,
   })
+}
+
+/** Batch-prefetch intros + starter questions for a set of nodes. */
+export function fetchIntros(
+  goal: string,
+  nodes: { id: string; title: string; one_liner: string }[],
+): Promise<{ intros: Record<string, NodeIntro> }> {
+  return postJSON<{ intros: Record<string, NodeIntro> }>("/api/node-intro", { goal, nodes })
 }

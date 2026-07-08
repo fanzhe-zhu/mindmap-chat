@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-06-19T05-06-16-148Z",
+  "timestamp": "W2-baseline",
   "root": {
-    "runs_analyzed": 0,
+    "runs_analyzed": 30,
     "goals_with_3plus_runs": 0,
     "avg_std_over_mean": 0,
     "granularity_target_met": true,
@@ -20,6 +20,8 @@
     "react_iter_p95_target_met": true,
     "summary_schema_valid_pct": 1,
     "summary_schema_target_met": true,
+    "summary_language_valid_pct": 0.8,
+    "summary_language_target_met": false,
     "total_cost_usd": 0.6572614999999999,
     "category_breakdown": {
       "normal": 8,

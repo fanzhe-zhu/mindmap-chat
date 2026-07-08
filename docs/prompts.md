@@ -1,6 +1,6 @@
 # Mind Map Chat — v1 Prompts
 
-> **Version**: v0.2 (2026-05-17)
+> **Version**: v0.3 (2026-07-07)
 > **Status**: Draft — to be iterated via eval framework (`design-doc-v1.md` Part V)
 > **Companion**: `design-doc-v1.md` (build spec), `design-doc-full.md` (vision)
 >
@@ -464,11 +464,13 @@ The conversation that just took place:
 Your task:
 Emit a structured summary via the `submit_summary_for_parent` tool. Four fields, all required.
 
+Language rule: write `topic`, `key_takeaways`, and `open_questions` in the language the user's messages inside <conversation> are written in. If the user wrote in English, the summary is in English; if in Chinese, Chinese. Never use a language that does not appear in the conversation.
+
 # Field guidance
 
-**topic** (1 sentence): What this node's conversation actually ended up being about. Often this is just a slight refinement of the node title, but sometimes the conversation drifted; capture the actual content, not the intended content. Written in the user's language.
+**topic** (1 sentence): What this node's conversation actually ended up being about. Often this is just a slight refinement of the node title, but sometimes the conversation drifted; capture the actual content, not the intended content. Written in the conversation's language (see the language rule above).
 
-**key_takeaways** (3–5 items): The substantive points the conversation established or clarified. Each takeaway is a complete sentence or short paragraph (not a fragment). Written in the user's language. Things that count:
+**key_takeaways** (3–5 items): The substantive points the conversation established or clarified. Each takeaway is a complete sentence or short paragraph (not a fragment). Written in the conversation's language (see the language rule above). Things that count:
 - A concept the user came to understand (state what they understand, not "user learned X")
 - A decision or comparison the user made
 - A factual point that was grounded via tool use
@@ -510,14 +512,14 @@ Output only via the tool call. No prose.
     "properties": {
       "topic": {
         "type": "string",
-        "description": "One sentence (user's language) on what the conversation was about."
+        "description": "One sentence (conversation's language) on what the conversation was about."
       },
       "key_takeaways": {
         "type": "array",
         "minItems": 1,
         "maxItems": 7,
         "items": {"type": "string"},
-        "description": "3–5 substantive takeaways (user's language). 1 allowed if conversation was very short, but flag in status."
+        "description": "3–5 substantive takeaways (conversation's language). 1 allowed if conversation was very short, but flag in status."
       },
       "status": {
         "type": "string",
@@ -527,7 +529,7 @@ Output only via the tool call. No prose.
       "open_questions": {
         "type": "array",
         "items": {"type": "string"},
-        "description": "0–N genuine unresolved questions/threads (user's language). Empty array if none."
+        "description": "0–N genuine unresolved questions/threads (conversation's language). Empty array if none."
       }
     },
     "required": ["topic", "key_takeaways", "status", "open_questions"]
@@ -708,3 +710,4 @@ Possible cost optimization (defer to W2 eval): use `claude-haiku-4-5` for the su
 |---|---|---|
 | v0.1 | 2026-05-14 | Initial draft of all 4 prompts (root 3-phase, leaf, summary, intro) |
 | v0.2 | 2026-05-17 | (1) Root phase 1 reworked: each question can be `multi_choice` or `free_text`, model decides per question; output now via `submit_clarifying_questions` tool call. (2) Leaf prompt: `user_notes` block omitted entirely when empty (saves tokens on every leaf turn). (3) Leaf prompt: added instruction #9 for off-tree topic drift — propose as child only when in scope, otherwise suggest manual node creation; never propose siblings/root-level nodes. (4) Implementation notes updated for new schema-enforcing tool and `user_notes_block` injection pattern. | — |
+| v0.3 | 2026-07-07 | Summary prompt (§3) only: language instruction anchored to the conversation text. "Written in the user's language" → explicit language rule ("the language the user's messages inside <conversation> are written in; never a language that does not appear in the conversation") + field guidance and tool descriptions reworded to "conversation's language". Reason: on Opus 4.8 under forced tool call, "the user's language" has no live referent in this third-party summarizer and resolved to **Spanish** on English conversations in 3/20 W2-baseline summaries (S02, S07, S13 — masked because the eval only scored schema validity) and 2/3 W3 dogfood summaries (2026-06-24 traces). Eval delta: see `eval-runs/W3-final/` leaf re-run. |

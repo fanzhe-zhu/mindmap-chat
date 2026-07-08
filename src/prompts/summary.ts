@@ -24,11 +24,13 @@ The conversation that just took place:
 Your task:
 Emit a structured summary via the \`submit_summary_for_parent\` tool. Four fields, all required.
 
+Language rule: write \`topic\`, \`key_takeaways\`, and \`open_questions\` in the language the user's messages inside <conversation> are written in. If the user wrote in English, the summary is in English; if in Chinese, Chinese. Never use a language that does not appear in the conversation.
+
 # Field guidance
 
-**topic** (1 sentence): What this node's conversation actually ended up being about. Often this is just a slight refinement of the node title, but sometimes the conversation drifted; capture the actual content, not the intended content. Written in the user's language.
+**topic** (1 sentence): What this node's conversation actually ended up being about. Often this is just a slight refinement of the node title, but sometimes the conversation drifted; capture the actual content, not the intended content. Written in the conversation's language (see the language rule above).
 
-**key_takeaways** (3–5 items): The substantive points the conversation established or clarified. Each takeaway is a complete sentence or short paragraph (not a fragment). Written in the user's language. Things that count:
+**key_takeaways** (3–5 items): The substantive points the conversation established or clarified. Each takeaway is a complete sentence or short paragraph (not a fragment). Written in the conversation's language (see the language rule above). Things that count:
 - A concept the user came to understand (state what they understand, not "user learned X")
 - A decision or comparison the user made
 - A factual point that was grounded via tool use
@@ -69,12 +71,12 @@ export const submitSummaryForParentTool: Anthropic.Messages.Tool = {
     properties: {
       topic: {
         type: "string",
-        description: "One sentence (user's language) on what the conversation was about.",
+        description: "One sentence (conversation's language) on what the conversation was about.",
       },
       key_takeaways: {
         type: "array",
         items: { type: "string" },
-        description: "3–5 substantive takeaways (user's language). 1 allowed if conversation was very short, but flag in status.",
+        description: "3–5 substantive takeaways (conversation's language). 1 allowed if conversation was very short, but flag in status.",
       },
       status: {
         type: "string",
@@ -84,7 +86,7 @@ export const submitSummaryForParentTool: Anthropic.Messages.Tool = {
       open_questions: {
         type: "array",
         items: { type: "string" },
-        description: "0–N genuine unresolved questions/threads (user's language). Empty array if none.",
+        description: "0–N genuine unresolved questions/threads (conversation's language). Empty array if none.",
       },
     },
     required: ["topic", "key_takeaways", "status", "open_questions"],

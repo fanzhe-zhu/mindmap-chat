@@ -168,6 +168,11 @@ function computeLeafMetrics(leafRuns: any[]) {
   const withSummary = valid.filter(r => r.summary_result)
   const schemaValid = withSummary.filter(r => isValidSummary(r.summary_result))
 
+  // Summary language check (added with prompts.md v0.3). All 20 LOCKED
+  // scenarios are English, so every summary should be English. W2 baseline
+  // had 3/20 Spanish summaries (S02/S07/S13) that schema validity missed.
+  const languageValid = withSummary.filter(r => summaryLooksEnglish(r.summary_result))
+
   // Cost / tokens
   const totalCost = valid.reduce((s, r) => s + (r.leaf_result?.estimatedCostUsd || 0), 0)
 
@@ -192,6 +197,8 @@ function computeLeafMetrics(leafRuns: any[]) {
     react_iter_p95_target_met:    p95Iter < 8,
     summary_schema_valid_pct:     withSummary.length === 0 ? 0 : schemaValid.length / withSummary.length,
     summary_schema_target_met:    withSummary.length > 0 && schemaValid.length === withSummary.length,
+    summary_language_valid_pct:   withSummary.length === 0 ? 0 : languageValid.length / withSummary.length,
+    summary_language_target_met:  withSummary.length > 0 && languageValid.length === withSummary.length,
     total_cost_usd:               totalCost,
     category_breakdown:           categoryCounts,
   }
@@ -211,6 +218,25 @@ function isValidSummary(s: any): boolean {
     ["mastered", "partial", "confused"].includes(s?.status) &&
     Array.isArray(s?.open_questions)
   )
+}
+
+// Heuristic: the LOCKED scenarios are all English, so a correct summary is
+// English. Flags the observed failure mode (whole summary in Spanish) via
+// high-precision Spanish function words — 3+ distinct hits means the text is
+// Spanish prose, not a borrowed word like "café".
+const SPANISH_MARKERS = [
+  "el", "la", "los", "las", "del", "que", "qué", "cómo", "según", "una",
+  "para", "con", "este", "esta", "sobre", "más", "cuando", "pero", "como",
+  "usuario", "también", "hacia", "entre", "señal",
+]
+function summaryLooksEnglish(s: any): boolean {
+  const text = [s?.topic, ...(s?.key_takeaways ?? []), ...(s?.open_questions ?? [])]
+    .filter((t: any) => typeof t === "string")
+    .join(" ")
+    .toLowerCase()
+  const words = new Set(text.split(/[^\p{L}]+/u))
+  const hits = SPANISH_MARKERS.filter(m => words.has(m)).length
+  return hits < 3
 }
 
 // =============================================================================
@@ -234,6 +260,7 @@ function printReport(runTimestamp: string, root: any, leaf: any) {
   console.log(`ReAct iter mean:            ${leaf.react_iter_mean.toFixed(2)}        ${leaf.react_iter_mean_target_met ? "✅" : "❌"} target 2-5`)
   console.log(`ReAct iter p95:             ${leaf.react_iter_p95}            ${leaf.react_iter_p95_target_met ? "✅" : "❌"} target <8`)
   console.log(`Summary schema valid:       ${(leaf.summary_schema_valid_pct * 100).toFixed(1)}%   ${leaf.summary_schema_target_met ? "✅" : "❌"} target 100%`)
+  console.log(`Summary language valid:     ${(leaf.summary_language_valid_pct * 100).toFixed(1)}%   ${leaf.summary_language_target_met ? "✅" : "❌"} target 100%`)
   console.log(`Total cost:                 $${leaf.total_cost_usd.toFixed(4)}`)
   console.log(`Category breakdown:         ${JSON.stringify(leaf.category_breakdown)}`)
 }
@@ -258,6 +285,7 @@ function printCompare(a: { ts: string; root: any; leaf: any }, b: { ts: string; 
   diff("ReAct iter mean",              a.leaf.react_iter_mean,         b.leaf.react_iter_mean,         n => n.toFixed(2))
   diff("ReAct iter p95",               a.leaf.react_iter_p95,          b.leaf.react_iter_p95,         n => String(n))
   diff("Summary schema valid",         a.leaf.summary_schema_valid_pct, b.leaf.summary_schema_valid_pct, n => (n * 100).toFixed(1) + "%")
+  diff("Summary language valid",       a.leaf.summary_language_valid_pct, b.leaf.summary_language_valid_pct, n => (n * 100).toFixed(1) + "%")
   diff("Total cost USD",               a.leaf.total_cost_usd,          b.leaf.total_cost_usd,          n => "$" + n.toFixed(4))
 }
 

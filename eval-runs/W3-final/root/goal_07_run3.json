@@ -1,0 +1,51 @@
+{
+  "goal_id": 7,
+  "goal_text": "How to choose between RAG and fine-tuning",
+  "goal_type": "comparison",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is RAG, in plain terms?",
+        "one_liner": "Retrieval + generation: giving a model external facts to answer from."
+      },
+      {
+        "title": "What is fine-tuning, in plain terms?",
+        "one_liner": "Retraining a model to change how it behaves or responds."
+      },
+      {
+        "title": "The core difference: knowledge vs. behavior",
+        "one_liner": "RAG adds facts; fine-tuning shapes style and skills."
+      },
+      {
+        "title": "What kind of problem are you solving?",
+        "one_liner": "Which use cases naturally favor RAG vs. fine-tuning."
+      },
+      {
+        "title": "What does your data look like?",
+        "one_liner": "Volume, freshness, and format that push each way."
+      },
+      {
+        "title": "Cost, effort, and maintenance compared",
+        "one_liner": "Upfront work vs. ongoing upkeep for each approach."
+      },
+      {
+        "title": "A decision checklist for your project",
+        "one_liner": "Concrete questions that point you to a choice."
+      },
+      {
+        "title": "When to combine both",
+        "one_liner": "Why hybrid setups are common and when they help."
+      }
+    ],
+    "rationale": "The user is new to both concepts and needs to make a practical decision for a real project. I lead with two brief definition nodes (RAG, fine-tuning) since no prior background is assumed, then a single node crystallizing the core conceptual distinction (knowledge vs. behavior) — this is the minimal mechanics needed to understand tradeoffs, matching the request to deprioritize deep internals. The middle nodes are the practical decision factors explicitly promised: use-case type, data characteristics, and cost/maintenance — kept MECE (data vs. cost vs. use case don't overlap). The checklist node makes the decision actionable for their actual project, and the hybrid node prevents the false-dichotomy trap since combining both is common in practice. I excluded history, embedding math, training internals, and implementation tutorials as beyond decision-making needs."
+  },
+  "cost_usd": 0.049425
+}

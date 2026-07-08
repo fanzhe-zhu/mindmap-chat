@@ -1,0 +1,51 @@
+{
+  "goal_id": 4,
+  "goal_text": "How to do good user research",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is user research, really?",
+        "one_liner": "What it is, what questions it answers, why it beats guessing"
+      },
+      {
+        "title": "Start with the right question",
+        "one_liner": "Turning a vague goal into a focused research question"
+      },
+      {
+        "title": "Which method fits your question?",
+        "one_liner": "Interviews vs. usability tests vs. observation — when to use each"
+      },
+      {
+        "title": "Find and recruit the right people",
+        "one_liner": "Who to talk to, how many, and how to reach them"
+      },
+      {
+        "title": "Write questions that don't bias answers",
+        "one_liner": "Open questions, avoiding leading, building a discussion guide"
+      },
+      {
+        "title": "Run a session without steering it",
+        "one_liner": "Facilitating, listening, note-taking, keeping neutral"
+      },
+      {
+        "title": "Make sense of what you heard",
+        "one_liner": "Spotting patterns, synthesizing notes into findings"
+      },
+      {
+        "title": "Turn findings into decisions",
+        "one_liner": "Sharing insights so they actually change what you build"
+      }
+    ],
+    "rationale": "The user is a total beginner aiming to plan and run a real study soon, so the outline is sequenced as a practical end-to-end pipeline. Node 1 gives just enough foundational grounding (what research is / why) without dwelling on theory or history. Nodes 2–3 cover framing and method selection, which are the highest-leverage early decisions for a first-timer. Nodes 4–6 are the concrete execution skills (recruiting, question design, facilitation) that beginners most often get wrong. Nodes 7–8 close the loop on synthesis and acting on findings — otherwise a study is wasted. I deliberately excluded quantitative/statistical analysis, surveys, and specialized methods per the confirmed scope, and avoided an intro/conclusion node. Siblings are MECE: each maps to a distinct stage of doing a study with minimal overlap."
+  },
+  "cost_usd": 0.050394999999999995
+}

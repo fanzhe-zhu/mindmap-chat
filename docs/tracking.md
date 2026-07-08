@@ -1,7 +1,7 @@
 # Mind Map Chat — Project Tracking
 
-> **Last updated**: 2026-05-26 (W0 prep complete — P1-P4 + P8 test set all landed, W1 unblocked)
-> **Sprint window**: 3 weeks for v1 (✅ ready to kick off W1)
+> **Last updated**: 2026-07-07 (v1 W1-W3 all shipped; 3 dogfood bugs root-caused + fixed; W3-final eval running; next = human scoring + retro + deploy)
+> **Sprint window**: 3 weeks for v1 (✅ shipped)
 > **Time commitment**: 15+ hr/week
 > **Companions**:
 >   - `design-doc-v1.md` — build spec for the sprint period (includes eval framework §13-19)
@@ -15,11 +15,12 @@
 |---|---|---|---|
 | **v1 Design** | ✅ Locked | 2026-05-11 v1-only + eval complete | — |
 | **v1 Pre-impl Prep** | ✅ Done | 2026-05-26 complete | — |
-| **v1 Week 1** (Single Agent CLI) | 🟢 Ready | prep cleared, ready to kick off | — |
-| **v1 Week 2** (Root + Leaf CLI) | 🟢 Shipped | 2026-06-18 — root 3-phase + leaf CLI + summary | — |
-| **v1 Week 3** (Web App) | ⚪ Blocked | waiting on W2 | — |
-| **v1 Portfolio Packaging** | 🟡 Partial | story locked, artifacts TBD | parallel |
-| **v2 Planning** | 🟡 Candidates listed | Blocked on v1 ship + 1 week dogfood | see v2 section |
+| **v1 Week 1** (Single Agent CLI) | ✅ Shipped | 2026-06-18 — ReAct loop + 20-scenario baseline | — |
+| **v1 Week 2** (Root + Leaf CLI) | ✅ Shipped | 2026-06-18 — root 3-phase + leaf CLI + summary | — |
+| **v1 Week 3** (Web App) | ✅ Shipped | 2026-06-21 — Next.js + React Flow + streaming + localStorage; 2026-07-07 dogfood bugfixes (see PROGRESS) | — |
+| **v1 Post-ship** (eval + human scoring) | 🟡 In progress | W3-final auto eval 2026-07-07; human scoring sheet ready (`docs/human-scoring-template.md`) | human scoring is on you |
+| **v1 Portfolio Packaging** | 🟡 Partial | story locked; deploy / video / blog TBD | parallel |
+| **v2 Planning** | 🟡 Candidates listed | Blocked on retro + 5h dogfood + 3 beta feedbacks | see v2 section |
 | **v3 Roadmap** | 🟡 Held loosely | Blocked on v2 ship + dogfood | see v3 section |
 
 **Status symbols**: ✅ done · 🟢 on track · 🟡 partial / risk · 🔴 blocked / off-track · ⚪ not started
@@ -28,13 +29,12 @@
 
 ## 🎯 The Most Important Thing Right Now
 
-W0 prep is all complete (see P1-P4 + P8 below for details in each section). **Next step = kick off Week 1 Day 1.**
+v1 shipped (W1–W3) and the three dogfood bugs from 2026-06-23 are root-caused and fixed (Tavily key typo · node-intro markup-leak validate · summary prompt v0.3 language rule — details in `PROGRESS.md`). **Next steps, in order:**
 
-Kicking off W1 only requires:
-1. **Confirm the prep artifacts are all in the code repo** — `prompts.md` + P2/P3/P4 docs + eval `.ts` (`eval-types.ts` / `goals.ts` / `scenarios.ts` are typed & passing typecheck; runners `eval-leaf.ts` / `eval-report.ts` to be wired in W1)
-2. **Project init** (Next.js + Anthropic SDK) → implement `runReActLoop` per the P3 pseudocode → run 3 test queries → W1 ship
-
-The loose ends only needed for W1 ship (not blocking kickoff): wiring the eval runner scripts onto the W1 agent code + verifying the trace shape.
+1. **Human scoring** — fill `docs/human-scoring-template.md` against `eval-runs/W3-final/` (30–60 min; TODO since W2; the numbers gate the v2-theme decision)
+2. **Deploy to Vercel** + collect 3 beta-user feedbacks (the fixed questions below)
+3. **v1 retro** (mandatory — template at the bottom of this doc) + portfolio artifacts (demo video, blog post, eval results page)
+4. Then, and only then: pick the v2 theme
 
 ---
 
@@ -164,7 +164,7 @@ Walk through to the click level, before code:
 # 📦 v1 Week 1: Single Agent CLI
 
 > **Target ship**: Week 1 Day 7
-> **Status**: 🟢 Ready to start (prep unblocked 2026-05-26)
+> **Status**: ✅ Shipped 2026-06-18 (see `PROGRESS.md` W1)
 
 ## Goal
 CLI script, "Weather in Tokyo?" → agent calls web_search → multi-step ReAct reasoning → answers the user
@@ -256,7 +256,7 @@ CLI script, full v1 flow (no UI): user enters goal → root agent 3-step flow �
 # 📦 v1 Week 3: Web App Integration
 
 > **Target ship**: Week 3 Day 21
-> **Status**: ⚪ Not started
+> **Status**: ✅ Shipped 2026-06-21 (see `PROGRESS.md` W3 + the 2026-07-07 post-ship fixes)
 
 ## Goal
 Web app. User enters goal → root agent UI 3-step conversation → React Flow mind map → click a node → leaf agent conversation (tool use visible) → localStorage persistence

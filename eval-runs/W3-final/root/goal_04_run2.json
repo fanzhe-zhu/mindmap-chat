@@ -1,0 +1,51 @@
+{
+  "goal_id": 4,
+  "goal_text": "How to do good user research",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is user research (and what it isn't)",
+        "one_liner": "What research means for testing an idea, jargon-free"
+      },
+      {
+        "title": "Write a sharp validation question",
+        "one_liner": "Turning your idea into a testable assumption"
+      },
+      {
+        "title": "Who to talk to and how to find them",
+        "one_liner": "Recruiting the right people to interview"
+      },
+      {
+        "title": "Run a good interview without leading them",
+        "one_liner": "Asking questions that reveal real problems"
+      },
+      {
+        "title": "The Mom Test: getting honest answers",
+        "one_liner": "Avoiding false praise and biased feedback"
+      },
+      {
+        "title": "Test demand before you build",
+        "one_liner": "Landing pages, fake doors, mockups to gauge want"
+      },
+      {
+        "title": "Make sense of what you heard",
+        "one_liner": "Spotting patterns and signal from a few chats"
+      },
+      {
+        "title": "Decide: pursue, pivot, or drop the idea",
+        "one_liner": "Turning findings into a go/no-go call"
+      }
+    ],
+    "rationale": "The user is a total beginner aiming to validate a product/feature idea, so the outline skips usability testing, surveys, and statistics (explicitly deprioritized) and instead follows the practical arc of a first validation study. Node 1 grounds them with no jargon. Node 2 addresses the beginner-common mistake of researching without a clear hypothesis. Nodes 3-5 cover the core skill of qualitative interviewing, with a dedicated Mom Test node because avoiding biased/polite feedback is the #1 failure mode for idea validation specifically. Node 6 covers lightweight demand tests (a validation-specific technique distinct from interviews). Nodes 7-8 close the loop from raw findings to an actual decision, which is the user's real end goal. Siblings are MECE: define, plan, recruit, interview, avoid bias, test demand, analyze, decide — minimal overlap."
+  },
+  "cost_usd": 0.049945
+}

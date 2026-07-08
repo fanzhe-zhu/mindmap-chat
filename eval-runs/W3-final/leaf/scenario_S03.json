@@ -1,0 +1,82 @@
+{
+  "scenario_id": "S3",
+  "scenario_goal_id": 2,
+  "scenario_tree": "A",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use (b: reasonable parameters / c: integration quality)",
+  "scenario_user_message": "Is multi-head still standard practice in the latest models? Are there any new variants?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "Is multi-head still standard practice in the latest models? Are there any new variants?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good question — this is one where the landscape has shifted, so let me ground it rather than guess."
+          },
+          {
+            "type": "tool_use",
+            "id": "toolu_013UEYSkaBU7ZnFX6sHfUBVH",
+            "name": "web_search",
+            "input": {
+              "query": "multi-head attention variants 2024 grouped query attention multi-query LLM"
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_013UEYSkaBU7ZnFX6sHfUBVH",
+            "is_error": false,
+            "content": "[1] Multi-Head, Multi-Query, and Group-Query Attention — TensorRT-LLM\nURL: https://nvidia.github.io/TensorRT-LLM/advanced/gpt-attention.html\nThis document details the implementation of multi-head attention (MHA), multi-query attention (MQA) and group-query attention (GQA) for auto-regressive GPT-like models in TensorRT-LLM. As a quick reminder, the multi-head attention is the sequence of a batched matmul, a softmax and another batched matmul described in the Attention Is All You Need article. Multi-query Attention (MQA) and Group-query Attention (GQA) are variants of MHA that use fewer, so-called, K/V head than the number of query heads. As the packed mode is always more memory-efficient and faster than the padded mode, ***support for padded mode may be removed in the future***. To overcome that problem, TensorRT-LLM supports a mode without padding where the different tokens are packed together and the user provides the operator with a 1D tensor containing the lengths of the different sequences. It is recommended that users to always use packed mode (and support for the padded mode may be removed in the future).\n\n---\n\n[2] Demystifying GQA — Grouped Query Attention for Efficient LLM Pre-training\nURL: https://medium.com/data-science/demystifying-gqa-grouped-query-attention-3fb97b678e4a\n# Demystifying GQA — Grouped Query Attention for Efficient LLM Pre-training. Image 3: Bhavin Jawade, Ph.D. Press enter or click to view image in full size. In this article, we will examine another strategy adopted by different large language models for efficient training — Grouped Query Attention (GQA). In short, Grouped Query Attention (GQA) is a generalization of multi-head attention (MHA) and multi-query attention (MQA) — with each of them being a special case of GQA. In each head, there is an independent set of linear layers (projection matrices) for the query, key, and values (this is an important point that we will revisit in GQA). In multi-query attention, we average the heads for keys and values so that all query heads share the same key and value head. Grouped-query attention (GQA) is a simple approach that blends elements of multi-head attention (MHA) and multi-query attention (MQA) to create a more efficient attention mechanism.\n\n---\n\n[3] Grouped-Query Attention (GQA) | Sebastian Raschka, PhD\nURL: https://sebastianraschka.com/llm-architecture-gallery/gqa\n[Architecture gallery](https://sebastianraschka.com/llm-architecture-gallery/)[From-scratch code](https://github.com/rasbt/LLMs-from-scratch/tree/main/ch04/04_gqa). ![Image 6: Comparison between multi-head attention and grouped-query attention](https://sebastianraschka.com/llm-architecture-gallery/images/concepts/gqa-mha-vs-gqa.webp). GQA keeps the same overall attention pattern as MHA, but collapses the number of key-value heads by sharing them across multiple query heads (Original source: [_The Big LLM Architecture Comparison_](https://sebastianraschka.com/blog/2025/the-big-llm-architecture-comparison.html)). In the first [architecture comparison article](https://sebastianraschka.com/blog/2025/the-big-llm-architecture-comparison.html), I framed GQA as the new standard replacement for [classic multi-head attention (MHA)](https://sebastianraschka.com/blog/2023/understanding-and-coding-self-attention.html). That lowers both parameter count and [KV-cache](https://sebastianraschka.com/blog/2025/coding-the-kv-cache-in-llms.html) traffic without making drastic implementation changes like [multi-head latent attention (MLA)](https://sebastianraschka.com/llm-architecture-gallery/mla/). ### Memory Savings [](https://sebastianraschka.com/llm-architecture-gallery/gqa#memory-savings). ![Image 7: Memory savings of grouped-query attention versus multi-head attention](https://sebastianraschka.com/llm-architecture-gallery/images/concepts/gqa-memory-savings.webp). E.g., in my [Spring Architectures](https://sebastianraschka.com/blog/2026/a-dream-of-spring-for-open-weight.html) article, I mentioned that MiniMax M2.5 and Nanbeige 4.1 as models that remained very classic, using only grouped-query attention without piling on other efficiency tricks. ![Image 8: Relative efficiency comparison between grouped-query attention, multi-head latent attention, and multi-head attention](https://sebastianraschka.com/llm-architecture-gallery/images/concepts/gqa-vs-mla-relative-efficiency.webp). (2023), _GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints_](https://arxiv.org/abs/2305.13245)[The Big LLM Architecture Comparison](https://sebastianraschka.com/blog/2025/the-big-llm-architecture-comparison.html)[A Dream of Spring for Open-Weight LLMs](https://sebastianraschka.com/blog/2026/a-dream-of-spring-for-open-weight.html)[LLMs-from-scratch GQA materials](https://github.com/rasbt/LLMs-from-scratch/tree/main/ch04/04_gqa).\n\n---\n\n[4] Grouped Query Attention (GQA) vs. Multi Head Attention (MHA): LLM Inference Serving Acceleration\nURL: https://friendli.ai/blog/gqa-vs-mha\nMulti Head Attention (MHA): LLM Inference Serving Acceleration thumbnail](/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fix41heih%2Fproduction%2Fdc0d3c42f9ece2534c005c23d0bd83cbdd294c1d-750x416.heif%3Frect%3D1%2C0%2C748%2C416%26w%3D678%26h%3D377&w=1920&q=75). One bottleneck in LLM serving is the high memory bandwidth (and consumption) of loading (and storing) the attention keys and values for all the tokens. al.) (GQA) is one technique that tackles this by grouping similar attention heads to reduce the memory load of the attention mechanism while capturing the complex relationships and patterns in the text. ![Multi-head attention, multi-query attention, grouped-query attention mechanism-FriendliAI](/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fix41heih%2Fproduction%2F49a8ae64cf254b5affc93a6562323e2fcee7e32c-2560x1015.heif%3Frect%3D0%2C1%2C2560%2C1014%26w%3D800%26h%3D317&w=1920&q=75). To solve this memory bandwidth problem, **multi-query attention** (MQA) was created where only one key-value head exists for multiple query heads. The benefits of GQA are especially evident in larger models, where memory bandwidth (and consumption) concerns are most prominent and MQA’s reduction to a single key-value head can be too severe. We tested GQA’s impact on inference speed by running Meta’s [Llama 2 7B model](https://ai.meta.com/llama/) compared to Mistral’s [Mistral 7B model](https://mistral.ai/news/announcing-mistral-7b/) on a single NVIDIA A10G GPU with the Databricks Dolly 15K dataset under varying workloads. [![Friendli TCache: Optimizing LLM Serving by Reusing Computations thumbnail](/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fix41heih%2Fproduction%2Fdfe4c93257c04374fa3982666be028c6cf5ce593-750x417.heif&w=1200&q=75).\n\n---\n\n[5] Multi Query Attention (MQA) and Grouped-Query Attention (GQA)\nURL: https://tinkerd.net/blog/machine-learning/multi-query-attention\n# Multi-Query & Grouped-Query Attention. # Multi-Head Self-Attention. Recall that the standard self-attention mechanism in Transformer models1 computes an attention score between every pair of tokens in an input sequence of text. Internally, each token in the input sequence, represented by an embedding (that is, a vector of floating point values), is first projected into a query and key vector. For example, consider an input sequence of 5 tokens, such as the phrase *Hope is a waking dream*, with each token represented by an embedding of dimension 8, forming a \\(5 \\times 8\\) matrix. This matrix of input embeddings is passed separately through the Query Layer and Key Layer (each a linear layer), producing a query and key vector for each token:. Attention scores are then computed by multiplying the query vectors by the transpose of the key vectors; or, put another way, the attention scores are computed by taking the dot product of each query vector with each key vector."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Short answer: the multi-head *idea* is still standard, but plain vanilla MHA has largely been replaced in the latest large models by more efficient variants. Here's the lay of the land.\n\nThe core motivation you're learning in this node — using multiple heads so the model can attend to different kinds of relationships in parallel — is completely intact. Every modern model still has many query heads. What changed is how the *keys and values* are handled, and it's driven entirely by inference memory cost (the KV cache).\n\nThe main variants, from most to least redundant:\n\n- **MHA (classic)** — every query head gets its own key and value head. Most expressive, biggest KV cache.\n- **MQA (multi-query)** — all query heads share a *single* key/value head. Big memory savings, but sometimes a quality hit.\n- **GQA (grouped-query)** — the middle ground and the current default. Query heads are split into groups; each group shares one K/V head. Used in Llama 2/3, Mistral, and many others. MHA and MQA are just the two extremes of GQA.\n\nNotice the pattern: you keep many *query* heads (so the \"multiple perspectives\" benefit survives), but you cut down the K/V heads to save memory. That's the key insight — the diversity that makes multi-head useful lives mostly on the query side.\n\nThere's also a newer, more radical one: **MLA (multi-head latent attention)**, from DeepSeek, which compresses K/V into a low-rank latent space rather than just sharing heads. Different mechanism, similar goal.\n\nWant me to go deeper on *why* GQA keeps quality while shrinking memory — or is the tradeoff picture enough for what you need here?\n\n`stop_reason: end_turn`"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 2,
+    "tokens": {
+      "input": 7476,
+      "output": 658,
+      "cacheRead": 2027,
+      "cacheWrite": 2027
+    },
+    "toolCallsExecuted": 1,
+    "estimatedCostUsd": 0.04724225,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "Whether multi-head attention is still standard in current models and what modern variants exist.",
+    "key_takeaways": [
+      "The core multi-head idea — many heads attending to different relationships in parallel — is still standard, but plain vanilla MHA has largely been replaced in the latest large models by more memory-efficient variants driven by KV cache cost.",
+      "The main variants form a spectrum: MHA gives every query head its own K/V head (most expressive, largest cache), MQA shares a single K/V head across all query heads (big savings, possible quality hit), and GQA groups query heads to share K/V heads as the current default (used in Llama 2/3, Mistral).",
+      "The key insight is that diversity is kept on the query side (many query heads) while K/V heads are reduced to save memory — MHA and MQA are just the two extremes of GQA.",
+      "A newer variant, DeepSeek's multi-head latent attention (MLA), compresses K/V into a low-rank latent space rather than sharing heads, pursuing the same memory-saving goal via a different mechanism."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "Why GQA preserves quality while shrinking memory (the agent offered to go deeper but the user did not respond).",
+      "How MLA's low-rank latent compression works mechanically compared to head sharing."
+    ]
+  }
+}

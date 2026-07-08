@@ -1,0 +1,51 @@
+{
+  "goal_id": 6,
+  "goal_text": "Write a PRD for my side project",
+  "goal_type": "project",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What a solo-builder PRD is actually for",
+        "one_liner": "Why write one when building alone, and what to leave out"
+      },
+      {
+        "title": "Frame the problem and the 'why'",
+        "one_liner": "Capturing the problem, user, and reason to build it"
+      },
+      {
+        "title": "Define scope: what's in, what's out",
+        "one_liner": "Drawing MVP boundaries and an explicit non-goals list"
+      },
+      {
+        "title": "Write requirements that guide coding",
+        "one_liner": "Turning features into buildable, unambiguous specs"
+      },
+      {
+        "title": "Sketch user flows and screens",
+        "one_liner": "Mapping how a user moves through the product"
+      },
+      {
+        "title": "Note technical decisions and constraints",
+        "one_liner": "Stack, data model, and dependencies worth pinning down"
+      },
+      {
+        "title": "Pick a few success signals",
+        "one_liner": "Lightweight ways to know a feature works"
+      },
+      {
+        "title": "How detailed is detailed enough?",
+        "one_liner": "Right depth per section to stay unblocked, not overplan"
+      }
+    ],
+    "rationale": "The user wants the practical anatomy of a PRD for guiding their own solo build, and is comfortable with their project idea itself. I open with a node reframing the PRD's purpose specifically for a solo context (justifying what to skip), then walk the core document sections in build-dependency order: problem framing, scope/non-goals, requirements, user flows, and technical constraints. I include a deliberately lightweight 'success signals' node rather than a heavy metrics framework, per the deprioritization of collaboration/metrics-heavy content. I deliberately excluded approval workflows, stakeholder alignment, and product-definition help. The final node addresses the user's stated concern about 'how detailed each needs to be' — a distinct, high-value question for a solo builder wary of overplanning. Sections are MECE: purpose, why, scope, requirements, flows, tech, metrics, and calibration each answer a non-overlapping question."
+  },
+  "cost_usd": 0.05043500000000001
+}

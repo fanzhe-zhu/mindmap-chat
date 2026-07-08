@@ -1,0 +1,83 @@
+{
+  "scenario_id": "S5",
+  "scenario_goal_id": 7,
+  "scenario_tree": "B",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use + scope",
+  "scenario_user_message": "My knowledge base updates every day — does the industry generally use RAG now, or are there other new approaches?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "My knowledge base updates every day — does the industry generally use RAG now, or are there other new approaches?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good question, and the daily-update part is exactly why this matters for your decision.\n\nThe short version: yes, when your data changes frequently, RAG is the default choice, and that's not really controversial. The reason is structural — RAG keeps the knowledge outside the model, in a retrievable store. To reflect today's update, you just re-index or add the new documents. Nothing about the model changes.\n\nFine-tuning does the opposite: it bakes knowledge into the weights. To update it, you retrain (or run another tuning pass), which is slow and costly relative to just updating an index. For data that changes daily, that's a losing game.\n\nSo the \"how often data changes\" axis has a pretty clear lean: high churn → RAG.\n\nOn your second question — \"other new approaches\" — let me check what's current rather than answer from memory, since this space moves fast."
+          },
+          {
+            "type": "tool_use",
+            "id": "toolu_01WvmBv5zkzw2fJQ2zKYV2nd",
+            "name": "web_search",
+            "input": {
+              "query": "RAG vs fine-tuning alternatives 2024 2025 frequently changing knowledge base"
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_01WvmBv5zkzw2fJQ2zKYV2nd",
+            "is_error": false,
+            "content": "[1] RAG vs fine-tuning vs hybrid | OSDS 2025\nURL: https://opensourcedatasummit.com/rag-tuning-hybrid\n# RAG vs fine-tuning vs hybrid: A practitioner's guide to choosing the right approach for enterprise AI applications. Fine-tuning LLMs costs $10-50k per iteration and requires months of data prep, while RAG systems deploy in weeks at 10% of the cost. Teams that start with RAG and selectively apply fine-tuning only for behavior changes see faster deployment, better explainability, and lower maintenance costs. * Start with RAG for knowledge retrieval, compliance docs, and factual Q&A before considering fine-tuning. ###### What is the cost of access to the live virtual sessions? ###### What is Open Source Data Summit? OSDS is a peer-to-peer gathering of data industry professionals, experts, and enthusiasts to explore the dynamic landscape of open source data tools and storage. The central theme of OSDS revolves around the advantages of open source data products and their pivotal role in modern data ecosystems. OSDS is the annual peer hub for knowledge exchange, fostering a deeper understanding of open source options and their role in shaping the data-driven future.\n\n---\n\n[2] Fine-Tuning vs. RAG Explained in 4 Minutes | AI for Beginners\nURL: https://www.youtube.com/watch?v=L7PfLk4a2oY\nFine-Tuning vs. RAG Explained in 4 Minutes | AI for Beginners\nTiny Technical Tutorials\n103000 subscribers\n296 likes\n8069 views\n26 Feb 2025\nWhat’s the difference between fine-tuning and retrieval-augmented generation (RAG) when it comes to large language models (LLMs)? In this quick breakdown, we’ll explain how fine-tuning and RAG work, highlight their key differences, and show when it makes sense to use one over the other—or even combine both for maximum performance.\n\n🌟***OTHER VIDEOS YOU MIGHT ENJOY***🌟\n• Build your own chatbot (using RAG) with Amazon Bedrock and Lex: https://youtu.be/4esqnMlMo8I \n• Getting started with Amazon Bedrock: https://youtu.be/32D7NJK9QIk\n\n🌟***MY AWS COURSES***🌟\nIf you’re interested in getting AWS certifications, check out these full courses.  They include lots of hands-on demos, quizzes and full practice exams.  Use FRIENDS10 for a 10% discount!\n- AWS Certified Cloud Practitioner: https://academy.zerotomastery.io/a/aff_n20ghyn4/external?affcode=441520_lm7gzk-d \n- AWS Certified Solutions Architect Associate: https://academy.zerotomastery.io/a/aff_464yrtnn/external?affcode=441520_lm7gzk-d\n\n🌟***TIMESTAMPS***🌟\n00:00 – What’s the difference between fine-tuning and RAG when it comes to LLMs?\n00:41 – How does fine-tuning work with an LLM?\n01:47 - How does retrieval-augmented generation (RAG) work with an LLM?\n02:56 – A side-by-side comparison chart of fine-tuning vs. RAG\n03:25 – Using both fine-tuning and RAG together\n26 comments\n\n\n---\n\n[3] Full Guide to Choosing the Right AI Stack. Part 1: RAG vs. Fine-Tuning vs. Hybrid - Intersog Israel\nURL: https://intersog.co.il/blog/full-guide-to-choosing-the-right-ai-stack-part-1-rag-vs-fine-tuning-vs-hybrid\nFor CTOs, product leaders and founders, choosing the right technology stack is no longer an afterthought; it’s a strategic decision that determines whether your prototype becomes a scalable enterprise AI solution or an expensive experiment. We will explore how to incorporate domain knowledge using retrieval-augmented generation (RAG) or fine-tuning, when to use open-source versus proprietary large language models (LLMs), how to select a vector database and the requirements for serving models in production. RAG is an AI integration method in business where an LLM is augmented with an external knowledge base to ground its answers in specific data. RAG pipelines retrieve relevant information at query time and inject it into the LLM’s prompt (input context), rather than relying solely on the model’s fixed training data. The model’s answer is thereby 'augmented' with up-to-date, context-specific information. However, implementing RAG requires investment in data engineering, including preparing a high-quality knowledge base, keeping it updated and tuning the retrieval method for your domain.\n\n---\n\n[4] RAG vs. Fine-Tuning vs. Hybrid: Choosing the Right AI Architecture\nURL: https://www.actian.com/blog/databases/should-you-use-rag-or-fine-tune-your-llm\n# Should You Use RAG or Fine-Tune Your LLM? Post URL Check out this article:  Should You Use RAG or Fine-Tune Your LLM? * RAG dominates enterprise AI due to flexibility, but fine-tuning excels at scale, latency, and structured outputs. * RAG adds recurring costs from context and retrieval, while fine-tuning shifts cost upfront with stable per-query pricing. * Hybrid approaches combine retrieval with fine-tuning for higher accuracy and better reasoning. * Choosing the right approach depends on data volatility, query volume, and team capabilities. RAG pulls in external data at inference time. In this article, we’ll compare RAG, fine-tuning, and a hybrid architecture to understand the trade-offs and where each approach excels. RAG is a method where the model dynamically pulls in external data at inference time. Fine-tuning is the process of modifying a model’s weights during training using labeled data. In real-world systems, the choice between RAG and fine-tuning depends on variables like scale, query volume, and how often your data changes.\n\n---\n\n[5] RAG vs. Fine-Tuning: How to Choose - Generative AI\nURL: https://www.oracle.com/artificial-intelligence/generative-ai/retrieval-augmented-generation-rag/rag-fine-tuning\nFine-Tuning: How to Choose. An LLM that’s expected to provide tech support for a particular gadget, for example, needs to draw on domain-specific knowledge. There are currently two ways to help generative AI models deliver responses that reflect that sort of expertise: fine-tuning and retrieval-augmented generation, or RAG. RAG, short for retrieval-augmented generation, is an architectural framework developed by researchers at Meta to help general-purpose AI models deliver outputs that are relevant and useful to organizations. RAG does this by giving a large language model, or LLM, access to an internal knowledge base that it can use to augment its original training data. The result is an AI system that combines the language fluency of an LLM with local data to deliver targeted, contextually appropriate responses. ### When to Use RAG. Use RAG when it’s important for generative AI responses to provide up-to-date or organization-specific data that wasn’t part of the LLM’s training. ### When to Use Fine-Tuning."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "The search confirms the consensus: for data that changes often, RAG is the standard, and the framing across sources is consistent — \"how often your data changes\" (data volatility) is treated as one of the primary deciding variables, and high volatility points to RAG.\n\nOn the \"other new approaches\" part, a couple of things worth knowing, but with a caveat about scope:\n\nThe main \"new\" thing isn't a replacement for RAG — it's the hybrid pattern. You use RAG for the fresh, changing knowledge (your daily updates), and optionally fine-tune only for how the model behaves — tone, format, following instructions. Notice those are two different jobs: keeping facts current vs. shaping behavior. The freshness axis alone doesn't tell you whether you need the second part.\n\nOne caveat I'd flag: even with RAG, \"updates daily\" isn't fully free. You still have to keep the index in sync — re-embedding changed documents, handling deletions, avoiding stale chunks. That's real data-engineering work, just far cheaper and faster than retraining. So RAG solves the freshness problem but moves the effort into your ingestion pipeline.\n\nThat's the freshness angle. Two things I deliberately didn't dig into because they're neighboring nodes: the actual cost math of each approach lives in your \"Cost comparison\" node, and the knowledge-vs-behavior distinction I just gestured at is the whole subject of your \"Task-type dimension\" node — worth visiting for the hybrid question.\n\nDoes the sync/staleness point land, or do you want me to go deeper on how update frequency changes your ingestion design?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 2,
+    "tokens": {
+      "input": 7114,
+      "output": 870,
+      "cacheRead": 2041,
+      "cacheWrite": 2041
+    },
+    "toolCallsExecuted": 1,
+    "estimatedCostUsd": 0.05068675,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "How data update frequency (freshness/volatility) affects the choice between RAG, fine-tuning, and hybrid approaches, in the context of a daily-updating knowledge base.",
+    "key_takeaways": [
+      "For data that changes frequently, RAG is the default and largely uncontroversial choice, because RAG keeps knowledge in an external retrievable store that can be re-indexed without touching the model.",
+      "Fine-tuning bakes knowledge into the weights, so reflecting daily updates would require retraining — slow and costly, making it a losing game for high-churn data.",
+      "The high-volatility-points-to-RAG framing was confirmed via web search as the industry consensus, with data volatility treated as a primary deciding variable.",
+      "The main 'new' pattern is not a replacement for RAG but a hybrid: RAG handles fresh/changing knowledge while fine-tuning is applied only to shape behavior (tone, format, instruction-following) — two distinct jobs.",
+      "RAG solves freshness but doesn't make daily updates free: it shifts effort into the ingestion pipeline (re-embedding changed documents, handling deletions, avoiding stale chunks)."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "Whether to go deeper on how update frequency changes ingestion/pipeline design (the agent explicitly offered this and the user did not yet respond).",
+      "Whether the user actually needs the behavior-shaping (fine-tuning) half of the hybrid pattern — the freshness axis alone doesn't answer this, deferred to the Task-type dimension node."
+    ]
+  }
+}

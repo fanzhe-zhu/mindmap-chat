@@ -1,0 +1,81 @@
+{
+  "scenario_id": "S8",
+  "scenario_goal_id": 7,
+  "scenario_tree": "B",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use + hallucination prevention",
+  "scenario_user_message": "Are there examples of real companies using both at the same time?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "Are there examples of real companies using both at the same time?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good question — let me find some concrete cases rather than hand-wave."
+          },
+          {
+            "type": "tool_use",
+            "id": "toolu_01RucCarqjZuiN7NEUieZQQw",
+            "name": "web_search",
+            "input": {
+              "query": "companies combining RAG and fine-tuning production LLM case study"
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_01RucCarqjZuiN7NEUieZQQw",
+            "is_error": false,
+            "content": "[1] Hybrid Approaches: Combining RAG and Finetuning for Optimal LLM Performance | by PrajnaAI | Medium\nURL: https://prajnaaiwisdom.medium.com/hybrid-approaches-combining-rag-and-finetuning-for-optimal-llm-performance-35d2bf3582a9\n# Hybrid Approaches: Combining RAG and Finetuning for Optimal LLM Performance. As the AI community continues to push the boundaries of what’s possible, two prominent approaches have emerged to address these challenges: Retrieval Augmented Generation (RAG) and fine-tuning. On the other hand, finetuning allows us to adapt pre-trained models to specific tasks or domains, improving their performance on targeted applications. RAG’s effectiveness heavily depends on the quality and coverage of its knowledge base, while finetuning can be resource-intensive and may lead to overfitting on small datasets. Combining RAG and finetuning techniques can create more accurate, informative, and adaptable LLMs for various tasks. We’ll explore the intricacies of RAG and finetuning, examine different hybrid architectures, and analyze real-world applications and experimental results. By the end, you’ll have a comprehensive understanding of how these powerful techniques can be combined to push the boundaries of what LLMs can achieve. Before we delve into hybrid approaches, it's crucial to have a solid understanding of both RAG and finetuning as individual techniques.\n\n---\n\n[2] Fine-Tuning vs. RAG: A Position Paper from the ...\nURL: https://www.scifiniti.com/3104-4719/3/2026.0031\nRAG: A Position Paper from the Perspective of LLM-Based Cybersecurity Modeling*. RAG: A Position Paper from the Perspective of LLM-Based Cybersecurity Modeling.\" *Computing&AI Connect* 3 (2026): 0031. Although LLMs are pre-trained with a large amount of knowledge, their application to specific domains, such as cybersecurity, is often limited by insufficient domain-specific coverage in their pre-training data. To address this limitation, domain-specific knowledge is typically incorporated through fine-tuning or retrieval-augmented generation (RAG). In this position paper, we examine fine-tuning and RAG in the context of cybersecurity applications. Moreover, we discuss the hybrid approach combining fine-tuning and RAG, and highlight the most appropriate scenarios for selecting fine-tuning, RAG, or a hybrid approach based on the desired cybersecurity use case and operational constraints. Fine-tuning, RAG, and their evolving hybrid approach are key paradigms in the development and use of LLMs. This section examines the background of fine-tuning, RAG, and their hybrid approaches, including the underlying techniques and procedures.\n\n---\n\n[3] A fine-tuning enhanced RAG system with quantized influence measure as AI judge | Scientific Reports\nURL: https://www.nature.com/articles/s41598-024-79110-x\nThis study presents an innovative enhancement to retrieval-augmented generation (RAG) systems by seamlessly integrating fine-tuned large language models (LLMs) with vector databases. This integration capitalizes on the combined strengths of structured data retrieval and the nuanced comprehension provided by advanced LLMs. Central to our approach are the LoRA and QLoRA methodologies, which stand at the forefront of model refinement through parameter-efficient fine-tuning and memory optimization. A novel feature of our research is the incorporation of user feedback directly into the training process, ensuring the model’s continuous adaptation to user expectations and thus, improving its performance and applicability. Additionally, we introduce a Quantized Influence Measure (QIM) as an innovative “AI Judge” mechanism to enhance the precision of result selection, further refining the system’s accuracy. Accompanied by an executive diagram and a detailed algorithm for fine-tuning QLoRA, our work provides a comprehensive framework for implementing these advancements within chatbot technologies.\n\n---\n\n[4] RAG vs. Fine-tuning | IBM\nURL: https://www.ibm.com/think/topics/rag-vs-fine-tuning\nRetrieval augmented generation (RAG) and fine-tuning are two methods enterprises can use to get more value out of large language models (LLMs). ### What’s the difference between RAG and fine-tuning? The difference between RAG and fine-tuning is that RAG augments a natural language processing (NLP) model by connecting it to an organization’s proprietary database, while fine-tuning optimizes deep learning models for domain-specific tasks. RAG and fine-tuning have the same intended outcome: enhancing a model’s performance to maximize value for the enterprise that uses it. RAG uses an organization’s internal data to augment prompt engineering, while fine-tuning retrains a model on a focused set of external data to improve performance. The fine-tuned LLM has a better understanding of the specific domain and its terminology, allowing it to generate accurate responses. RAG is an LLM optimization method introduced by Meta AI in a 2020 paper called \"Retrieval-Augmented Generation for Knowledge-Intensive Tasks\".[1] It is a data architecture framework that connects an LLM to an organization’s proprietary data, often stored in data lakehouses.\n\n---\n\n[5] RAFT: Combining RAG with fine-tuning | SuperAnnotate\nURL: https://www.superannotate.com/blog/raft-retrieval-augmented-fine-tuning\n# RAFT: Combining RAG with fine-tuning. To improve a language model in certain topics, you can add more domain-specific information to its training after it has learned from a huge amount of pre-training data. We mainly use two methods: Retrieval augmented generation (RAG) and fine-tuning. RAG adds extra knowledge from outside sources to the prompts, and fine-tuning involves giving the model more data to learn from. RAFT combines RAG and fine-tuning and provides a training recipe that improves the model's ability to answer questions in an 'open-book' domain setting. In this post, we'll explore what RAFT is and how it helps take the training of language models to the next level. RAG lets the model look up documents to answer questions, a bit like having the book open during a test. With retrieval augmented fine-tuning, we train the model to take a question and documents (even the distracting ones) and come up with an answer that follows a logical thought process."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "The honest answer: most of what's publicly documented is *patterns* and named techniques, not \"Company X did exactly this.\" Named-and-branded case studies are surprisingly rare, because companies treat their stack as a competitive edge. But there are a few concrete, well-understood shapes worth knowing.\n\nThe cleanest formal one is RAFT (Retrieval-Augmented Fine-Tuning), which came out of a Berkeley/Microsoft collaboration. The idea: you fine-tune the model *on the task of using retrieved documents well* — including training it to ignore irrelevant \"distractor\" documents it retrieves. So retrieval stays for fresh knowledge, but fine-tuning teaches the model how to reason over that retrieved context. Microsoft has folded this into Azure AI guidance, which is about as close to a \"real company using both\" as you'll get with a name attached.\n\nThe more common real-world shape, though, is simpler and split by *what each method is for*:\n\n- Fine-tune to fix *behavior* — tone, output format, domain phrasing, following your API's structure.\n- Use RAG to inject *current facts* — docs, tickets, policies that change weekly.\n\nSo a support bot might be fine-tuned to sound like the company and always produce a structured JSON answer, while RAG pulls the actual up-to-date help-center article at query time. Neither method alone does both jobs well.\n\nThat knowledge-vs-behavior split is exactly the axis my sibling node \"Task-type dimension\" is built around — if you want to go deep on *why* fine-tuning owns behavior and RAG owns knowledge, that's the place.\n\nIs your interest more \"show me it works in the wild\" (evidence), or \"how would I actually architect this for my own case\" (design)? Those pull in different directions.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 2,
+    "tokens": {
+      "input": 6539,
+      "output": 678,
+      "cacheRead": 2041,
+      "cacheWrite": 2041
+    },
+    "toolCallsExecuted": 1,
+    "estimatedCostUsd": 0.04301175,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "Whether real companies combine RAG and fine-tuning, and the concrete patterns for doing so.",
+    "key_takeaways": [
+      "Named, branded case studies of companies using both RAG and fine-tuning are rare, because firms treat their stacks as competitive edges; what's publicly documented is mostly patterns rather than 'Company X did exactly this.'",
+      "RAFT (Retrieval-Augmented Fine-Tuning), from a Berkeley/Microsoft collaboration, fine-tunes the model on the task of using retrieved documents well — including learning to ignore irrelevant distractor documents — and Microsoft has folded it into Azure AI guidance.",
+      "The most common real-world hybrid shape splits the two methods by purpose: fine-tune to fix behavior (tone, output format, domain phrasing, API structure) and use RAG to inject current facts (docs, tickets, policies).",
+      "A concrete example is a support bot fine-tuned to sound on-brand and always produce structured JSON, while RAG pulls the up-to-date help-center article at query time — neither method alone does both jobs well."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "Is the user's interest 'show me it works in the wild' (evidence) or 'how would I architect this for my own case' (design)? — the assistant asked but the user hadn't answered."
+    ]
+  }
+}

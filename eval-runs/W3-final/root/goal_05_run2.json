@@ -1,0 +1,51 @@
+{
+  "goal_id": 5,
+  "goal_text": "What to prepare when transitioning from SWE to AIPM",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What does an AIPM actually do all day?",
+        "one_liner": "The real scope, decisions, and rhythm of the role"
+      },
+      {
+        "title": "How is AIPM different from PM and from SWE?",
+        "one_liner": "Where AI products break normal PM playbooks"
+      },
+      {
+        "title": "From code to customer problems",
+        "one_liner": "Discovering user pain instead of implementing specs"
+      },
+      {
+        "title": "How do you prioritize when everything's a maybe?",
+        "one_liner": "Frameworks for choosing what to build with uncertain AI"
+      },
+      {
+        "title": "Defining success metrics for AI products",
+        "one_liner": "Model metrics vs. product and business outcomes"
+      },
+      {
+        "title": "Connecting AI capabilities to business value",
+        "one_liner": "Turning what's possible into what's worth funding"
+      },
+      {
+        "title": "Which of your SWE instincts help or hurt here?",
+        "one_liner": "Transferable strengths and habits to unlearn"
+      },
+      {
+        "title": "Is this role actually a fit for you?",
+        "one_liner": "Signals, tradeoffs, and how to judge your gaps"
+      }
+    ],
+    "rationale": "The user is in evaluation mode (deciding fit), an SWE with strong technical fundamentals, whose self-identified gap is product/user/business thinking. So I skip all tech explanation, coding, resume/portfolio, and interview tactics. Node 1 grounds them in what the role really is (essential for a fit decision). Node 2 clarifies how AIPM differs from adjacent roles they know, distinguishing AI-specific quirks. Nodes 3-6 directly target the confirmed gap: user problem discovery, prioritization under AI uncertainty, success metrics (with the AI-specific model-vs-product distinction they'd care about as an SWE), and business value—these map cleanly to the four themes in the understanding and are MECE. Node 7 leverages their SWE background specifically (transfer/unlearn), which is unique to their transition. Node 8 closes the loop on their actual goal: judging fit. No intro/conclusion filler; ordering runs from role understanding → core skills → self-assessment."
+  },
+  "cost_usd": 0.054294999999999996
+}

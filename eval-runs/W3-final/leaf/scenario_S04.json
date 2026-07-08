@@ -1,0 +1,51 @@
+{
+  "scenario_id": "S4",
+  "scenario_goal_id": 2,
+  "scenario_tree": "A",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use + reasoning integration",
+  "scenario_user_message": "Are mainstream large models basically all decoder-only now? Why has this trend formed?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "Are mainstream large models basically all decoder-only now? Why has this trend formed?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Yeah, that's basically right — the dominant LLMs today (GPT, Llama, Mistral, Qwen, Gemini, Claude, etc.) are decoder-only. It wasn't always obvious this would win; back around 2019-2020 encoder-decoder (T5, BART) and encoder-only (BERT) were all serious contenders. Let me give you the \"why.\"\n\nA few forces pushed things this way:\n\n**One objective, all the data.** Decoder-only models train on next-token prediction over raw text — every token is a training signal, and you don't need paired or labeled data. Encoder-decoder setups often lean on a more structured objective (span corruption, seq2seq pairs). The simplicity of \"just predict the next token on the whole internet\" scaled beautifully.\n\n**It's a universal interface.** Once you frame everything as text-in, text-out continuation, a single decoder-only model can do translation, summarization, Q&A, coding — all as prompting. You don't need a separate encoder branch. This is the in-context learning story that GPT-3 made famous.\n\n**Simpler and more efficient to scale.** One stack instead of two. And a big practical win: during generation you can cache past keys/values (KV cache), so autoregressive decoding is efficient. Encoder-decoder cross-attention adds machinery that's harder to scale cleanly.\n\n**Empirically it just held up.** There's real research comparing architectures at scale under matched compute, and decoder-only with a plain language-modeling objective turned out to be a very strong baseline — especially for zero-shot generalization after pure LM pretraining.\n\nOne nuance worth flagging so you don't over-generalize: encoder-only models (BERT-style) are still very much alive for embedding and retrieval tasks, where you want a rich bidirectional representation of a fixed input rather than generation. And encoder-decoder still shows up in things like translation and some multimodal setups. \"Decoder-only won\" is true for *generative chat/LLM* use, not literally everything.\n\nDoes the reasoning make sense so far, or do you want me to dig into any one of these — say, why bidirectional encoding actually helps for embeddings but hurts for generation?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2134,
+      "output": 721,
+      "cacheRead": 0,
+      "cacheWrite": 2033
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.03123625,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "Why decoder-only architectures have become dominant for mainstream LLMs, versus encoder-only and encoder-decoder designs.",
+    "key_takeaways": [
+      "Mainstream generative LLMs (GPT, Llama, Mistral, Qwen, Gemini, Claude) are now overwhelmingly decoder-only, though around 2019-2020 encoder-only (BERT) and encoder-decoder (T5, BART) were serious contenders.",
+      "Decoder-only won largely because next-token prediction is a single simple objective that uses every token as a training signal on raw unlabeled text, which scaled well across the whole internet.",
+      "Framing all tasks as text-in/text-out continuation gives a universal prompting interface (in-context learning, popularized by GPT-3), avoiding the need for a separate encoder branch.",
+      "A single stack is simpler and cheaper to scale, and autoregressive decoding benefits from KV caching, whereas encoder-decoder cross-attention adds machinery that is harder to scale; matched-compute research also showed decoder-only LM pretraining is a strong zero-shot baseline.",
+      "Decoder-only 'winning' applies to generative chat/LLM use, not everything — encoder-only models remain preferred for embeddings/retrieval (bidirectional representations) and encoder-decoder still appears in translation and some multimodal setups."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "Why bidirectional encoding helps for embeddings but hurts for generation (offered by the assistant but not yet explored)."
+    ]
+  }
+}

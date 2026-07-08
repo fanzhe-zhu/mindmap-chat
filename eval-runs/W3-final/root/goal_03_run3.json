@@ -1,0 +1,51 @@
+{
+  "goal_id": 3,
+  "goal_text": "Learn to use PostgreSQL",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is a relational database?",
+        "one_liner": "Tables, rows, columns, keys, and why PostgreSQL specifically"
+      },
+      {
+        "title": "Set up PostgreSQL and connect to it",
+        "one_liner": "Install, create a database, use psql or a GUI client"
+      },
+      {
+        "title": "Write basic SQL: querying data",
+        "one_liner": "SELECT, WHERE, ORDER BY, LIMIT to read your data"
+      },
+      {
+        "title": "Insert, update, and delete data",
+        "one_liner": "The write operations your app performs on records"
+      },
+      {
+        "title": "Design a schema for your app",
+        "one_liner": "Choosing tables, columns, data types, and primary keys"
+      },
+      {
+        "title": "Link tables with relationships and joins",
+        "one_liner": "Foreign keys and JOINs to combine related data"
+      },
+      {
+        "title": "Connect PostgreSQL to your application code",
+        "one_liner": "Drivers, connection strings, and running queries safely"
+      },
+      {
+        "title": "Keep queries fast and data valid",
+        "one_liner": "Indexes, constraints, and avoiding common mistakes"
+      }
+    ],
+    "rationale": "The user is a total beginner aiming to back a web/app project, so the outline starts from first principles (what a relational DB is) and builds toward practical shipping. Nodes 1-4 establish fundamentals and core SQL (read then write, kept separate to reduce overlap). Node 5-6 target schema design and relationships, which are essential for an app's data model. Node 7 addresses the explicit goal of connecting to application code, including parameterized queries to avoid SQL injection. Node 8 covers indexes and constraints at a \"build and run\" depth without diving into advanced admin/tuning, which the user chose to deprioritize. Excluded: history, deep internals, replication, clustering, and large-scale backup/performance tuning per the confirmed understanding."
+  },
+  "cost_usd": 0.051185
+}

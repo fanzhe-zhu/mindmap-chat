@@ -205,3 +205,46 @@ Vercel-ready: set `ANTHROPIC_API_KEY` + `TAVILY_API_KEY` as server env vars (nei
 ### Intentionally out of scope (→ v2, per the plan)
 
 Stale-tag UI · title-type 5-way classification · reference-edge UI · bottom-up entry · multi-tree · `summary_for_user` · true SDK token streaming inside the ReAct loop · nested child placement.
+
+---
+
+## W3 post-ship — dogfood bugfixes + W3-final eval
+
+**Status:** Done — 2026-07-07
+
+Dogfooding on 2026-06-23 surfaced 3 issues (captured in a repro script that never got run that night). All three root-caused from the `traces/` record and fixed.
+
+### Bug 1 — every web-app search failed "Unauthorized" (config, not code)
+
+`TAVILY_API_KEY` in `.env.local` had a doubled leading `t` (`ttvly-…`) since 2026-06-16. Tavily's server was **inconsistently tolerant** of the malformed prefix: W1/W2 evals and a 2026-07-07 CLI repro passed with it; the June 21/24 web sessions and later 2026-07-07 calls got 401. Fixed by stripping the character; verified end-to-end through the Next server (real results, `is_error: false`). Two hypotheses tested and refuted along the way: Next-vs-dotenv env loading, and module-scope-vs-lazy client construction — both fine; `raw fetch` with the same key 401'd identically.
+
+**Honest correction to the W3 "Verification" section above:** the curl check "leaf stream with live search events" passed *while the search itself was failing* — `search_start`/`search_end` events fire regardless, and the leaf prompt's failed-tool recovery (P4 §3) masked the 401. Design lesson: graceful tool-failure recovery hides config failures; verification must assert on `tool_result` contents in the trace, not on flow completion.
+
+### Bug 2 — node-intro leaked tool-call markup into `intro`
+
+Opus 4.8 under strict tool use occasionally serialized its internal parameter syntax into the first string field (`…</intro>\n<parameter name="starter_questions">[…]` — trace `2026-06-24/node_intro/web-intro-node_1`, 1/9 that session). Structurally valid call, so only a content check catches it: `validateNodeIntro` now rejects markup markers, firing `runStructuredCall`'s existing 1-retry. Tested against the actual leaked trace payload. (`6f2e9bb`)
+
+### Bug 3 — summaries randomly in Spanish (~20%, pre-existed W3)
+
+The summary generator emitted **Spanish** summaries of English conversations: 2/3 dogfood summaries *and — newly discovered — 4/20 of the W2 baseline* (S02/S07/S13/S19), masked because the eval only scored schema validity. Root cause: "written in the user's language" has no live referent in the third-party summarizer under a forced tool call. prompts.md **v0.3** anchors the rule to the text inside `<conversation>`. Verified 6/6 English on the exact failing dogfood conversation + 2/2 Chinese on a Chinese conversation (matching preserved, not forced English). New `summary_language_valid` auto-metric added to `eval-report.ts` (retroactively scores W2-baseline at 80%). (`445817e`)
+
+### W3-final eval — `eval-runs/W3-final/` (post-fix, prompts v0.3)
+
+**Root** (10 goals × 3, Opus 4.8): 30/30 · granularity std/mean **0.034** (W2: 0.040; target <0.3 ✓) · node mean 7.93, dist {7:4, 8:24, 9:2} · cost $1.55.
+
+**Leaf** (20 LOCKED scenarios) vs baselines:
+
+| Metric | W1 | W2 | W3-final | Note |
+|---|---|---|---|---|
+| Tool use rate (needs-tool) | 66.7 % | 77.8 % | 66.7 % | same non-determinism band; W1 diagnosis (label artifact) stands |
+| Tool params valid | 100 % | 100 % | 100 % | |
+| ReAct iter mean / P95 | 1.30 / 2 | 1.35 / 2 | 1.30 / 2 | stable |
+| Summary schema valid | 0 % | 100 % | 100 % | |
+| **Summary language valid** | — | **80 %** | **100 %** | the v0.3 fix, measured |
+| Unauthorized tool results | — | — | **0** | key fix confirmed |
+| Cost | $0.596 | $0.657 | $0.553 | |
+
+### Still open (on the human)
+
+- `docs/human-scoring-template.md` (new) — coverage, personalization, sibling overlap, hallucination, status accuracy against `eval-runs/W3-final/`; TODO since W2, gates the v2-theme pick.
+- Deploy to Vercel · 3 beta feedbacks · demo video · blog post · **v1 retro** (template in tracking.md).

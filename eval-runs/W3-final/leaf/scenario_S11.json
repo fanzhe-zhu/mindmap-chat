@@ -1,0 +1,51 @@
+{
+  "scenario_id": "S11",
+  "scenario_goal_id": 5,
+  "scenario_tree": "C",
+  "scenario_category": "sibling_awareness",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Sibling awareness",
+  "scenario_user_message": "How exactly should I talk about these projects in an interview?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "How exactly should I talk about these projects in an interview?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "That question is really about interview delivery — how you frame and narrate the work when someone's grilling you. That's owned by the \"Interview prep\" node, so I'd point you there for the actual storytelling mechanics (STAR-style framing, what interviewers probe for, etc.).\n\nWhat I can help with here is the layer underneath that: making sure the projects themselves actually prove AIPM ability, so you have something worth talking about. A project only tells a good interview story if it demonstrates the right things.\n\nSo let me flip it back to you: what projects do you currently have, or are thinking of building? Once I know that, I can tell you whether they'd actually read as PM work versus engineering work — which is the trap most SWEs fall into.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2136,
+      "output": 238,
+      "cacheRead": 0,
+      "cacheWrite": 2045
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.01918625,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "How to ensure portfolio projects actually demonstrate AIPM ability, as distinct from how to narrate them in interviews.",
+    "key_takeaways": [
+      "Interview delivery mechanics (STAR-style framing, what interviewers probe for) belong to the Interview prep node, not to the Portfolio node.",
+      "The Portfolio node's role is the layer underneath interviews: making the projects themselves genuinely prove AIPM ability so there is something worth talking about.",
+      "A common trap for SWEs is building projects that read as engineering work rather than PM work, and projects need to be checked against that distinction.",
+      "To assess whether projects would read as PM work, the specific projects the user has or plans to build need to be identified first."
+    ],
+    "status": "confused",
+    "open_questions": [
+      "What specific projects does the user currently have or plan to build?",
+      "Do those projects read as PM work versus engineering work?"
+    ]
+  }
+}

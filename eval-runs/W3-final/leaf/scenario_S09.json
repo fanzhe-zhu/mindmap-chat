@@ -1,0 +1,52 @@
+{
+  "scenario_id": "S9",
+  "scenario_goal_id": 5,
+  "scenario_tree": "C",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use + scope",
+  "scenario_user_message": "What kinds of questions do AIPM interviews generally ask now? How are they different from regular PM interviews?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "What kinds of questions do AIPM interviews generally ask now? How are they different from regular PM interviews?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good question to start with, because the delta from regular PM is exactly where SWEs-turned-PMs tend to get surprised.\n\nLet me give you the shape of it. AIPM interviews still include the classic PM rounds — product sense, execution/metrics, behavioral, sometimes analytical. Those don't go away. What gets *added* (and where people fail) is roughly four things:\n\n1. **AI/ML fluency without being an ML engineer.** They'll probe whether you understand what a model can and can't do. Not \"derive backprop,\" but \"when would you use retrieval vs fine-tuning,\" \"what's a reasonable latency/cost tradeoff here,\" \"why might this model hallucinate and what do you do about it.\" Coming from SWE this is your natural advantage — lean into it.\n\n2. **Product sense under uncertainty.** Regular PM product sense assumes deterministic features. AI features are probabilistic — the model is right 85% of the time. A lot of questions test whether you can design around that: what's the UX when the model is wrong? How do you set user expectations? What's the fallback?\n\n3. **Evaluation and metrics for non-deterministic systems.** \"How would you measure if this AI feature is good?\" is almost guaranteed. This is genuinely different from regular PM metrics and it's a common failure point — but the *how* of building evals is really your sibling node's territory (\"Skills to build up\"). Here I'd just flag that the interview will test it.\n\n4. **Data and feedback loops.** How the product gets better over time, what data you need, how you'd bootstrap when you have none.\n\nDoes that framing match what you expected, or were you picturing something more like a coding/technical screen?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2153,
+      "output": 550,
+      "cacheRead": 0,
+      "cacheWrite": 2045
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.02707125,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "How AIPM interviews differ from regular PM interviews and what additional areas they test.",
+    "key_takeaways": [
+      "AIPM interviews retain the classic PM rounds (product sense, execution/metrics, behavioral, analytical) but add roughly four AI-specific areas on top.",
+      "They test AI/ML fluency at a product level (e.g., retrieval vs. fine-tuning, latency/cost tradeoffs, why models hallucinate) rather than deep ML engineering — a natural advantage for someone from a SWE background.",
+      "Product sense is probed under uncertainty because AI features are probabilistic: candidates must design for when the model is wrong, set user expectations, and provide fallbacks.",
+      "Evaluation and metrics for non-deterministic systems ('how would you measure if this AI feature is good?') is nearly guaranteed and a common failure point, though the how-to belongs to the sibling 'Skills to build up' node.",
+      "Data and feedback loops (how the product improves over time, what data is needed, how to bootstrap from none) is a fourth added area."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "Whether AIPM interviews include a coding/technical screen (the user raised this as a possibility but it wasn't yet resolved).",
+      "The user hasn't yet confirmed the framing matches their expectations or pushed into any single area in depth."
+    ]
+  }
+}

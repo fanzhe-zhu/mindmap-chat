@@ -1,0 +1,47 @@
+{
+  "goal_id": 7,
+  "goal_text": "How to choose between RAG and fine-tuning",
+  "goal_type": "comparison",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 7,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is RAG, actually?",
+        "one_liner": "How retrieval feeds a model external knowledge at query time."
+      },
+      {
+        "title": "What is fine-tuning, actually?",
+        "one_liner": "How training reshapes a model's behavior and built-in knowledge."
+      },
+      {
+        "title": "What each is good at (and bad at)",
+        "one_liner": "Core strengths and weaknesses of each approach, side by side."
+      },
+      {
+        "title": "How often does your information change?",
+        "one_liner": "Why data freshness pushes you toward RAG or fine-tuning."
+      },
+      {
+        "title": "What data do you actually have?",
+        "one_liner": "How data type and volume determine which is feasible."
+      },
+      {
+        "title": "Cost, latency, and effort trade-offs",
+        "one_liner": "What each costs to build, run, and maintain over time."
+      },
+      {
+        "title": "A decision checklist for your project",
+        "one_liner": "Concrete questions that point you to one answer."
+      }
+    ],
+    "rationale": "The user is new to both concepts and choosing for a real project, so the outline opens with two foundational definition nodes (RAG, fine-tuning) framed as plain-language questions, then a comparison node establishing strengths/weaknesses. The middle three nodes are the practical decision criteria the confirmed understanding prioritized—data freshness, available data, and cost/latency/effort—kept MECE by splitting the \"criteria that matter\" into distinct axes rather than one blob. The final node synthesizes into an applicable checklist, matching the \"framework I can apply to my situation\" goal. Excluded: history/theory, implementation tutorials, and hybrid setups, all explicitly deprioritized. Depth stays at informed-decision-maker level throughout."
+  },
+  "cost_usd": 0.0484
+}

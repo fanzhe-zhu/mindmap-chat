@@ -1,0 +1,51 @@
+{
+  "goal_id": 5,
+  "goal_text": "What to prepare when transitioning from SWE to AIPM",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What does an AI PM actually own?",
+        "one_liner": "The AI PM role vs SWE and generic PM"
+      },
+      {
+        "title": "AI/ML product concepts you'll be quizzed on",
+        "one_liner": "Models, data, evals, latency, hallucination tradeoffs"
+      },
+      {
+        "title": "Building product sense",
+        "one_liner": "Judging what to build and why users want it"
+      },
+      {
+        "title": "Prioritization & roadmap frameworks",
+        "one_liner": "RICE, tradeoffs, scoping under constraints"
+      },
+      {
+        "title": "Cracking the AI product case question",
+        "one_liner": "Structuring design cases for AI features"
+      },
+      {
+        "title": "Metrics & success under model uncertainty",
+        "one_liner": "Defining success when outputs are probabilistic"
+      },
+      {
+        "title": "Behavioral & leadership stories",
+        "one_liner": "Reframing SWE work into PM-style narratives"
+      },
+      {
+        "title": "Closing the SWE-to-PM credibility gap",
+        "one_liner": "Showing you can lead, not just execute"
+      }
+    ],
+    "rationale": "The user is a working SWE aiming specifically to pass AI PM interviews. I excluded software fundamentals, agile, and technical literacy (their existing edge) and the \"is this the right move\" career question (out of scope). The nodes map to the actual interview surface for AI PM roles: role clarity (so they know what's being evaluated), AI/ML product concepts (interview knowledge gaps unique to AI PM), product sense and prioritization (the classic PM gaps a SWE must close), the AI-specific case question and metrics-under-uncertainty (the two hardest AI-flavored interview components), behavioral storytelling (reframing engineering experience), and the credibility/leadership gap SWEs commonly face. These are MECE-ish: concepts vs. sense vs. prioritization vs. case-solving vs. metrics vs. behavioral vs. positioning have low content overlap. Ordered so role understanding and concepts precede the applied case/metrics work, with behavioral and positioning as the framing layer."
+  },
+  "cost_usd": 0.05276
+}

@@ -1,0 +1,51 @@
+{
+  "goal_id": 10,
+  "goal_text": "I've already built an LLM app and want to understand agents",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What makes an agent different from a chain?",
+        "one_liner": "The core shift: model decides its own next steps, not you"
+      },
+      {
+        "title": "The agent loop",
+        "one_liner": "How reason → act → observe → repeat actually runs in code"
+      },
+      {
+        "title": "Giving your agent tools",
+        "one_liner": "Defining, exposing, and calling tools the model can invoke"
+      },
+      {
+        "title": "Parsing and executing tool calls safely",
+        "one_liner": "Handling model output, running actions, feeding results back"
+      },
+      {
+        "title": "Managing state and memory across the loop",
+        "one_liner": "What to carry between steps and how to keep context sane"
+      },
+      {
+        "title": "Controlling the loop: stopping, retries, guardrails",
+        "one_liner": "Termination, error handling, cost/step limits, avoiding runaway loops"
+      },
+      {
+        "title": "Wire an agent into your existing app",
+        "one_liner": "Where the loop lives, async, streaming, surfacing progress to users"
+      },
+      {
+        "title": "Debugging and observing agent behavior",
+        "one_liner": "Tracing steps, catching bad reasoning, iterating on prompts"
+      }
+    ],
+    "rationale": "The user is a builder who already knows LLM prompting/chaining and wants to ship one agent into a real app. I skip LLM fundamentals and framework surveys entirely. Node 1 anchors the conceptual delta (autonomy/control flow) they specifically need since they only know chains. Nodes 2–6 decompose the buildable core of a single agent: the loop, tool definition, tool execution, state/memory, and control/guardrails — these are MECE-ish (concept, then each distinct implementation concern). Nodes 7–8 handle integration into their existing app and the practical reality of debugging, which matters for actually shipping. I deprioritized multi-agent orchestration and library comparisons per the confirmed understanding, keeping depth at \"enough to design and implement.\""
+  },
+  "cost_usd": 0.051235
+}

@@ -1,0 +1,51 @@
+{
+  "goal_id": 6,
+  "goal_text": "Write a PRD for my side project",
+  "goal_type": "project",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "Nail the problem statement",
+        "one_liner": "What problem, for whom, why it matters now"
+      },
+      {
+        "title": "Who's the user, really?",
+        "one_liner": "Defining users and their concrete jobs-to-be-done"
+      },
+      {
+        "title": "What are you actually betting on?",
+        "one_liner": "Surfacing your core assumptions and hypotheses"
+      },
+      {
+        "title": "Draw the scope line",
+        "one_liner": "What's in v1, what's explicitly out and why"
+      },
+      {
+        "title": "Solution shape, not spec",
+        "one_liner": "Sketching the approach without over-designing"
+      },
+      {
+        "title": "How will you know it worked?",
+        "one_liner": "Defining success criteria and signals to watch"
+      },
+      {
+        "title": "Name the risks and unknowns",
+        "one_liner": "Open questions that could break the plan"
+      },
+      {
+        "title": "A lean PRD structure to reuse",
+        "one_liner": "Section skeleton fitting a solo thinking doc"
+      }
+    ],
+    "rationale": "The user already knows what a PRD is and wants a structural thinking scaffold for a solo side project, so I skipped basics and all team-alignment sections (sign-off, handoffs, approvals). The outline front-loads the clarifying-thinking sections the understanding flagged as most valuable: problem, users, scope, and success criteria. I added an \"assumptions/bets\" node and a \"risks/unknowns\" node because for a solo founder these force honesty better than stakeholder-oriented sections would. The \"solution shape\" node is framed to avoid over-speccing, matching the scaffold-not-spec intent. The final node gives a reusable lean structure so the framework generalizes across product types, honoring the \"general-purpose, unnamed project\" signal. Nodes are ordered by dependency (problem → users → bets → scope → solution → success → risks → structure) and are largely non-overlapping."
+  },
+  "cost_usd": 0.04905999999999999
+}

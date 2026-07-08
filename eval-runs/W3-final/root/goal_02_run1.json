@@ -1,0 +1,51 @@
+{
+  "goal_id": 2,
+  "goal_text": "How Transformers work",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is a neural network, really?",
+        "one_liner": "Neurons, weights, layers, and how a network learns from data."
+      },
+      {
+        "title": "From words to numbers: tokens and embeddings",
+        "one_liner": "How text becomes tokens and vectors a model can process."
+      },
+      {
+        "title": "What problem was attention invented to solve?",
+        "one_liner": "Why older sequence models struggled and what attention fixed."
+      },
+      {
+        "title": "How does self-attention actually work?",
+        "one_liner": "Queries, keys, values, and the attention formula, step by step."
+      },
+      {
+        "title": "Multi-head attention and positional encoding",
+        "one_liner": "Why multiple heads, and how word order is injected."
+      },
+      {
+        "title": "Assembling the full Transformer block",
+        "one_liner": "Feed-forward layers, residuals, normalization, encoder vs decoder."
+      },
+      {
+        "title": "How does a Transformer get trained?",
+        "one_liner": "Loss, gradient descent, and backpropagation, conceptually."
+      },
+      {
+        "title": "Reading the papers: notation and vocabulary decoder",
+        "one_liner": "Common symbols, diagrams, and terms you'll meet in papers."
+      }
+    ],
+    "rationale": "The user is new to ML entirely, so the outline builds foundational concepts (neural networks, embeddings, training via gradient descent/backprop) that the confirmed understanding says not to assume. Their goal is reading papers confidently, so the sequence culminates in a node explicitly about decoding paper notation and vocabulary, and every earlier node emphasizes the terminology papers use (tokens, QKV, positional encoding, residuals, encoder/decoder). Attention is split into motivation, mechanics, and multi-head/positional to give conceptual-but-precise depth without collapsing overlap. Implementation/coding and heavy math derivations are excluded per the confirmed scope, so nodes stay at a conceptual level with just enough notation to follow papers. Ordering follows real dependencies: NN basics → representations → attention motivation → attention mechanics → full architecture → training → paper-reading synthesis."
+  },
+  "cost_usd": 0.051845
+}

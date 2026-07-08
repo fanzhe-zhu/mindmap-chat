@@ -1,0 +1,48 @@
+{
+  "scenario_id": "S15",
+  "scenario_goal_id": 2,
+  "scenario_tree": "A",
+  "scenario_category": "off_topic",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Scope-violation handling (shouldn't over-search; shouldn't slide into a general chatbot)",
+  "scenario_user_message": "By the way, what's the weather like in Beijing tonight?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "By the way, what's the weather like in Beijing tonight?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "That's outside what this node covers — I'm here for the self-attention mechanism (how Q, K, V compute attention), and weather isn't something I can meaningfully help with even by searching.\n\nIf you want to keep going here, a good starting question is: do you already know what Q, K, and V stand for, or should we start from scratch?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2112,
+      "output": 113,
+      "cacheRead": 2019,
+      "cacheWrite": 0
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.0042995,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "The conversation did not engage with the self-attention mechanism; the user asked an off-topic weather question and the tutor redirected back to the node's scope.",
+    "key_takeaways": [
+      "The user's only message was an off-topic question about the weather in Beijing, which the tutor declined to address as out of scope.",
+      "No content about Q, K, V, or the self-attention mechanism was discussed."
+    ],
+    "status": "confused",
+    "open_questions": [
+      "Does the user know what Q, K, and V stand for, or should the topic be started from scratch?"
+    ]
+  }
+}

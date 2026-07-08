@@ -1,0 +1,51 @@
+{
+  "goal_id": 10,
+  "goal_text": "I've already built an LLM app and want to understand agents",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What actually makes it an \"agent\"?",
+        "one_liner": "The leap from single-shot prompt to autonomous loop"
+      },
+      {
+        "title": "The agent loop: observe, decide, act, repeat",
+        "one_liner": "How an LLM drives iterative reasoning until done"
+      },
+      {
+        "title": "Giving your LLM tools to call",
+        "one_liner": "How tool/function calling works and how to define them"
+      },
+      {
+        "title": "How the agent decides what to do next",
+        "one_liner": "Reasoning patterns like ReAct that route each step"
+      },
+      {
+        "title": "Memory: keeping context across steps",
+        "one_liner": "Managing state, history, and scratchpad within a run"
+      },
+      {
+        "title": "Build a minimal agent into your app",
+        "one_liner": "Wiring loop + tools onto your existing prompt flow"
+      },
+      {
+        "title": "When things go wrong: loops, errors, cost",
+        "one_liner": "Stopping conditions, retries, guardrails, token control"
+      },
+      {
+        "title": "Testing and observing your agent",
+        "one_liner": "Tracing steps and evaluating whether it works"
+      }
+    ],
+    "rationale": "The user already knows LLM basics and prompt/response wiring, so I skip all foundational LLM material and framework comparisons. The outline bridges concept to practice: node 1 defines the conceptual delta (agent vs. their current single-shot app) directly addressing their mental model gap; nodes 2-5 cover the four core mechanisms they named implicitly (loop, tools, decision-making, memory) as MECE architecture pieces they'll implement; node 6 is the payoff—building into their existing app—which is their explicit target. Nodes 7-8 cover the practical realities (control/cost, observability) that separate a demo from something shippable into a real app, which matters since they want to ship. I deliberately excluded multi-agent systems, academic taxonomies, and specific framework tutorials per the confirmed scope."
+  },
+  "cost_usd": 0.051955
+}

@@ -1,0 +1,47 @@
+{
+  "goal_id": 1,
+  "goal_text": "Understand the core ideas behind RLHF",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 7,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is a language model, really?",
+        "one_liner": "Neural nets, training vs. inference, and text prediction — the minimum background."
+      },
+      {
+        "title": "Why base models aren't enough",
+        "one_liner": "The alignment problem RLHF exists to solve: helpful, honest, harmless outputs."
+      },
+      {
+        "title": "Stage 1: Supervised fine-tuning (SFT)",
+        "one_liner": "Teaching a base model to follow instructions from human examples."
+      },
+      {
+        "title": "Stage 2: The reward model",
+        "one_liner": "How human preference comparisons become a scoring signal for outputs."
+      },
+      {
+        "title": "Stage 3: Optimizing against the reward",
+        "one_liner": "What 'policy' and PPO mean, and just enough RL to follow along."
+      },
+      {
+        "title": "The RLHF vocabulary cheat sheet",
+        "one_liner": "Reward hacking, KL penalty, preference data, and other paper terms."
+      },
+      {
+        "title": "Where RLHF falls short",
+        "one_liner": "Known limits and newer alternatives like DPO and RLAIF."
+      }
+    ],
+    "rationale": "The user is new to ML but wants to follow papers/discussions, so the outline prioritizes conceptual shape and vocabulary over math or implementation. Node 1 supplies the bare-minimum ML foundation (LM, neural net, train vs. inference) they confirmed they lack. Node 2 frames the motivating problem. Nodes 3–5 walk the canonical three-stage RLHF pipeline (SFT, reward model, RL optimization), with the RL node deliberately scoped to 'just enough' rather than full policy-optimization theory, matching the deprioritization. Node 6 is a pure terminology node serving the 'terminology fluency' goal directly. Node 7 covers criticisms and modern alternatives (DPO, RLAIF) that dominate current discussions/papers, essential for someone whose goal is to keep up with the conversation. No intro/conclusion filler; no deep RL math; no build-it-yourself content."
+  },
+  "cost_usd": 0.053130000000000004
+}

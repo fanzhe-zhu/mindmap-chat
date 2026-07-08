@@ -1,0 +1,81 @@
+{
+  "scenario_id": "S19",
+  "scenario_goal_id": 3,
+  "scenario_tree": "D",
+  "scenario_category": "tool_failure",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Hallucination on failed tool = 0 (regression floor, specifically stress-tested)",
+  "scenario_user_message": "Look up PostgreSQL 18's official release date and the list of new features.",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "Look up PostgreSQL 18's official release date and the list of new features."
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "I'll search for that."
+          },
+          {
+            "type": "tool_use",
+            "id": "toolu_01ArVvovcTHUEV6bUMRRe4qp",
+            "name": "web_search",
+            "input": {
+              "query": "PostgreSQL 18 release date new features"
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_01ArVvovcTHUEV6bUMRRe4qp",
+            "is_error": false,
+            "content": "[1] What's New in PostgreSQL 18: A DBA's Perspective | Bytebase\nURL: https://www.bytebase.com/blog/what-is-new-in-postgres-18\n# What's New in PostgreSQL 18: A DBA's Perspective. This post is maintained by Bytebase, an open-source database DevSecOps tool that can manage PostgreSQL. We will constantly update this post to include the latest Postgres 18.x releases. PostgreSQL 18 ships on September 25, 2025. The release moves on async I/O, UUIDv7, and a set of long-requested operational fixes — adding `NOT NULL` without a full table scan, virtual generated columns, `RETURNING` with `old`/`new` aliases, and a faster `pg_upgrade` path. * **PostgreSQL 18 Beta 1**: May 8, 2025. * **PostgreSQL 18 Beta 2**: July 17, 2025. * **PostgreSQL 18 Beta 3**: August 14, 2025. * **PostgreSQL 18 RC 1**: September 4, 2025. * **PostgreSQL 18 Official Release**: September 25, 2025. PostgreSQL 18 introduces an asynchronous I/O subsystem, selected by the new `io_method` server variable. **DBA Note:** Adding a `NOT NULL` on a multi-terabyte table no longer requires an `ACCESS EXCLUSIVE` lock for the duration of the scan.\n\n---\n\n[2] PostgreSQL: Release Notes\nURL: https://www.postgresql.org/docs/release/18.0\n* An asynchronous I/O (AIO) subsystem that can improve performance of sequential scans, bitmap heap scans, vacuums, and other operations. * pg\\_upgrade now retains optimizer statistics. * Support for \"skip scan\" lookups that allow using multicolumn B-tree indexes in more cases. This is now the default for generated columns. * `OLD` and `NEW` support for `RETURNING` clauses in INSERT, UPDATE, DELETE, and MERGE commands. The above items and other new features of PostgreSQL 18 are explained in more detail in the sections below. A dump/restore using pg\\_dumpall or use of pg\\_upgrade or logical replication is required for those wishing to migrate data from any previous release. Checksums can be disabled with the new initdb option `--no-data-checksums`. The previous behavior can be performed by using the new `ONLY` option. If a `GROUP BY` clause includes all columns of a unique index, as well as other columns of the same table, those other columns are redundant and can be dropped from the grouping.\n\n---\n\n[3] Why Everyone’s Talking About PostgreSQL 18\nURL: https://www.youtube.com/watch?v=rlyIa7-ow-4\nWhy Everyone’s Talking About PostgreSQL 18\nBetter Stack\n162000 subscribers\n2069 likes\n75314 views\n2 Oct 2025\nPostgreSQL 18 is finally here, bringing faster queries, smarter indexes, smoother upgrades, and modern authentication. In this video, we break down the biggest new features - from 3× faster reads with async I/O to skip scans, virtual generated columns, and better replication. If you’re a developer or run Postgres in production, this release is packed with upgrades you don’t want to miss.\n\n🔗 Relevant Links\nPostgres 18 Released: https://www.postgresql.org/about/news/postgresql-18-released-3142/\n\n❤️ More about us\nRadically better observability stack: https://betterstack.com/\nWritten tutorials: https://betterstack.com/community/\nExample projects: https://github.com/BetterStackHQ\n\n📱 Socials\nTwitter: https://twitter.com/betterstackhq\nInstagram: https://www.instagram.com/betterstackhq/\nTikTok: https://www.tiktok.com/@betterstack\nLinkedIn: https://www.linkedin.com/company/betterstack\n\n📌 Chapters:\n00:00 Intro – Why PostgreSQL 18 is a big deal \n00:28 Async I/O – Up to 3× faster reads\n00:47 Smarter query planning – Skip scans for multicolumn indexes \n01:07 Easier upgrades – Planner stats carried across versions\n01:22 Faster pg_upgrade – Parallel checks and --swap option \n01:37 Developer quality of life – Virtual generated columns \n01:50 OLD/NEW in RETURNING – Instant before/after values\n02:05 Debugging made easier – EXPLAIN with buffer usage \n02:16 Security refresh – OAuth 2.0 and stronger defaults\n02:38 Smarter replication – Auto drop idle slots & parallel streaming \n02:55 Maintenance updates – Page checksums, vacuum, richer stats\n03:42 What it means for developers – Why you should care\n47 comments\n\n\n---\n\n[4] PostgreSQL 18 Released!\nURL: https://www.postgresql.org/about/news/postgresql-18-released-3142\n*   [About](https://www.postgresql.org/about/ \"About\"). *   [About](https://www.postgresql.org/about/). *   [History](https://www.postgresql.org/docs/current/history.html). A key PostgreSQL feature is the generation and storage of [statistics](https://www.postgresql.org/docs/18/planner-stats.html) that help PostgreSQL select the most efficient query plan. Additionally, [`pg_upgrade`](https://www.postgresql.org/docs/18/pgupgrade.html), a utility that performs major version upgrades, includes several enhancements in PostgreSQL 18, such as faster upgrades when a database contains many objects like tables and sequences. This release introduces \"skip scan\" lookups on [multicolumn B-tree indexes](https://www.postgresql.org/docs/18/indexes-multicolumn.html) that improve execution time for queries that omit an `=` condition on one or more prefix index columns. PostgreSQL 18 introduces [virtual generated columns](https://www.postgresql.org/docs/18/sql-createtable.html#SQL-CREATETABLE-PARMS-GENERATED-STORED) that compute values at query time instead of storing them. LIKE`](https://www.postgresql.org/docs/18/sql-createforeigntable.html) command. Additionally, PostgreSQL 18 now supports making `LIKE` comparisons over text that uses a [nondeterministic collation](https://www.postgresql.org/docs/18/collation.html#COLLATION-NONDETERMINISTIC), simplifying how you can perform more complex pattern matching. Additionally, [`CREATE SUBSCRIPTION`](https://www.postgresql.org/docs/18/sql-createsubscription.html) now defaults to using parallel streaming for applying transactions, which can help improve performance. Please see the [release notes](https://www.postgresql.org/docs/18/release-18.html) for a complete list of new and changed features. *   [Release Notes](https://www.postgresql.org/docs/18/release-18.html).\n\n---\n\n[5] PostgreSQL 18 New Features\nURL: https://neon.com/postgresql/18-new-features\n# PostgreSQL 18 New Features. PostgreSQL 18's new features apply to any Postgres deployment, not just Neon, so you can use this guide wherever you run Postgres. If you're an enterprise looking for managed cloud Postgres built for the AI era, Lakebase delivers the performance, security, and deep Lakehouse integration that modern data teams need. **Summary**: PostgreSQL 18 introduces many new features including asynchronous I/O providing significant I/O performance improvements, virtual generated columns, UUIDv7 support, temporal constraints, and enhanced security. This overview covers the major features that impact developers and DBAs. Postgres 18 is available on Neon [Preview]. This version introduces fundamental changes to how PostgreSQL handles I/O operations, along with numerous developer-friendly features and security enhancements. * **Developer Experience**: New features like UUIDv7 and virtual generated columns. With PostgreSQL 18, we see a major shift in how the database handles I/O operations, particularly for read-heavy workloads. The introduction of asynchronous I/O (AIO) provides up to 2-3x performance improvements in many scenarios."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "PostgreSQL 18 was officially released on September 25, 2025.\n\nThe full feature list is broad, but since we're in the \"indexes and query performance\" node, let me flag the one that's most relevant to you here, then give you the rest quickly.\n\nThe headline item for our topic is skip scan on multicolumn B-tree indexes. Previously, if you had an index on `(a, b)` and your query filtered only on `b` (no `=` condition on `a`), Postgres couldn't use that index efficiently. In 18, it can \"skip\" through the distinct values of the leading column and still use the index. That directly changes how you think about column ordering in composite indexes — more on that if you want.\n\nOther performance-relevant ones:\n- Asynchronous I/O (AIO) subsystem — up to 2-3x faster sequential scans, bitmap heap scans, and vacuums on read-heavy workloads.\n- `pg_upgrade` now retains optimizer statistics, so the planner makes good decisions immediately after an upgrade instead of needing a fresh `ANALYZE`.\n- `EXPLAIN` now shows buffer usage by default, which makes diagnosing slow queries easier.\n\nThe rest are less about query performance (out of our scope here) — UUIDv7, virtual generated columns, `OLD`/`NEW` in `RETURNING`, OAuth 2.0 auth, temporal constraints, parallel streaming for replication.\n\nWant me to go deeper on skip scan and what it means for how you design composite indexes? That's squarely in our territory and it's probably the most practically useful thing in this release for you.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 2,
+    "tokens": {
+      "input": 7176,
+      "output": 602,
+      "cacheRead": 2037,
+      "cacheWrite": 2037
+    },
+    "toolCallsExecuted": 1,
+    "estimatedCostUsd": 0.04430975,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "A factual lookup of PostgreSQL 18's release date and features, filtered toward the ones relevant to indexes and query performance.",
+    "key_takeaways": [
+      "PostgreSQL 18 was officially released on September 25, 2025.",
+      "The most relevant feature for indexes is skip scan on multicolumn B-tree indexes: a query filtering only on a non-leading column (e.g. b in an index on (a, b)) can now use the index efficiently by skipping through distinct values of the leading column, which changes how composite index column ordering should be reasoned about.",
+      "Other performance-relevant improvements include asynchronous I/O (up to 2-3x faster sequential scans, bitmap heap scans, and vacuums), pg_upgrade retaining optimizer statistics, and EXPLAIN showing buffer usage by default.",
+      "Non-performance features (UUIDv7, virtual generated columns, OLD/NEW in RETURNING, OAuth 2.0 auth, temporal constraints, parallel streaming replication) were noted as outside this node's scope."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "How does skip scan concretely change the design of composite indexes and column ordering? (Offered by the assistant but not yet explored.)"
+    ]
+  }
+}

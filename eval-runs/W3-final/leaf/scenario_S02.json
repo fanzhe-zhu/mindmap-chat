@@ -1,0 +1,50 @@
+{
+  "scenario_id": "S2",
+  "scenario_goal_id": 2,
+  "scenario_tree": "A",
+  "scenario_category": "sibling_awareness",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Sibling awareness (<30% content overlap)",
+  "scenario_user_message": "So how is position information encoded in? How does the Transformer know the order of the words?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "So how is position information encoded in? How does the Transformer know the order of the words?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "That's a great question, but it's actually handled by a sibling node — \"Positional encoding\" is dedicated to exactly why position information is needed and how it gets injected. Head there for the full story.\n\nThe short version, so you're not left hanging: the self-attention mechanism I cover here is order-blind on its own. If you scramble the words, the Q/K/V computation produces the same set of outputs (just permuted). Attention only looks at content similarity between tokens, not where they sit in the sequence. That's precisely why positional information has to be added separately — the \"Positional encoding\" node explains how.\n\nWant me to dig into why attention is order-blind? That part is genuinely in my scope — it comes straight out of how Q, K, and V are computed.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2117,
+      "output": 245,
+      "cacheRead": 2019,
+      "cacheWrite": 0
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.0076245,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "Whether and how the self-attention mechanism encodes word-order information.",
+    "key_takeaways": [
+      "Self-attention on its own is order-blind: scrambling the words produces the same set of Q/K/V outputs, just permuted.",
+      "Attention only compares content similarity between tokens and does not account for where tokens sit in the sequence.",
+      "Because attention ignores order, position information must be injected separately — which is the job of the sibling 'Positional encoding' node.",
+      "The reason attention is order-blind follows directly from how Q, K, and V are computed."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "The user was offered a deeper explanation of exactly why attention is order-blind from the Q/K/V computation but did not yet take it up."
+    ]
+  }
+}

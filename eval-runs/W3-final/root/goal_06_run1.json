@@ -1,0 +1,51 @@
+{
+  "goal_id": 6,
+  "goal_text": "Write a PRD for my side project",
+  "goal_type": "project",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What problem are you actually solving?",
+        "one_liner": "Naming the pain, why it matters, and who feels it"
+      },
+      {
+        "title": "Who is it for?",
+        "one_liner": "Defining the user and their context of use"
+      },
+      {
+        "title": "Why now, and why you?",
+        "one_liner": "Motivation, insight, and what makes this worth building"
+      },
+      {
+        "title": "What are you building? (Scope and features)",
+        "one_liner": "Core features and what the product does"
+      },
+      {
+        "title": "Drawing the line: what's explicitly out of scope",
+        "one_liner": "Non-goals and cuts that keep scope honest"
+      },
+      {
+        "title": "How will you know it's working?",
+        "one_liner": "Success metrics and signals of progress"
+      },
+      {
+        "title": "What has to be true for this to work?",
+        "one_liner": "Assumptions, risks, and open questions to test"
+      },
+      {
+        "title": "How does it hang together as a doc?",
+        "one_liner": "Sequencing sections into a coherent PRD"
+      }
+    ],
+    "rationale": "The user wants to learn PRD structure by writing one as a personal thinking tool, not a stakeholder artifact. I deliberately skipped process-heavy nodes (approval workflows, sign-off, formal templates, release planning, engineering handoff) since it's just for them. The outline maps to the core reasoning sections of a PRD, each framed as a question that forces a decision: problem, user, motivation, scope, non-goals, success metrics, and assumptions/risks. I separated 'scope' from 'non-goals' because articulating what you're NOT building is where PRDs earn their value and it's a distinct reasoning act. 'Why now/why you' captures the strategic framing that solo builders often skip. The final node addresses how sections cohere as a document, which serves the meta-goal of learning PRD structure. Nodes are ordered by dependency: problem→user→motivation→scope→non-goals→metrics→assumptions→assembly. Project-specific detail is deprioritized as the user confirmed they'll fill that in per section."
+  },
+  "cost_usd": 0.051254999999999995
+}

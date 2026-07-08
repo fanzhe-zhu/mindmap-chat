@@ -1,0 +1,51 @@
+{
+  "goal_id": 3,
+  "goal_text": "Learn to use PostgreSQL",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is a relational database, really?",
+        "one_liner": "Tables, rows, columns, keys, and why Postgres organizes data this way."
+      },
+      {
+        "title": "Install Postgres and connect with psql",
+        "one_liner": "Get Postgres running locally and open your first interactive session."
+      },
+      {
+        "title": "Design tables that fit your app's data",
+        "one_liner": "Choose columns, data types, primary keys, and split data into related tables."
+      },
+      {
+        "title": "Link tables with foreign keys and joins",
+        "one_liner": "Model relationships and combine data across tables in queries."
+      },
+      {
+        "title": "Get data in: INSERT, UPDATE, DELETE",
+        "one_liner": "Add, change, and remove rows safely."
+      },
+      {
+        "title": "Get data out: writing SELECT queries",
+        "one_liner": "Filter, sort, group, and aggregate to retrieve exactly what you need."
+      },
+      {
+        "title": "Connect Postgres to your application code",
+        "one_liner": "Use a driver or ORM, run queries, and avoid SQL injection."
+      },
+      {
+        "title": "Keep data valid and queries fast",
+        "one_liner": "Constraints, NOT NULL/UNIQUE, and basic indexes for correctness and speed."
+      }
+    ],
+    "rationale": "The user is a total database beginner aiming to build and query app databases, so the outline builds foundations first (relational model, installation/psql) then moves through the daily practical loop: schema design, relationships/joins, writing data, reading data, and wiring Postgres into app code. A final node covers constraints and basic indexing since data integrity and reasonable query performance are essential for a working app data layer, without straying into deprioritized admin topics (replication, tuning, backups, extensions). Nodes are ordered by dependency (concepts → setup → design → relationships → CRUD → app integration → correctness/speed) and kept MECE: reading vs. writing data are separated, and schema structure vs. relationships are separated to minimize overlap."
+  },
+  "cost_usd": 0.051955
+}

@@ -1,0 +1,47 @@
+{
+  "goal_id": 4,
+  "goal_text": "How to do good user research",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 7,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What can user research actually tell you?",
+        "one_liner": "What research answers vs. what it can't, for product calls"
+      },
+      {
+        "title": "Start with the decision, not the method",
+        "one_liner": "Turn a product question into a research question worth asking"
+      },
+      {
+        "title": "Find and recruit the right people to talk to",
+        "one_liner": "Who to talk to, how many, and how to reach them"
+      },
+      {
+        "title": "Run a user interview that surfaces real needs",
+        "one_liner": "Asking questions that reveal behavior, not flattering opinions"
+      },
+      {
+        "title": "Test an idea or prototype before you build it",
+        "one_liner": "Putting a mockup in front of users to catch problems early"
+      },
+      {
+        "title": "Spot the traps: bias and misleading signals",
+        "one_liner": "Leading questions, false yes, and other beginner mistakes"
+      },
+      {
+        "title": "Turn what you heard into a build decision",
+        "one_liner": "Making sense of notes and choosing what to build next"
+      }
+    ],
+    "rationale": "The user is a total beginner aiming for product/feature decisions, so the outline starts from zero and orbits around decision-making rather than academic rigor. Node 1 sets realistic expectations (what research can/can't do) so they don't misuse it. Node 2 anchors everything to a decision, reinforcing the practical framing. Nodes 3–5 are the core doing-it skills: recruiting, interviewing (the highest-leverage method for a beginner), and lightweight prototype testing — the two most decision-driving methods. Node 6 addresses bias, which is the single biggest failure mode for beginners running interviews and gives disproportionate value. Node 7 closes the loop from raw findings to an actual build call, which is the user's explicit goal. I deliberately excluded statistical analysis, survey design, and large-scale quant per the confirmed understanding, and skipped any 'history/theory of UX research' filler. The nodes are MECE-ish: expectations, framing, recruiting, interviewing, testing, avoiding error, and synthesis have low content overlap."
+  },
+  "cost_usd": 0.051055
+}

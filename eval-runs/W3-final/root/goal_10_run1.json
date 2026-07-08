@@ -1,0 +1,55 @@
+{
+  "goal_id": 10,
+  "goal_text": "I've already built an LLM app and want to understand agents",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 9,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What makes something an \"agent\" vs. a prompt call?",
+        "one_liner": "The shift from one-shot calls to a decide-act-observe loop."
+      },
+      {
+        "title": "The agent loop, concretely",
+        "one_liner": "How reason → act → observe → repeat runs until done."
+      },
+      {
+        "title": "Giving the model tools",
+        "one_liner": "Defining tools, function-calling, and passing results back."
+      },
+      {
+        "title": "Wire a first tool-using loop into your app",
+        "one_liner": "Minimal working agent bolted onto your existing calls."
+      },
+      {
+        "title": "Managing state, memory, and context across steps",
+        "one_liner": "What to keep in context and what to persist between turns."
+      },
+      {
+        "title": "Planning and multi-step reasoning strategies",
+        "one_liner": "How the model breaks a task into steps and self-corrects."
+      },
+      {
+        "title": "Keeping the loop from going off the rails",
+        "one_liner": "Step limits, error handling, timeouts, and cost control."
+      },
+      {
+        "title": "Observing, debugging, and evaluating your agent",
+        "one_liner": "Tracing runs and knowing when the agent actually works."
+      },
+      {
+        "title": "Do you even need an agent here?",
+        "one_liner": "When a plain call or fixed workflow beats a loop."
+      }
+    ],
+    "rationale": "The user is fluent in single prompt/completion calls and wants to build an agent into an existing app, so I skip prompting/API basics, framework surveys, and broad theory. The outline moves from the core conceptual shift (agent vs. call) to the mechanics of the loop and tools, then an early hands-on implementation node to satisfy the build endpoint. Later nodes cover the harder production realities (state/memory, planning, guardrails, observability) that separate a toy loop from something shippable. The final node injects a pragmatic decision check, valuable for someone who might over-apply agents where a simpler workflow suffices. Nodes are MECE-ish: loop mechanics, tools, state, planning, guardrails, and evaluation each answer distinct questions with low overlap."
+  },
+  "cost_usd": 0.051565
+}

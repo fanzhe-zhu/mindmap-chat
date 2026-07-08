@@ -1,0 +1,99 @@
+{
+  "scenario_id": "S20",
+  "scenario_goal_id": 5,
+  "scenario_tree": "C",
+  "scenario_category": "multi_step",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use (multiple calls) + ReAct iteration distribution (expect 2-4 iterations, shouldn't force an answer in 1, shouldn't get stuck >8)",
+  "scenario_user_message": "Compare how OpenAI's and Anthropic's current PM role requirements differ.",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "Compare how OpenAI's and Anthropic's current PM role requirements differ."
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Before I search — quick reframe on why this matters for your prep. Comparing two specific companies' job postings is useful, but a job listing tells you what they *say* they want, not what the interview actually *tests*. Those diverge. Let me pull the current postings and then translate them into interview signal."
+          },
+          {
+            "type": "tool_use",
+            "id": "toolu_01AjjNUUxTD7mzFLQhoUQ4o4",
+            "name": "web_search",
+            "input": {
+              "query": "OpenAI product manager job requirements 2024"
+            },
+            "caller": {
+              "type": "direct"
+            }
+          },
+          {
+            "type": "tool_use",
+            "id": "toolu_011UVMsr8yeKkABpiFU9jQp5",
+            "name": "web_search",
+            "input": {
+              "query": "Anthropic product manager job requirements qualifications"
+            },
+            "caller": {
+              "type": "direct"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_01AjjNUUxTD7mzFLQhoUQ4o4",
+            "is_error": false,
+            "content": "[1] Product Manager, Integrity | OpenAI\nURL: https://openai.com/careers/product-manager-integrity-london-uk\n*   Foundation(opens in a new window). Log inTry ChatGPT(opens in a new window). Try ChatGPT(opens in a new window)Login. Our team brings OpenAI’s most capable technology to the world through our products. We are seeking an experienced Product Manager to scale the product efforts and overall technical strategy for the Integrity team. This role requires close collaboration with our product, safety, policy, user operations and engineering teams. We push the boundaries of the capabilities of AI systems and seek to safely deploy them to the world through our products. *   Deployment Safety(opens in a new window). *   ChatGPT(opens in a new window). *   ChatGPT Business(opens in a new window). *   ChatGPT Enterprise(opens in a new window). *   ChatGPT for Education(opens in a new window). *   API Log In(opens in a new window). (opens in a new window)(opens in a new window)(opens in a new window)(opens in a new window)(opens in a new window)(opens in a new window)(opens in a new window).\n\n---\n\n[2] Product Manager, Countries & Governments - OpenAI | Built In San Francisco\nURL: https://www.builtinsf.com/job/product-manager-countries-governments/6757201\nThe Senior Product Manager for AI Products will drive innovation in Coupa's AI capabilities, oversee product management for AI-driven features, and enhance enterprise workflows through autonomous AI agents and strategic collaborations across teams. Assess Falcon environments, recommend and document security remediations, troubleshoot incidents with support and internal teams, produce service reports, and ensure customers meet Falcon Complete standards and SLAs. Top Skills: Ai TechnologiesCrowdstrike FalconIdsLinuxmacOSMdr/XdrMitre Att&CkSIEMUebaWindows. Serve as a Falcon Complete advisor monitoring customer security posture, assess environments, recommend remediations, coordinate with internal teams and support, produce reports, and ensure alignment with CrowdStrike standards and SLAs to improve threat detection and incident response. We are looking for a senior product manager with experience building products with complex requirements and operating in high compliance environments. This role is based in San Francisco, CA. **In this role, you will:**. * Shape and build the key product and technical solutions to enable governments to leverage AI.\n\n---\n\n[3] Product Manager, Families | OpenAI\nURL: https://openai.com/careers/product-manager-families-san-francisco\n*   Foundation(opens in a new window). Log inTry ChatGPT(opens in a new window). Our team brings OpenAI’s most capable technology to the world through our products. Their work brings together product, policy, safety, research, and operations to keep improving how ChatGPT supports teens and families. We’re looking for an experienced Product Manager to lead OpenAI’s Family product efforts. This role will shape how families, caregivers, and older adults benefit from AI across OpenAI’s products. This is a high-impact role with the opportunity to improve daily life for millions of people. *   Deployment Safety(opens in a new window). *   ChatGPT(opens in a new window). *   ChatGPT Business(opens in a new window). *   ChatGPT Enterprise(opens in a new window). *   ChatGPT for Education(opens in a new window). *   Resources(opens in a new window). (opens in a new window)(opens in a new window)(opens in a new window)(opens in a new window)(opens in a new window)(opens in a new window)(opens in a new window).\n\n---\n\n[4] Product Manager, Integrity @ OpenAI\nURL: https://jobs.ashbyhq.com/openai/11ef39d5-d230-414b-9f3e-a0624efa5b11\nObtained a bachelor's degree in Computer Science, Engineering, Information Systems, Analytics, Mathematics, Physics, Applied Sciences, or a related field. Have\n\n---\n\n[5] Product Manager, Safety Measurement\nURL: https://openai.com/careers/product-manager-safety-measurement-san-francisco\nHave 6+ years of product management or related industry roles, with specific expertise in AI safety, trust & safety, integrity, or related domains. · Have a"
+          },
+          {
+            "type": "tool_result",
+            "tool_use_id": "toolu_011UVMsr8yeKkABpiFU9jQp5",
+            "is_error": false,
+            "content": "[1] Anthropic hiring Product Manager, API Growth in Seattle, WA\nURL: https://www.linkedin.com/jobs/view/product-manager-api-growth-at-anthropic-4398722439\nQualifications 6+ years of product management experience, majority in growth focused roles Experience driving growth for API, developer\n\n---\n\n[2] Product Manager, Anthropic - Welcome to the Jungle | Login\nURL: https://app.welcometothejungle.com/jobs/R9UL7A2E\nHave an engineering background and 2+ years in product management, or equivalent experience driving product. Minimum education: Bachelor's degree or an\n\n---\n\n[3] Product Manager, Claude Growth @ Anthropic | Accel Job Board\nURL: https://jobs.accel.com/companies/anthropic/jobs/61064910-product-manager-claude-growth\n## Product Manager, Claude Growth. ## **About Anthropic**. Anthropic’s mission is to create reliable, interpretable, and steerable AI systems. We want AI to be safe and beneficial for our users and for society as a whole. Our team is a quickly growing group of committed researchers, engineers, policy experts, and business leaders working together to build beneficial AI systems. ## About the role:. As a Product Manager for Claude Growth, you will play a crucial role in driving acquisition, monetization, retention, and virality for Claude.ai. You'll work closely with a cross-functional team of engineers, designers, marketers, and data scientists to develop and execute strategies that accelerate our growth while maintaining our commitment to safety and beneficial AI. * Develop and execute a product strategy focused on acquisition, monetization, virality, and retention on Claude.ai. At Anthropic we work as a single cohesive team on just a few large-scale research efforts.\n\n---\n\n[4] Product Manager, Research - Anthropic | Built In NYC\nURL: https://www.builtinnyc.com/job/product-manager-research/6644566\n# Product Manager, Research. Anthropic’s mission is to create reliable, interpretable, and steerable AI systems. We want AI to be safe and beneficial for our users and for society as a whole. Our team is a quickly growing group of committed researchers, engineers, policy experts, and business leaders working together to build beneficial AI systems. As a Product Manager for the Research team at Anthropic, you will own the ideation and deployment of new products as we advance frontier, safe AI technology. You will work closely with our research teams to help productize applied research and identify high-potential use cases grounded in customer needs. Research shows that people who identify as being from underrepresented groups are more prone to experiencing imposter syndrome and doubting the strength of their candidacy, so we urge you not to exclude yourself prematurely and to submit an application if you're interested in this work. At Anthropic we work as a single cohesive team on just a few large-scale research efforts.\n\n---\n\n[5] Product Manager, Core Product (Claude.ai) @ Anthropic | Menlo Ventures Job Board\nURL: https://jobs.menlovc.com/companies/anthropic/jobs/45601466-product-manager-core-product-claude-ai\n## Product Manager, Core Product (Claude.ai). We want AI to be safe and beneficial for our users and for society as a whole. As the Product Manager for Core Product at Claude.ai, you will shape the evolution of Claude from an AI assistant to a true collaborative partner for users. You'll own the core interaction model and fundamental capabilities that define how users work with Claude, pushing the boundaries of human-AI collaboration while maintaining an intuitive, trustworthy experience. Working at the intersection of frontier AI capabilities and user needs, you'll transform Claude into an indispensable thought partner that amplifies human potential across a wide range of cognitive tasks. * Define the strategy and vision for Claude's core interaction model, balancing powerful capabilities with intuitive usability. * Develop frameworks for identifying and prioritizing new collaboration patterns that meaningfully enhance how users work with Claude. * Partner with research and engineering to transform novel AI capabilities into intuitive collaborative features."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good, I have enough to work with. Here's the honest read, and then what it means for your interviews.\n\nThe differences are less about \"OpenAI wants X, Anthropic wants Y\" and more about how each frames the PM's center of gravity:\n\nOpenAI's postings lean heavily into **deployment, safety, and policy as first-class product work**. Notice the roles: Integrity, Safety Measurement, Families, Countries & Governments. The recurring theme is \"we push capability boundaries and safely deploy them\" — meaning the PM sits at the seam between a powerful model and real-world risk. Their asks skew toward 6+ years, domain expertise in trust & safety / integrity, and comfort with policy, ops, and multiple stakeholder groups.\n\nAnthropic's postings split more visibly into **two archetypes**: growth PMs (API Growth, Claude Growth — acquisition, monetization, retention, classic growth mechanics) and **research-productization PMs** (Research, Core Product — \"productize applied research,\" \"transform novel AI capabilities into intuitive features\"). The Core Product and Research roles are the distinctively AI-native ones: your job is to turn a frontier capability into a usable interaction model. Notably one Anthropic posting only asks for 2+ years plus an engineering background — lower bar than OpenAI's senior-heavy listings.\n\nNow the part that matters for you as an ex-SWE prepping to interview. What these differences actually signal about what gets *tested*:\n\n- At OpenAI, expect the interview to probe **judgment under ambiguity and risk** — \"a feature could be misused this way, what do you do,\" stakeholder tradeoffs, safety-vs-shipping tension. Less \"grow the funnel,\" more \"should we ship this at all, and how.\"\n- At Anthropic, if you target a research/core-product role, expect **\"take this raw capability and define a product around it\"** — very much where your SWE instinct helps, because you understand model behavior. If you target growth, it's more conventional PM growth-metrics interviewing.\n\nOne caveat: these are the postings surfacing right now, and both companies rewrite reqs constantly. Treat the *pattern* as durable, not the exact bullet points.\n\nDoes one of those two paths — safety/deployment vs. research-productization vs. growth — match where you're aiming? I can go deeper on what a specific interview loop for that flavor tends to test.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 2,
+    "tokens": {
+      "input": 7395,
+      "output": 1006,
+      "cacheRead": 2039,
+      "cacheWrite": 2039
+    },
+    "toolCallsExecuted": 2,
+    "estimatedCostUsd": 0.05549825,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "Comparing OpenAI's and Anthropic's PM role requirements and translating them into what AIPM interviews actually test.",
+    "key_takeaways": [
+      "Job postings signal what companies say they want, but interviews test something different — the durable pattern matters more than the exact bullet points, which both companies rewrite constantly.",
+      "OpenAI's PM roles center on deployment, safety, and policy as first-class product work (Integrity, Safety, Governments), skewing senior (6+ years) with trust & safety and stakeholder/policy depth.",
+      "Anthropic's roles split into two archetypes: conventional growth PMs (API/Claude Growth) and research-productization PMs (Core Product/Research), with some listings asking only 2+ years plus an engineering background.",
+      "OpenAI interviews likely probe judgment under ambiguity and risk (safety-vs-shipping, 'should we ship this at all'); Anthropic research/core-product interviews probe turning a raw capability into a usable product, which suits an ex-SWE's understanding of model behavior."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "Which of the three paths (safety/deployment, research-productization, or growth) the user is actually targeting.",
+      "What a specific interview loop for the chosen role flavor tends to test in detail."
+    ]
+  }
+}

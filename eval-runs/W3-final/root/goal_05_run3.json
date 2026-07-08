@@ -1,0 +1,51 @@
+{
+  "goal_id": 5,
+  "goal_text": "What to prepare when transitioning from SWE to AIPM",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What does an AI PM actually do all day?",
+        "one_liner": "The concrete day-to-day work of an AI PM"
+      },
+      {
+        "title": "How AI PM differs from regular PM",
+        "one_liner": "What's unique: eval, data, model uncertainty, non-determinism"
+      },
+      {
+        "title": "Which of your SWE skills transfer directly",
+        "one_liner": "Technical credibility, system thinking, shipping — what carries over"
+      },
+      {
+        "title": "The product muscles you'll need to build",
+        "one_liner": "Discovery, prioritization, roadmapping, saying no"
+      },
+      {
+        "title": "Stakeholder and communication work",
+        "one_liner": "Aligning eng, design, DS, leadership, and customers"
+      },
+      {
+        "title": "Working with data, evals, and model ambiguity",
+        "one_liner": "Defining success when outputs are probabilistic"
+      },
+      {
+        "title": "Honest signals this role fits (or doesn't) you",
+        "one_liner": "Energizers vs. drains; who thrives, who regrets it"
+      },
+      {
+        "title": "Low-risk ways to test the fit before committing",
+        "one_liner": "Side experiments to feel the role without switching"
+      }
+    ],
+    "rationale": "The user is a technically fluent SWE (has shipped ML/LLM features) still deciding whether AIPM fits. So I skip all AI/ML fundamentals and job-hunt/interview/resume tactics entirely, per the confirmed understanding. The outline is a fit-and-gap exploration. Node 1 grounds them in the real day-to-day. Node 2 isolates what's distinctive about *AI* PM vs. generic PM, relevant given their technical background. Nodes 3 and 4 form the core transfer/gap analysis (SWE strengths that carry over vs. product muscles to build), kept MECE by separating existing assets from new skills. Node 5 pulls out stakeholder/communication as its own bucket since it's a major PM domain distinct from discovery/prioritization. Node 6 addresses the specifically-AI craft of eval and ambiguity, leveraging their technical depth. Nodes 7 and 8 directly serve the 'still exploring fit' stance — honest self-assessment signals and cheap ways to test-drive the role before committing. Interview prep is intentionally excluded as premature."
+  },
+  "cost_usd": 0.054515
+}

@@ -1,0 +1,51 @@
+{
+  "scenario_id": "S10",
+  "scenario_goal_id": 5,
+  "scenario_tree": "C",
+  "scenario_category": "sibling_awareness",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Sibling awareness + scope",
+  "scenario_user_message": "Should I build a portfolio project first, or grind interview questions first?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "Should I build a portfolio project first, or grind interview questions first?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "That's partly a portfolio-strategy question, so let me stay in my lane and answer the sequencing part, then point you to the right node.\n\nHere's the honest framing: for AIPM interviews specifically, the two aren't really substitutes. A portfolio project isn't just a resume line — it's the raw material you'll draw on in the interview itself. AIPM interviews lean heavily on \"tell me about a time you shipped/scoped/evaluated something.\" If you grind questions with no real project behind you, your answers stay generic and interviewers notice fast.\n\nSo the sequencing I'd push: get at least one substantive project in motion *before* you go deep on interview drills, because the project gives you the stories and the technical fluency the drills test. You don't need it fully polished — you need enough lived experience to speak concretely.\n\nBut the actual \"how to build the project\" — what to build, how to make it prove AIPM ability — that belongs to your **Portfolio** sibling node. Go there for the project design.\n\nWhat I can help with here: what the interviews actually test, so you know what the project needs to arm you for. Do you know the rough shape of an AIPM loop yet — the round types you're likely to face?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2140,
+      "output": 387,
+      "cacheRead": 2045,
+      "cacheWrite": 0
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.0111725,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "Whether to build a portfolio project or grind interview questions first when preparing for AIPM interviews.",
+    "key_takeaways": [
+      "For AIPM interviews, a portfolio project and interview drills are not substitutes: the project supplies the concrete stories and technical fluency that the interview questions are designed to test.",
+      "The recommended sequencing is to get at least one substantive project in motion before going deep on interview drills, since AIPM interviews lean heavily on 'tell me about a time you shipped/scoped/evaluated something.'",
+      "The project does not need to be fully polished — it just needs enough lived experience for the candidate to speak concretely rather than generically.",
+      "The mechanics of what to build and how to make the project prove AIPM ability belong to the sibling Portfolio node, not this interview-prep node."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "What is the rough shape of an AIPM interview loop and the round types the user is likely to face (the assistant asked this but the user hadn't answered yet).",
+      "What specifically the interviews test, so the user knows what the project needs to arm them for."
+    ]
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "goal_id": 9,
+  "goal_text": "Learn machine learning",
+  "goal_type": "vague",
+  "coverage_mode": "granularity",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 9,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is machine learning, really?",
+        "one_liner": "Core idea: learning patterns from data vs. writing rules"
+      },
+      {
+        "title": "Set up your ML toolkit",
+        "one_liner": "Python, Jupyter, pandas, scikit-learn — the working environment"
+      },
+      {
+        "title": "Get your data ready",
+        "one_liner": "Loading, cleaning, and splitting data for training"
+      },
+      {
+        "title": "Train your first model",
+        "one_liner": "Fitting a model and understanding what it learned"
+      },
+      {
+        "title": "Is my model any good?",
+        "one_liner": "Evaluation metrics, overfitting, and validation"
+      },
+      {
+        "title": "Improve a model that isn't working",
+        "one_liner": "Feature engineering, tuning, and picking better algorithms"
+      },
+      {
+        "title": "The main types of models to know",
+        "one_liner": "Regression, classification, trees, and when to use each"
+      },
+      {
+        "title": "Ship your model into production",
+        "one_liner": "Saving, serving via API, and deploying a model"
+      },
+      {
+        "title": "Keep it running after launch",
+        "one_liner": "Monitoring, drift, and retraining in the real world"
+      }
+    ],
+    "rationale": "The user is a total beginner whose goal is to build and ship models, so the outline is deliberately practical and end-to-end, minimizing theory and math. Node 1 gives just enough conceptual grounding to be dangerous without academic depth. Node 2 gets them into a working environment immediately since hands-on practice is central. Nodes 3–6 follow the natural build workflow: data prep, training, evaluation, and iterative improvement — the core loop of practical model development, kept MECE by separating data work, fitting, judging, and fixing. Node 7 is a reference-style node covering the model landscape so they can choose appropriately, placed after the workflow since it's a menu rather than a step. Nodes 8–9 directly address the 'ship' goal — deployment and post-launch operations — which distinguishes this user from someone who only wants to explore ML. I excluded history-of-the-field, proofs, and research-level math per the confirmed understanding."
+  },
+  "cost_usd": 0.051879999999999996
+}

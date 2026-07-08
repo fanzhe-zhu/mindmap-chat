@@ -1,0 +1,51 @@
+{
+  "scenario_id": "S14",
+  "scenario_goal_id": 3,
+  "scenario_tree": "D",
+  "scenario_category": "sibling_awareness",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Sibling awareness",
+  "scenario_user_message": "My queries are really slow — how do I add indexes to speed them up?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "My queries are really slow — how do I add indexes to speed them up?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "That's a real question, but it's not mine to answer — indexes live in a sibling node called \"Indexes and query performance.\" Head there and you'll get the proper treatment on when and how to add them.\n\nThat said, there's one place where my topic and yours overlap that's worth flagging: transactions can also make queries feel slow, but for a different reason. If one transaction is holding a lock on rows another query needs, that second query blocks and waits — it looks slow, but no index will fix it. The culprit is contention, not a missing index.\n\nSo a quick gut check before you go: are your slow queries slow consistently, or only sometimes (like under load, or when other writes are happening)? Consistent slowness points to indexing. Intermittent slowness that comes and goes with concurrent activity might be locking — and that's something I can help with here.\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2133,
+      "output": 269,
+      "cacheRead": 0,
+      "cacheWrite": 2038
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.0199375,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "Whether slow queries are caused by missing indexes or by transaction locking/contention, and how to tell them apart.",
+    "key_takeaways": [
+      "Adding indexes to speed up queries belongs to a sibling node ('Indexes and query performance'), not to transactions.",
+      "Transactions can make queries feel slow when one transaction holds a lock on rows another query needs, causing the second query to block and wait — this is contention, not a missing index.",
+      "No index will fix locking-induced slowness, so diagnosing the root cause matters before applying a fix.",
+      "A useful diagnostic heuristic: consistent slowness points to indexing, while intermittent slowness that appears under load or during concurrent writes may indicate locking."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "Are the user's slow queries consistently slow (indexing) or intermittently slow under concurrent activity (locking)? The user hasn't yet reported back which pattern they see.",
+      "If the cause is locking/contention, how would the user actually diagnose and resolve it within transactions?"
+    ]
+  }
+}

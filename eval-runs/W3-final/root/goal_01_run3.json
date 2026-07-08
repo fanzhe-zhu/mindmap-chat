@@ -1,0 +1,51 @@
+{
+  "goal_id": 1,
+  "goal_text": "Understand the core ideas behind RLHF",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What problem is RLHF actually solving?",
+        "one_liner": "Why train on human preferences instead of just more data"
+      },
+      {
+        "title": "The minimum RL you need: policies, rewards, and trajectories",
+        "one_liner": "Core RL vocabulary, only the parts RLHF uses"
+      },
+      {
+        "title": "Where the human feedback comes from",
+        "one_liner": "How preference comparisons are collected and formatted"
+      },
+      {
+        "title": "How a reward model turns preferences into a score",
+        "one_liner": "Learning a reward signal from ranked human choices"
+      },
+      {
+        "title": "Optimizing the policy against the reward model",
+        "one_liner": "How PPO and the KL penalty fine-tune the model"
+      },
+      {
+        "title": "The three-stage pipeline, end to end",
+        "one_liner": "How SFT, reward modeling, and RL fit together"
+      },
+      {
+        "title": "Failure modes: reward hacking and over-optimization",
+        "one_liner": "Why the KL term and other guardrails exist"
+      },
+      {
+        "title": "Reading the paper landscape",
+        "one_liner": "Key papers, terms, and variants like DPO and RLAIF"
+      }
+    ],
+    "rationale": "The user is new to RL and wants conceptual fluency to read RLHF papers confidently. Node 1 motivates the whole enterprise. Node 2 delivers only the RL primitives RLHF depends on (policy, reward, trajectory) rather than broad RL theory, matching the explicit deprioritization. Nodes 3-5 walk the three moving parts the user named — preference data, reward modeling, policy optimization — as separate MECE nodes since each answers a distinct question with low overlap. Node 6 synthesizes them into the canonical pipeline, which is how papers frame the method. Node 7 covers reward hacking/over-optimization because papers constantly reference the KL penalty and its rationale, so this is vocabulary-critical. Node 8 orients the user to the actual literature (InstructGPT, DPO, RLAIF, constitutional AI terms) directly serving the 'read papers confidently' goal. I excluded math derivations, code/implementation, and exhaustive classic RL algorithms per the confirmed understanding. Order is dependency-driven: motivation → primitives → data → reward → optimization → integration → pitfalls → literature."
+  },
+  "cost_usd": 0.056655
+}

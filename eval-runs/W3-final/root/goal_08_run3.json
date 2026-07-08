@@ -1,0 +1,51 @@
+{
+  "goal_id": 8,
+  "goal_text": "I want to learn about AI",
+  "goal_type": "vague",
+  "coverage_mode": "clarify",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is AI, really?",
+        "one_liner": "Plain-language meaning behind the term everyone uses."
+      },
+      {
+        "title": "How does a machine \"learn\"?",
+        "one_liner": "What training on data means, without the math."
+      },
+      {
+        "title": "What are ChatGPT and friends?",
+        "one_liner": "How large language models work and why they impress."
+      },
+      {
+        "title": "The AI vocabulary decoder",
+        "one_liner": "Model, neural net, GPT, token, hallucination, explained simply."
+      },
+      {
+        "title": "Where you already meet AI",
+        "one_liner": "Everyday uses in phones, search, recommendations, images."
+      },
+      {
+        "title": "Why everyone's arguing about AI",
+        "one_liner": "Jobs, bias, safety, copyright, and the big debates."
+      },
+      {
+        "title": "Who's building AI, and who's winning?",
+        "one_liner": "The key companies, labs, and people in the news."
+      },
+      {
+        "title": "Reading AI headlines without panic",
+        "one_liner": "Spotting hype, real progress, and misleading claims."
+      }
+    ],
+    "rationale": "The user is a total beginner whose sole goal is following AI news and conversing about it—understanding, not building. So I excluded any hands-on, coding, math, or tool-usage nodes. The outline builds from foundational meaning (\"What is AI\") through the mechanism (\"how machines learn\") to the specific technology dominating headlines (LLMs/ChatGPT), since that's what most news references. A vocabulary node directly serves the \"decode headlines\" goal. Everyday-uses grounds abstract concepts in familiar experience. The debates and players nodes cover the socio-political and industry context that fills most AI news. The final node is a media-literacy capstone that directly addresses \"understand the news\" by teaching hype detection—a payoff that depends on all prior nodes. Nodes are MECE-ish: definition, mechanism, flagship tech, terms, applications, controversies, actors, and critical reading each occupy distinct territory with low overlap."
+  },
+  "cost_usd": 0.050345
+}

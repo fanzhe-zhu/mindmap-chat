@@ -1,0 +1,51 @@
+{
+  "goal_id": 2,
+  "goal_text": "How Transformers work",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 3,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What a neural network actually is",
+        "one_liner": "Neurons, weights, layers, and what \"learning\" means"
+      },
+      {
+        "title": "How words become numbers: embeddings",
+        "one_liner": "Turning tokens into vectors the model can process"
+      },
+      {
+        "title": "What problem was Transformers built to solve?",
+        "one_liner": "Why sequences are hard and what came before attention"
+      },
+      {
+        "title": "How does attention work?",
+        "one_liner": "Queries, keys, values, and \"scaled dot-product attention\""
+      },
+      {
+        "title": "Why multiple attention heads?",
+        "one_liner": "What multi-head attention adds over a single head"
+      },
+      {
+        "title": "The encoder-decoder structure",
+        "one_liner": "What each stack does and how they connect"
+      },
+      {
+        "title": "The supporting parts around attention",
+        "one_liner": "Positional encoding, feed-forward, residuals, layer norm"
+      },
+      {
+        "title": "Reading \"Attention Is All You Need\"",
+        "one_liner": "Mapping paper sections and notation to these concepts"
+      }
+    ],
+    "rationale": "The user is new to neural networks but targeting the original Transformer paper, so I build from zero: node 1 establishes the neural network machinery (neurons, weights, layers, training) that everything else assumes. Node 2 covers embeddings since the paper takes vectorized tokens as given. Node 3 motivates the architecture (RNN/sequence limitations) so the paper's framing makes sense. Nodes 4-5 tackle attention itself—the paper's core—split into the single-head mechanism and the multi-head extension to keep them MECE. Node 6 covers the encoder-decoder organization, and node 7 sweeps up the remaining components the paper stacks around attention (positional encoding, FFN, residuals, layer norm) so they aren't a surprise. Node 8 is a synthesis/reading-guide node that directly serves the stated goal by mapping concepts to paper sections and notation. I deliberately excluded training pipelines, framework code, and hands-on implementation per the deprioritization, and kept intuition-first framing throughout."
+  },
+  "cost_usd": 0.052925
+}

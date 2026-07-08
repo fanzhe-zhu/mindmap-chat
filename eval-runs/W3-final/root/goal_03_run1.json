@@ -1,0 +1,51 @@
+{
+  "goal_id": 3,
+  "goal_text": "Learn to use PostgreSQL",
+  "goal_type": "skill",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "Install PostgreSQL and connect to it",
+        "one_liner": "Getting Postgres running and opening psql locally"
+      },
+      {
+        "title": "What are tables, rows, and columns?",
+        "one_liner": "Core relational building blocks and data types"
+      },
+      {
+        "title": "Reading and writing data with SQL",
+        "one_liner": "SELECT, INSERT, UPDATE, DELETE, WHERE, JOIN basics"
+      },
+      {
+        "title": "Design a schema for your app",
+        "one_liner": "Modeling entities, keys, and relationships"
+      },
+      {
+        "title": "Keeping data correct: constraints and transactions",
+        "one_liner": "NOT NULL, foreign keys, uniqueness, and atomic writes"
+      },
+      {
+        "title": "Connecting PostgreSQL from application code",
+        "one_liner": "Drivers, connection pools, and parameterized queries"
+      },
+      {
+        "title": "Making queries fast enough",
+        "one_liner": "When and how to add indexes for backend queries"
+      },
+      {
+        "title": "Evolving your database over time",
+        "one_liner": "Migrations to change schema safely as the app grows"
+      }
+    ],
+    "rationale": "The user is a complete database beginner aiming to build an app backend, so the outline starts from zero (install/connect, what tables are) and builds toward backend-specific practical skills. Nodes 1-3 establish fundamentals a newcomer cannot skip: getting Postgres running, understanding the relational model, and reading/writing data with SQL. Node 4 (schema design) and 5 (constraints/transactions) cover data modeling and consistency, both explicitly called out as backend priorities. Node 6 (connecting from code) is the core \"wiring Postgres into an app\" skill and is essential for a backend developer but irrelevant to a pure SQL learner. Node 7 (indexes) is included at a beginner-practical level because slow queries are a real backend pain point, but kept narrow rather than deep tuning theory. Node 8 (migrations) addresses schema evolution, which any real app backend needs. I deliberately excluded DBA/ops topics (replication, backups at scale, performance tuning internals) per the confirmed scope, and avoided history/theory filler. Nodes are MECE: setup, model concepts, querying, design, integrity, integration, performance, and change management have low content overlap."
+  },
+  "cost_usd": 0.054255
+}

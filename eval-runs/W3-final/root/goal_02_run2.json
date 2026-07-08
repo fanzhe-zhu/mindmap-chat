@@ -1,0 +1,51 @@
+{
+  "goal_id": 2,
+  "goal_text": "How Transformers work",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What a neural network actually is",
+        "one_liner": "Neurons, weights, layers, activations — the raw machinery."
+      },
+      {
+        "title": "The math you'll see in papers",
+        "one_liner": "Vectors, matrix multiplication, dot products, softmax notation."
+      },
+      {
+        "title": "How does a network learn?",
+        "one_liner": "Loss, gradient descent, backpropagation at a conceptual level."
+      },
+      {
+        "title": "Turning words into vectors: embeddings",
+        "one_liner": "Tokens, embedding matrices, and positional encodings."
+      },
+      {
+        "title": "How does self-attention work?",
+        "one_liner": "Queries, keys, values, and the scaled dot-product formula."
+      },
+      {
+        "title": "Multi-head attention explained",
+        "one_liner": "Why split into heads and how outputs recombine."
+      },
+      {
+        "title": "The full Transformer architecture",
+        "one_liner": "Encoder, decoder, feed-forward, residuals, layer norm."
+      },
+      {
+        "title": "Reading 'Attention Is All You Need'",
+        "one_liner": "Mapping paper sections and notation to what you learned."
+      }
+    ],
+    "rationale": "The user is a total ML beginner whose end goal is reading papers, so the outline builds foundations bottom-up before reaching the architecture and the target paper. Nodes 1-3 cover the neural network prerequisites the user explicitly lacks (network structure, the specific math notation papers use, and learning via gradient descent/backprop) since the confirmed understanding said to build these up rather than skip. Nodes 4-7 are the core Transformer machinery (embeddings/positional encoding, self-attention mechanics, multi-head attention, full architecture) prioritized for depth per the user's request. Node 8 explicitly bridges to the paper-reading goal, mapping learned concepts to actual notation. Hands-on coding and training practicalities are excluded per the deprioritization. The math node is separated from the learning node to keep them MECE: one is static notation, the other is the dynamic training process."
+  },
+  "cost_usd": 0.051015000000000005
+}

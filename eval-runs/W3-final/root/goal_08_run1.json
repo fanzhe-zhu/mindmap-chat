@@ -1,0 +1,51 @@
+{
+  "goal_id": 8,
+  "goal_text": "I want to learn about AI",
+  "goal_type": "vague",
+  "coverage_mode": "clarify",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What do we actually mean by \"AI\"?",
+        "one_liner": "What counts as AI, and how it differs from regular programs"
+      },
+      {
+        "title": "What does it mean for a machine to \"learn\"?",
+        "one_liner": "How systems improve from examples instead of fixed rules"
+      },
+      {
+        "title": "How does an AI make a decision or prediction?",
+        "one_liner": "How a trained model turns input into an answer"
+      },
+      {
+        "title": "Where does the data come from, and why it matters",
+        "one_liner": "How training data shapes what a model knows and gets wrong"
+      },
+      {
+        "title": "Inside neural networks and deep learning",
+        "one_liner": "The intuition behind the models powering modern AI"
+      },
+      {
+        "title": "How do chatbots like ChatGPT work?",
+        "one_liner": "What large language models do and why they seem so smart"
+      },
+      {
+        "title": "Why does AI fail, hallucinate, or show bias?",
+        "one_liner": "The built-in limits and failure modes of AI systems"
+      },
+      {
+        "title": "Is AI actually \"intelligent\"?",
+        "one_liner": "How machine and human intelligence really compare"
+      }
+    ],
+    "rationale": "The user is a total beginner wanting conceptual understanding, not hands-on skills. I start by defining AI to clear up misconceptions, then build the core mental model of learning from data (the heart of \"how AI works\"). Decision-making and data follow as the two halves of how models operate and where they get their behavior. Neural networks give the intuition behind modern AI without math. LLMs are included because a beginner today almost certainly encounters ChatGPT and wants to understand it. Failure modes address the user's stated interest in \"why they succeed and fail.\" The final node addresses the natural big-picture question about intelligence. I deliberately excluded coding, tools, math formalism, deployment, and career/business content per the confirmed understanding, and avoided a generic history or intro node."
+  },
+  "cost_usd": 0.050605
+}

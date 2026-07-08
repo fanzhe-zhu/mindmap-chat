@@ -1,0 +1,51 @@
+{
+  "goal_id": 1,
+  "goal_text": "Understand the core ideas behind RLHF",
+  "goal_type": "concept",
+  "coverage_mode": "subtopic",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What problem is RLHF actually solving?",
+        "one_liner": "Why pretrained LLMs need alignment beyond next-token prediction"
+      },
+      {
+        "title": "RL in one sitting: agents, rewards, policies",
+        "one_liner": "Core RL vocabulary: policy, reward, trajectory, optimization"
+      },
+      {
+        "title": "How language models generate text",
+        "one_liner": "LLMs as policies: tokens, sampling, and probabilities"
+      },
+      {
+        "title": "Where does the human feedback come from?",
+        "one_liner": "Collecting preference comparisons instead of gold answers"
+      },
+      {
+        "title": "How a reward model learns preferences",
+        "one_liner": "Turning pairwise human rankings into a scalar reward"
+      },
+      {
+        "title": "Optimizing the policy against the reward",
+        "one_liner": "PPO at a high level, and the KL penalty's role"
+      },
+      {
+        "title": "How the pieces fit into one pipeline",
+        "one_liner": "SFT to reward model to RL: the full RLHF loop"
+      },
+      {
+        "title": "The papers, and the vocabulary to read them",
+        "one_liner": "Key RLHF papers and terms you'll meet there"
+      }
+    ],
+    "rationale": "The user is new to both RL and LLMs but wants to read the key RLHF papers, so the outline builds from-scratch foundations (RL vocab, LLMs as policies) before RLHF-specific machinery. Node 1 motivates the whole endeavor. Nodes 2–3 supply the two prerequisite backgrounds separately (low overlap: one is RL, one is LLMs). Nodes 4–6 cover the three RLHF-specific pillars the papers assume — preference data collection, reward modeling, and policy optimization — kept conceptual (PPO high-level, KL role) per the confirmed depth, avoiding derivations. Node 7 integrates them into the SFT→RM→RL pipeline so the interplay is clear. Node 8 directly serves the stated goal by mapping to the actual papers and their vocabulary. Hands-on coding and deep RL theory are excluded as deprioritized."
+  },
+  "cost_usd": 0.053595000000000004
+}

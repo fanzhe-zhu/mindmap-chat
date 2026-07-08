@@ -1,0 +1,37 @@
+{
+  "timestamp": "W3-final",
+  "root": {
+    "runs_analyzed": 30,
+    "goals_with_3plus_runs": 0,
+    "avg_std_over_mean": 0,
+    "granularity_target_met": true,
+    "per_goal": []
+  },
+  "leaf": {
+    "scenarios_analyzed": 20,
+    "needs_tool_scenarios": 9,
+    "tool_use_rate": 0.6666666666666666,
+    "tool_use_target_met": false,
+    "tool_params_valid_rate": 1,
+    "tool_params_target_met": true,
+    "react_iter_mean": 1.3,
+    "react_iter_p95": 2,
+    "react_iter_mean_target_met": false,
+    "react_iter_p95_target_met": true,
+    "summary_schema_valid_pct": 1,
+    "summary_schema_target_met": true,
+    "summary_language_valid_pct": 1,
+    "summary_language_target_met": true,
+    "total_cost_usd": 0.553271,
+    "category_breakdown": {
+      "normal": 8,
+      "sibling_awareness": 6,
+      "off_topic": 1,
+      "prompt_injection": 1,
+      "refusal": 1,
+      "clarify": 1,
+      "tool_failure": 1,
+      "multi_step": 1
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "goal_id": 9,
+  "goal_text": "Learn machine learning",
+  "goal_type": "vague",
+  "coverage_mode": "granularity",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 7,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is machine learning, really?",
+        "one_liner": "What a model is and how learning from data works"
+      },
+      {
+        "title": "Set up your Python ML toolkit",
+        "one_liner": "Install Python, Jupyter, scikit-learn, pandas, numpy"
+      },
+      {
+        "title": "Get your data ready",
+        "one_liner": "Loading, cleaning, and splitting data for training"
+      },
+      {
+        "title": "Train your first model",
+        "one_liner": "Fit, predict, and run a full model workflow in code"
+      },
+      {
+        "title": "Which algorithm for which problem?",
+        "one_liner": "Classification vs regression and common algorithm choices"
+      },
+      {
+        "title": "Is my model any good?",
+        "one_liner": "Evaluating accuracy, errors, and avoiding overfitting"
+      },
+      {
+        "title": "Tune and improve your models",
+        "one_liner": "Feature engineering and adjusting hyperparameters"
+      }
+    ],
+    "rationale": "The user is a total beginner who wants hands-on ability to build and train models, and is assumed to have basic Python comfort. Node 1 covers the essential conceptual foundation (what a model/training is) since they have zero background, but stays lightweight. Node 2 gets them set up with the standard practical toolkit without becoming a programming course. Nodes 3–4 form the core build-and-train workflow they explicitly want. Node 5 gives the practical decision-making of picking algorithms for problem types. Node 6 covers evaluation, which is critical to knowing if a model actually works. Node 7 covers iterative improvement (features + hyperparameters) as the natural next step once a baseline model runs. I excluded deep learning architectures, heavy math, deployment at scale, and field history per the confirmed understanding. Ordering follows real dependencies: concepts → tools → data → first model → algorithm choice → evaluation → tuning."
+  },
+  "cost_usd": 0.049839999999999995
+}

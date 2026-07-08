@@ -1,0 +1,51 @@
+{
+  "goal_id": 8,
+  "goal_text": "I want to learn about AI",
+  "goal_type": "vague",
+  "coverage_mode": "clarify",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What do people actually mean by \"AI\"?",
+        "one_liner": "Plain-language definition and what counts as AI today"
+      },
+      {
+        "title": "How does AI learn instead of being programmed?",
+        "one_liner": "The core idea of learning from data, no math"
+      },
+      {
+        "title": "What are ChatGPT and other chatbots doing?",
+        "one_liner": "How large language models predict and generate text"
+      },
+      {
+        "title": "AI, machine learning, deep learning — how do they fit?",
+        "one_liner": "Untangling the buzzwords people mix up"
+      },
+      {
+        "title": "Where you already meet AI every day",
+        "one_liner": "Recommendations, maps, spam filters, photo tags"
+      },
+      {
+        "title": "What AI gets wrong: bias, hallucinations, limits",
+        "one_liner": "Why AI makes mistakes and can't be fully trusted"
+      },
+      {
+        "title": "The big debates: jobs, safety, hype vs. reality",
+        "one_liner": "Hot topics people argue about in AI conversations"
+      },
+      {
+        "title": "The AI vocabulary cheat sheet",
+        "one_liner": "Key terms so you follow any discussion"
+      }
+    ],
+    "rationale": "The user is a total beginner seeking conversational fluency, not building skills. I opened with a grounding definition node, then intuition for how AI \"learns\" (the single biggest conceptual gap for laypeople), then LLMs/chatbots since that's what most conversations center on today. The buzzword-untangling node targets the exact confusion beginners have (AI vs ML vs deep learning) which is essential for following discussions. Everyday-examples grounds abstractions in the familiar. The limitations and debates nodes equip the user to engage critically in real conversations — including hype, safety, and jobs, which are the actual talking points people raise. A vocabulary node acts as a reference so they can decode jargon. I deliberately excluded any coding, model-building, math, or tools nodes per the confirmed understanding, and avoided a history-of-AI node since it doesn't serve conversational fluency. Nodes are largely non-overlapping: definition, mechanism, application (LLMs), taxonomy, real-world presence, failure modes, societal debate, and terminology each answer distinct questions."
+  },
+  "cost_usd": 0.051930000000000004
+}

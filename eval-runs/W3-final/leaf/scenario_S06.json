@@ -1,0 +1,49 @@
+{
+  "scenario_id": "S6",
+  "scenario_goal_id": 7,
+  "scenario_tree": "B",
+  "scenario_category": "normal",
+  "scenario_needs_tool": true,
+  "scenario_primary_metric": "Tool use (b/c) + hallucination prevention (don't fabricate a precise price)",
+  "scenario_user_message": "Roughly how much does it cost to fine-tune an open-source model (e.g., Llama) these days?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "Roughly how much does it cost to fine-tune an open-source model (e.g., Llama) these days?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Good question, and it's worth breaking down because \"cost of fine-tuning\" hides a few different things. Let me give you rough numbers, then we can dig into whichever matters for your decision.\n\nFor a parameter-efficient fine-tune (LoRA/QLoRA) on a model like Llama 3 8B, you're often looking at a single GPU (say an A100 or even a 24GB consumer card for QLoRA) for a few hours. On rented cloud GPUs that's roughly $1–3/hour, so a small experiment can land in the **$10–100** range. That's the common case people actually use.\n\nFull fine-tuning (updating all weights) is a different beast — you need multiple high-memory GPUs, and for a 70B model you can easily run into the **thousands of dollars** for a serious run, plus a lot more engineering time.\n\nBut here's the tutoring point: the training run itself is often not the dominant cost. The parts people underestimate:\n\n- **Data preparation** — curating and cleaning your fine-tuning dataset is usually the biggest hidden cost, and it's human time, not GPU time.\n- **Iteration** — you rarely get it right in one run. Budget for many runs.\n- **Inference/hosting afterward** — once fine-tuned, you own the serving cost. A model you host runs 24/7 whether or not it's busy.\n\nThat last point is really the heart of the RAG-vs-fine-tuning cost comparison: fine-tuning front-loads cost (training) and then you carry hosting; RAG shifts cost toward per-query retrieval plus a vector store, and often just uses an API model you don't host.\n\nWant me to walk through that ongoing-cost comparison side by side, since that's usually what actually drives the decision?"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2148,
+      "output": 563,
+      "cacheRead": 0,
+      "cacheWrite": 2041
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.02736625,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "The conversation covered the rough cost of fine-tuning an open-source model like Llama and how fine-tuning's cost structure compares to RAG.",
+    "key_takeaways": [
+      "Parameter-efficient fine-tuning (LoRA/QLoRA) on a model like Llama 3 8B is cheap — often $10–100 on a single rented cloud GPU for a few hours — while full fine-tuning of a large model (e.g., 70B) can run into the thousands of dollars plus significant engineering time.",
+      "The training run itself is often not the dominant cost; hidden costs like data preparation (human time curating/cleaning datasets), iteration across many runs, and ongoing inference/hosting typically dominate.",
+      "The core cost-structure difference: fine-tuning front-loads cost in training and then carries continuous self-hosting/serving costs, whereas RAG shifts cost toward per-query retrieval plus a vector store and often relies on an API model you don't host."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "A side-by-side walkthrough of the ongoing-cost comparison between RAG and fine-tuning was offered but not yet done."
+    ]
+  }
+}

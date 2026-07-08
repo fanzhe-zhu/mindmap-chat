@@ -1,0 +1,51 @@
+{
+  "goal_id": 7,
+  "goal_text": "How to choose between RAG and fine-tuning",
+  "goal_type": "comparison",
+  "coverage_mode": "subtopic",
+  "run_index": 2,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What RAG and fine-tuning actually do",
+        "one_liner": "The core difference: retrieving facts vs. reshaping the model itself."
+      },
+      {
+        "title": "Which problem are you actually solving?",
+        "one_liner": "Matching each approach to knowledge vs. behavior/style goals."
+      },
+      {
+        "title": "How often does your information change?",
+        "one_liner": "Why freshness and update frequency favor one approach."
+      },
+      {
+        "title": "What data do you have to work with?",
+        "one_liner": "Documents to retrieve vs. labeled examples to train on."
+      },
+      {
+        "title": "Cost, latency, and maintenance trade-offs",
+        "one_liner": "Ongoing effort, response speed, and money over time."
+      },
+      {
+        "title": "Accuracy, traceability, and hallucination control",
+        "one_liner": "Which gives citable sources and fewer made-up answers."
+      },
+      {
+        "title": "When to combine both",
+        "one_liner": "Cases where RAG plus fine-tuning beats either alone."
+      },
+      {
+        "title": "A decision checklist for your project",
+        "one_liner": "Questions to answer to reach a confident choice."
+      }
+    ],
+    "rationale": "The user is new to both approaches but deciding for a real project, so I ground the two concepts lightly in one node, then focus entirely on practical decision factors. Nodes 2-6 map directly to the decision criteria mentioned in the understanding (problem type, information freshness, data availability, cost/latency/maintenance, accuracy/traceability) and are MECE-ish with low overlap. I added a \"combine both\" node because it's a real and common answer to this specific question, and a final checklist node to make the outline actionable for a real decision. I excluded implementation details, tooling/vendor recommendations, deep technical tutorials, and any history/intro filler per the confirmed understanding."
+  },
+  "cost_usd": 0.05055
+}

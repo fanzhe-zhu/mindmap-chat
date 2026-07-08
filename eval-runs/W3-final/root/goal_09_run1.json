@@ -1,0 +1,51 @@
+{
+  "goal_id": 9,
+  "goal_text": "Learn machine learning",
+  "goal_type": "vague",
+  "coverage_mode": "granularity",
+  "run_index": 1,
+  "human": {
+    "coverage_pct": null,
+    "personalization_clear": null,
+    "notes": ""
+  },
+  "node_count": 8,
+  "outline": {
+    "nodes": [
+      {
+        "title": "What is machine learning, really?",
+        "one_liner": "The core idea: learning patterns from data vs. writing rules"
+      },
+      {
+        "title": "Set up your Python ML environment",
+        "one_liner": "Installing Python, NumPy, pandas, scikit-learn, and running notebooks"
+      },
+      {
+        "title": "Train your first model with scikit-learn",
+        "one_liner": "Loading data, fit/predict, and a working end-to-end example"
+      },
+      {
+        "title": "Prepare data so models can learn from it",
+        "one_liner": "Cleaning, splitting, scaling, and encoding features in code"
+      },
+      {
+        "title": "How do you know if your model is any good?",
+        "one_liner": "Train/test splits, metrics, overfitting, and cross-validation"
+      },
+      {
+        "title": "Key algorithms and when to reach for each",
+        "one_liner": "Regression, classification, trees, and picking the right tool"
+      },
+      {
+        "title": "Step up to deep learning with a framework",
+        "one_liner": "Neural nets in PyTorch/Keras and when they beat classic ML"
+      },
+      {
+        "title": "Turn a real problem into a working project",
+        "one_liner": "Framing a task, building a pipeline, and iterating on results"
+      }
+    ],
+    "rationale": "The user is a total beginner who can code and wants hands-on model building. I open with a single lightweight conceptual node (what ML is) to make code meaningful without theory overload, then move immediately to practical setup and a first working scikit-learn model to deliver early wins. Data preparation and evaluation are separated as distinct skills because they have low content overlap and are both essential to producing meaningful models. An algorithm-survey node gives breadth without mathematical derivation. Deep learning comes later as a natural step-up since it depends on comfort with the basics. The final project node consolidates skills into the user's stated goal of building and training models. I deliberately excluded math derivations, statistics foundations, ML history, and academic breadth per the confirmed understanding. Order follows real dependencies: concept → tooling → first model → data → evaluation → algorithm breadth → deep learning → applied project."
+  },
+  "cost_usd": 0.051815
+}

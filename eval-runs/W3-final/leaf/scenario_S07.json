@@ -1,0 +1,51 @@
+{
+  "scenario_id": "S7",
+  "scenario_goal_id": 7,
+  "scenario_tree": "B",
+  "scenario_category": "sibling_awareness",
+  "scenario_needs_tool": false,
+  "scenario_primary_metric": "Sibling awareness",
+  "scenario_user_message": "So if my data changes every day, does that mean I should use RAG?",
+  "leaf_result": {
+    "finalMessages": [
+      {
+        "role": "user",
+        "content": "So if my data changes every day, does that mean I should use RAG?"
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "That's a good instinct, but you're actually reaching into a different node's territory. How often your data changes — data freshness — is covered by the sibling node \"Data freshness dimension.\" That's where the \"daily-changing data\" question really belongs.\n\nBut since you're here, let me give you the cost angle on it, because it's the reason freshness matters so much economically.\n\nThe key cost fact: with fine-tuning, \"keeping up with daily data\" means re-training. Every time your data changes meaningfully, you pay the training cost again — compute, and the engineering time to build the pipeline that does it repeatedly. That's a recurring capital-ish cost.\n\nWith RAG, updating data is just updating your index or vector store — closer to a database write. That's cheap and incremental. You don't pay a big lump sum each time.\n\nSo from a pure cost-structure view: frequently-changing data pushes fine-tuning's cost up sharply because the expensive step (training) has to repeat, while RAG's expensive step (retrieval infrastructure) is a one-time-ish setup that absorbs updates cheaply.\n\nBut whether daily change actually *forces* RAG — that's the freshness node's call. Want me to stay on the cost mechanics, like what exactly makes up each side's cost?\n\nstop_reason: end_turn"
+          }
+        ]
+      }
+    ],
+    "finalStopReason": "end_turn",
+    "iterationsRun": 1,
+    "tokens": {
+      "input": 2135,
+      "output": 413,
+      "cacheRead": 2041,
+      "cacheWrite": 0
+    },
+    "toolCallsExecuted": 0,
+    "estimatedCostUsd": 0.0118155,
+    "error": null
+  },
+  "summary_result": {
+    "topic": "The cost-structure differences between fine-tuning and RAG, especially how frequently-changing data affects the cost of each approach.",
+    "key_takeaways": [
+      "With fine-tuning, keeping up with changing data means re-training, so every meaningful data change repeats the expensive training cost (compute plus engineering time for a repeatable pipeline) — a recurring, capital-like cost.",
+      "With RAG, updating data is just updating the index or vector store, closer to a cheap incremental database write, so there's no big lump-sum cost each time data changes.",
+      "From a pure cost-structure view, frequently-changing data pushes fine-tuning's cost up sharply because its expensive step (training) must repeat, whereas RAG's expensive step (retrieval infrastructure) is a mostly one-time setup that absorbs updates cheaply.",
+      "Whether daily-changing data actually forces a choice of RAG is a freshness question that belongs to the sibling 'Data freshness dimension' node, not the cost node."
+    ],
+    "status": "partial",
+    "open_questions": [
+      "What exactly makes up the cost on each side (the detailed cost mechanics of fine-tuning vs. RAG) — the agent offered to go deeper but the user didn't respond.",
+      "Whether daily-changing data actually forces RAG (deferred to the 'Data freshness dimension' sibling node)."
+    ]
+  }
+}

@@ -22,6 +22,32 @@ const MODEL = "claude-opus-4-8"
 const ANCESTORS_TOP_LEVEL = "(This node is at the top level of the tree. No ancestors.)"
 const NO_SIBLINGS = "(No siblings.)"
 
+// Opus 4.8 occasionally serializes its internal XML-parameter syntax INTO the
+// first string field's value: the intro text arrives followed by
+// `</intro>\n<parameter name="starter_questions">[...]` (observed in
+// traces/2026-06-24/node_intro/web-intro-node_1). The call is structurally
+// valid, so only a content check can catch it. These substrings cannot occur
+// in a legitimate 2-3 sentence tutor intro.
+const MARKUP_LEAK_MARKERS = ["</", "<parameter", "<invoke", "starter_questions"]
+
+export function validateNodeIntro(d: NodeIntro): string | null {
+  if (typeof d.intro !== "string" || d.intro.trim() === "") return "intro must be non-empty"
+  const leaked = MARKUP_LEAK_MARKERS.find((m) => d.intro.includes(m))
+  if (leaked) {
+    return `intro contains leaked tool-call markup ("${leaked}") — emit only the intro prose in the intro field`
+  }
+  if (!Array.isArray(d.starter_questions) || d.starter_questions.length !== 3) {
+    return `expected exactly 3 starter_questions, got ${d.starter_questions?.length}`
+  }
+  if (d.starter_questions.some((q) => typeof q !== "string" || q.trim() === "")) {
+    return "starter_questions must all be non-empty"
+  }
+  if (d.starter_questions.some((q) => MARKUP_LEAK_MARKERS.some((m) => q.includes(m)))) {
+    return "starter_questions contain leaked tool-call markup — emit only plain question text"
+  }
+  return null
+}
+
 export async function runNodeIntro(args: {
   nodeTitle: string
   nodeOneLiner: string
@@ -46,16 +72,7 @@ export async function runNodeIntro(args: {
     agentType: "node_intro",
     runId: args.runId,
     // strict mode can't enforce the exact count — validate client-side + retry.
-    validate: (d) => {
-      if (typeof d.intro !== "string" || d.intro.trim() === "") return "intro must be non-empty"
-      if (!Array.isArray(d.starter_questions) || d.starter_questions.length !== 3) {
-        return `expected exactly 3 starter_questions, got ${d.starter_questions?.length}`
-      }
-      if (d.starter_questions.some((q) => typeof q !== "string" || q.trim() === "")) {
-        return "starter_questions must all be non-empty"
-      }
-      return null
-    },
+    validate: validateNodeIntro,
   })
   return data
 }
